@@ -14,6 +14,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Install libpng-dev
+      run: sudo apt-get update && sudo apt-get install -y libpng-dev
+
     - name: Setup R
       uses: r-lib/actions/setup-r@v2
       with:
