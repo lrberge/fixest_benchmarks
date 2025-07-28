@@ -3,6 +3,7 @@ library(fixest)
 library(reticulate)
 library(JuliaCall)
 library(here)
+library(data.table)
 source("dgp_functions.R")
 
 # setup R
@@ -121,90 +122,90 @@ run_benchmark <- function(
 # %%
 # fmt: skip
 bench_ols_basic <- run_benchmark(
-  dgps = tibble::tribble(
-    ~dgp_name, ~n_iters, ~n_obs, ~dgp_function,
-    "basic_dgp", 10L, 1e3, \() basic_dgp(n = 1e3),
-    "basic_dgp", 10L, 1e4, \() basic_dgp(n = 1e4),
-    "basic_dgp", 10L, 1e5, \() basic_dgp(n = 1e5),
-    "basic_dgp", 10L, 1e6, \() basic_dgp(n = 1e6)
+  dgps = data.table::rowwiseDT(
+    dgp_name=, n_iters=, n_obs=, dgp_function=,
+    "basic_dgp", 10L, 1e3, list(\() basic_dgp(n = 1e3)),
+    "basic_dgp", 10L, 1e4, list(\() basic_dgp(n = 1e4)),
+    "basic_dgp", 5L, 1e5, list(\() basic_dgp(n = 1e5)),
+    "basic_dgp", 5L, 1e6, list(\() basic_dgp(n = 1e6))
   ),
-  estimators = tibble::tribble(
-    ~est_name, ~n_fe, ~func,
-    "pyfixest.feols", 1L, \(df) {
+  estimators = data.table::rowwiseDT(
+    est_name=, n_fe=, func=,
+    "pyfixest.feols", 1L, list(\(df) {
       pyfixest_feols_timer(
         df,
         "y ~ x1 | dum_1"
       )
-    },
-    "FixedEffectModels.reg", 1L, \(df) {
+    }),
+    "FixedEffectModels.reg", 1L, list(\(df) {
       julia_call(
         "jl_feols_timer",
         df,
         "y ~ x1 + fe(dum_1)"
       )
-    },
-    "lfe::felm", 1L, \(df) {
+    }),
+    "lfe::felm", 1L, list(\(df) {
       lfe_timer(
         df,
         y ~ x1 | dum_1
       )
-    },
-    "fixest::feols", 1L, \(df) {
+    }),
+    "fixest::feols", 1L, list(\(df) {
       feols_timer(
         df,
         y ~ x1 | dum_1
       )
-    },
-    "pyfixest.feols", 2L, \(df) {
+    }),
+    "pyfixest.feols", 2L, list(\(df) {
       pyfixest_feols_timer(
         df,
         "y ~ x1 | dum_1 + dum_2"
       )
-    },
-    "FixedEffectModels.reg", 2L, \(df) {
+    }),
+    "FixedEffectModels.reg", 2L, list(\(df) {
       julia_call(
         "jl_feols_timer",
         df,
         "y ~ x1 + fe(dum_1) + fe(dum_2)"
       )
-    },
-    "lfe::felm", 2L, \(df) {
+    }),
+    "lfe::felm", 2L, list(\(df) {
       lfe_timer(
         df,
         y ~ x1 | dum_1 + dum_2
       )
-    },
-    "fixest::feols", 2L, \(df) {
+    }),
+    "fixest::feols", 2L, list(\(df) {
       feols_timer(
         df,
         y ~ x1 | dum_1 + dum_2
       )
-    },
-    "pyfixest.feols", 3L, \(df) {
+    }),
+    "pyfixest.feols", 3L, list(\(df) {
       pyfixest_feols_timer(
         df,
         "y ~ x1 | dum_1 + dum_2 + dum_3"
       )
-    },
-    "FixedEffectModels.reg", 3L, \(df) {
+    }),
+    "FixedEffectModels.reg", 3L, list(\(df) {
       julia_call(
         "jl_feols_timer",
         df,
         "y ~ x1 + fe(dum_1) + fe(dum_2) + fe(dum_3)"
       )
-    },
-    "lfe::felm", 3L, \(df) {
+    }),
+    "lfe::felm", 3L, list(\(df) {
       lfe_timer(
         df,
         y ~ x1 | dum_1 + dum_2 + dum_3
       )
-    },
-    "fixest::feols", 3L, \(df) {
+    }),
+    "fixest::feols", 3L, list(\(df) {
       feols_timer(
         df,
         y ~ x1 | dum_1 + dum_2 + dum_3
       )
-    }
+    })
   )
 )
 
@@ -212,334 +213,384 @@ bench_ols_basic <- run_benchmark(
 # %%
 # fmt: skip
 bench_ols_difficult <- run_benchmark(
-  dgps = tibble::tribble(
-    ~dgp_name, ~n_iters, ~n_obs, ~dgp_function,
-    "difficult_dgp", 10L, 1e3, \() difficult_dgp(n = 1e3),
-    "difficult_dgp", 10L, 1e4, \() difficult_dgp(n = 1e4),
-    # "difficult_dgp", 3L, 1e5, \() difficult_dgp(n = 1e5),
-    # "difficult_dgp", 3L, 1e6, \() difficult_dgp(n = 1e6)
+  dgps = data.table::rowwiseDT(
+    dgp_name=, n_iters=, n_obs=, dgp_function=,
+    "difficult_dgp", 10L, 1e3, list(\() difficult_dgp(n = 1e3)),
+    "difficult_dgp", 10L, 1e4, list(\() difficult_dgp(n = 1e4)),
+    "difficult_dgp", 5L, 1e5, list(\() difficult_dgp(n = 1e5)),
+    "difficult_dgp", 5L, 1e6, list(\() difficult_dgp(n = 1e6))
   ),
-  estimators = tibble::tribble(
-    ~est_name, ~n_fe, ~func,
-    "pyfixest.feols", 2L, \(df) {
+  estimators = data.table::rowwiseDT(
+    est_name=, n_fe=, func=,
+    "pyfixest.feols", 2L, list(\(df) {
       pyfixest_feols_timer(
         df,
-        "y ~ x1 | id_indiv + id_firm"
+        "y ~ x1 | indiv_id + firm_id"
       )
-    },
-    "FixedEffectModels.reg", 2L, \(df) {
+    }),
+    "FixedEffectModels.reg", 2L, list(\(df) {
       julia_call(
         "jl_feols_timer",
         df,
-        "y ~ x1 + fe(id_indiv) + fe(id_firm)"
+        "y ~ x1 + fe(indiv_id) + fe(firm_id)"
       )
-    },
-    "lfe::felm", 2L, \(df) {
+    }),
+    "lfe::felm", 2L, list(\(df) {
       lfe_timer(
         df,
-        y ~ x1 | id_indiv + id_firm
+        y ~ x1 | indiv_id + firm_id
       )
-    },
-    "fixest::feols", 2L, \(df) {
+    }),
+    "fixest::feols", 2L, list(\(df) {
       feols_timer(
         df,
-        y ~ x1 | id_indiv + id_firm
+        y ~ x1 | indiv_id + firm_id
       )
-    },
-    "pyfixest.feols", 3L, \(df) {
+    }),
+    "pyfixest.feols", 3L, list(\(df) {
       pyfixest_feols_timer(
         df,
-        "y ~ x1 | id_indiv + id_firm + id_year"
+        "y ~ x1 | indiv_id + firm_id + id_year"
       )
-    },
-    "FixedEffectModels.reg", 3L, \(df) {
+    }),
+    "FixedEffectModels.reg", 3L, list(\(df) {
       julia_call(
         "jl_feols_timer",
         df,
-        "y ~ x1 + fe(id_indiv) + fe(id_firm) + fe(id_year)"
+        "y ~ x1 + fe(indiv_id) + fe(firm_id) + fe(id_year)"
       )
-    },
-    "lfe::felm", 3L, \(df) {
+    }),
+    "lfe::felm", 3L, list(\(df) {
       lfe_timer(
         df,
-        y ~ x1 | id_indiv + id_firm + id_year
+        y ~ x1 | indiv_id + firm_id + id_year
       )
-    },
-    "fixest::feols", 3L, \(df) {
+    }),
+    "fixest::feols", 3L, list(\(df) {
       feols_timer(
         df,
-        y ~ x1 | id_indiv + id_firm + id_year
+        y ~ x1 | indiv_id + firm_id + id_year
       )
-    }
+    })
+  )
+)
+
+# %%
+# fmt: skip
+bench_akm <- run_benchmark(
+  dgps = data.table::rowwiseDT(
+    dgp_name=, p_move=, n_iters=, n_obs=, dgp_function=,
+    "AKM", 0.01, 5L, 1e5, 
+    \() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.01),
+    "AKM", 0.05, 5L, 1e5, 
+    \() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.05),
+    "AKM", 0.20, 5L, 1e5, 
+    \() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.20),
+    "AKM", 0.40, 5L, 1e5, 
+    \() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.40),
+    "AKM", 0.60, 5L, 1e5, 
+    \() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.60),
+    "AKM", 0.80, 5L, 1e5, 
+    \() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.80),
+    "AKM", 0.95, 5L, 1e5, 
+    \() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.95),
+  ),
+  estimators = data.table::rowwiseDT(
+    est_name=, n_fe=, func=,
+    "pyfixest.feols", 2L, list(\(df) {
+      pyfixest_feols_timer(
+        df,
+        "y ~ x1 | indiv_id + firm_id"
+      )
+    }),
+    "FixedEffectModels.reg", 2L, list(\(df) {
+      julia_call(
+        "jl_feols_timer",
+        df,
+        "y ~ x1 + fe(indiv_id) + fe(firm_id)"
+      )
+    }),
+    "lfe::felm", 2L, list(\(df) {
+      lfe_timer(
+        df,
+        y ~ x1 | indiv_id + firm_id
+      )
+    }),
+    "fixest::feols", 2L, list(\(df) {
+      feols_timer(
+        df,
+        y ~ x1 | indiv_id + firm_id
+      )
+    })
   )
 )
 
 # %%
 # fmt: skip
 bench_poisson <- run_benchmark(
-  dgps = tibble::tribble(
-    ~dgp_name, ~n_iters, ~n_obs, ~dgp_function,
+  dgps = data.table::rowwiseDT(
+    dgp_name=, n_iters=, n_obs=, dgp_function=,
     "difficult_dgp", 10L, 1e3, \() difficult_dgp(n = 1e3),
     "difficult_dgp", 10L, 1e4, \() difficult_dgp(n = 1e4),
-    # "difficult_dgp", 3L, 1e5, \() difficult_dgp(n = 1e5),
-    # "difficult_dgp", 3L, 1e6, \() difficult_dgp(n = 1e6)
+    "difficult_dgp", 5L, 1e5, \() difficult_dgp(n = 1e5),
+    "difficult_dgp", 5L, 1e6, \() difficult_dgp(n = 1e6)
   ),
-  estimators = tibble::tribble(
-    ~est_name, ~n_fe, ~func,
-    "pyfixest.fepois", 2L, \(df) {
+  estimators = data.table::rowwiseDT(
+    est_name=, n_fe=, func=,
+    "pyfixest.fepois", 2L, list(\(df) {
       pyfixest_fepois_timer(
         df,
-        "abs_y ~ x1 | id_indiv + id_firm"
+        "abs_y ~ x1 | indiv_id + firm_id"
       )
-    },
-    "GLFixedEffectModels Poisson", 2L, \(df) {
+    }),
+    "GLFixedEffectModels Poisson", 2L, list(\(df) {
       julia_call(
         "jl_poisson_timer",
         df,
-        "abs_y ~ x1 + fe(id_indiv) + fe(id_firm)"
+        "abs_y ~ x1 + fe(indiv_id) + fe(firm_id)"
       )
-    },
-    "alpaca Poisson", 2L, \(df) {
+    }),
+    "alpaca Poisson", 2L, list(\(df) {
       alpaca_poisson_timer(
         df,
-        abs_y ~ x1 | id_indiv + id_firm
+        abs_y ~ x1 | indiv_id + firm_id
       )
-    },
-    "fixest::fepois", 2L, \(df) {
+    }),
+    "fixest::fepois", 2L, list(\(df) {
       fepois_timer(
         df,
-        abs_y ~ x1 | id_indiv + id_firm
+        abs_y ~ x1 | indiv_id + firm_id
       )
-    },
-    "pyfixest.fepois", 3L, \(df) {
+    }),
+    "pyfixest.fepois", 3L, list(\(df) {
       pyfixest_fepois_timer(
         df,
-        "abs_y ~ x1 | id_indiv + id_firm + id_year"
+        "abs_y ~ x1 | indiv_id + firm_id + id_year"
       )
-    },
-    "GLFixedEffectModels Poisson", 3L, \(df) {
+    }),
+    "GLFixedEffectModels Poisson", 3L, list(\(df) {
       julia_call(
         "jl_poisson_timer",
         df,
-        "abs_y ~ x1 + fe(id_indiv) + fe(id_firm) + fe(id_year)"
+        "abs_y ~ x1 + fe(indiv_id) + fe(firm_id) + fe(id_year)"
       )
-    },
-    "alpaca Poisson", 3L, \(df) {
+    }),
+    "alpaca Poisson", 3L, list(\(df) {
       alpaca_poisson_timer(
         df,
-        abs_y ~ x1 | id_indiv + id_firm + id_year      
+        abs_y ~ x1 | indiv_id + firm_id + id_year      
       )
-    },
-    "fixest::fepois", 3L, \(df) {
+    }),
+    "fixest::fepois", 3L, list(\(df) {
       fepois_timer(
         df,
-        abs_y ~ x1 | id_indiv + id_firm + id_year      
+        abs_y ~ x1 | indiv_id + firm_id + id_year      
       )
-    }
+    })
   )
 )
 
 # %%
 # fmt: skip
 bench_logit <- run_benchmark(
-  dgps = tibble::tribble(
-    ~dgp_name, ~n_iters, ~n_obs, ~dgp_function,
+  dgps = data.table::rowwiseDT(
+    dgp_name=, n_iters=, n_obs=, dgp_function=,
     "difficult_dgp", 10L, 1e3, \() difficult_dgp(n = 1e3),
     "difficult_dgp", 10L, 1e4, \() difficult_dgp(n = 1e4),
-    # "difficult_dgp", 3L, 1e5, \() difficult_dgp(n = 1e5),
-    # "difficult_dgp", 3L, 1e6, \() difficult_dgp(n = 1e6)
+    "difficult_dgp", 5L, 1e5, \() difficult_dgp(n = 1e5),
+    "difficult_dgp", 5L, 1e6, \() difficult_dgp(n = 1e6)
   ),
-  estimators = tibble::tribble(
-    ~est_name, ~n_fe, ~func,
-    # "pyfixest logit", 2L, \(df) {
+  estimators = data.table::rowwiseDT(
+    est_name=, n_fe=, func=,
+    # "pyfixest logit", 2L, list(\(df) {
     #   pyfixest_feglm_logit_timer(
     #     df,
-    #     "binary_y ~ x1 | id_indiv + id_firm"
+    #     "binary_y ~ x1 | indiv_id + firm_id"
     #   )
-    # },
-    "GLFixedEffectModels logit", 2L, \(df) {
+    # }),
+    "GLFixedEffectModels logit", 2L, list(\(df) {
       julia_call(
         "jl_logit_timer",
         df,
-        "binary_y ~ x1 + fe(id_indiv) + fe(id_firm)"
+        "binary_y ~ x1 + fe(indiv_id) + fe(firm_id)"
       )
-    },
-    "alpaca logit", 2L, \(df) {
+    }),
+    "alpaca logit", 2L, list(\(df) {
       alpaca_feglm_logit_timer(
         df,
-        binary_y ~ x1 | id_indiv + id_firm
+        binary_y ~ x1 | indiv_id + firm_id
       )
-    },
-    "fixest logit", 2L, \(df) {
+    }),
+    "fixest logit", 2L, list(\(df) {
       feglm_logit_timer(
         df,
-        binary_y ~ x1 | id_indiv + id_firm
+        binary_y ~ x1 | indiv_id + firm_id
       )
-    },
-    # "pyfixest logit", 3L, \(df) {
+    }),
+    # "pyfixest logit", 3L, list(\(df) {
     #   pyfixest_feglm_logit_timer(
     #     df,
-    #     "binary_y ~ x1 | id_indiv + id_firm + id_year"
+    #     "binary_y ~ x1 | indiv_id + firm_id + id_year"
     #   )
-    # },
-    "GLFixedEffectModels logit", 3L, \(df) {
+    # }),
+    "GLFixedEffectModels logit", 3L, list(\(df) {
       julia_call(
         "jl_logit_timer",
         df,
-        "binary_y ~ x1 + fe(id_indiv) + fe(id_firm) + fe(id_year)"
+        "binary_y ~ x1 + fe(indiv_id) + fe(firm_id) + fe(id_year)"
       )
-    },
-    "alpaca logit", 3L, \(df) {
+    }),
+    "alpaca logit", 3L, list(\(df) {
       alpaca_feglm_logit_timer(
         df,
-        binary_y ~ x1 | id_indiv + id_firm + id_year      
+        binary_y ~ x1 | indiv_id + firm_id + id_year      
       )
-    },
-    "fixest logit", 3L, \(df) {
+    }),
+    "fixest logit", 3L, list(\(df) {
       feglm_logit_timer(
         df,
-        binary_y ~ x1 | id_indiv + id_firm + id_year      
+        binary_y ~ x1 | indiv_id + firm_id + id_year      
       )
-    }
+    })
   )
 )
 
 # %%
 # fmt: skip
 bench_ols_multiple_y <- run_benchmark(
-  dgps = tibble::tribble(
-    ~dgp_name, ~n_iters, ~n_obs, ~dgp_function,
+  dgps = data.table::rowwiseDT(
+    dgp_name=, n_iters=, n_obs=, dgp_function=,
     "difficult_dgp (2 outcomes)", 10L, 1e3, \() difficult_dgp(n = 1e3),
     "difficult_dgp (2 outcomes)", 10L, 1e4, \() difficult_dgp(n = 1e4),
-    # "difficult_dgp (2 outcomes)", 3L, 1e5, \() difficult_dgp(n = 1e5),
-    # "difficult_dgp (2 outcomes)", 3L, 1e6, \() difficult_dgp(n = 1e6)
+    "difficult_dgp (2 outcomes)", 5L, 1e5, \() difficult_dgp(n = 1e5),
+    "difficult_dgp (2 outcomes)", 5L, 1e6, \() difficult_dgp(n = 1e6)
   ),
-  estimators = tibble::tribble(
-    ~est_name, ~n_fe, ~func,
-    "pyfixest.feols", 1L, \(df) {
+  estimators = data.table::rowwiseDT(
+    est_name=, n_fe=, func=,
+    "pyfixest.feols", 1L, list(\(df) {
       pyfixest_feols_timer(
         df,
-        "y + abs_y ~ x1 | id_indiv + id_firm + id_year"
+        "y + abs_y ~ x1 | indiv_id + firm_id + id_year"
       )
-    },
-    "FixedEffectModels.reg", 1L, \(df) {
+    }),
+    "FixedEffectModels.reg", 1L, list(\(df) {
       julia_call(
         "jl_feols_timer",
         df,
-        "y ~ x1 + fe(id_indiv) + fe(id_firm) + fe(id_year)"
+        "y ~ x1 + fe(indiv_id) + fe(firm_id) + fe(id_year)"
       ) + 
       julia_call(
         "jl_feols_timer",
         df,
-        "abs_y ~ x1 + fe(id_indiv) + fe(id_firm) + fe(id_year)"
+        "abs_y ~ x1 + fe(indiv_id) + fe(firm_id) + fe(id_year)"
       )
-    },
-    "lfe::felm", 1L, \(df) {
+    }),
+    "lfe::felm", 1L, list(\(df) {
       lfe_timer(
         df,
-        y ~ x1 | id_indiv + id_firm + id_year
+        y ~ x1 | indiv_id + firm_id + id_year
       ) + 
       lfe_timer(
         df,
-        abs_y ~ x1 | id_indiv + id_firm + id_year
+        abs_y ~ x1 | indiv_id + firm_id + id_year
       )
-    },
-    "fixest::feols", 1L, \(df) {
+    }),
+    "fixest::feols", 1L, list(\(df) {
       feols_timer(
         df,
-        c(y, abs_y) ~ x1 | id_indiv + id_firm + id_year
+        c(y, abs_y) ~ x1 | indiv_id + firm_id + id_year
       )
-    },
+    })
   )
 )
 
 # %%
 # fmt: skip
 bench_ols_multiple_vcov <- run_benchmark(
-  dgps = tibble::tribble(
-    ~dgp_name, ~n_iters, ~n_obs, ~dgp_function,
+  dgps = data.table::rowwiseDT(
+    dgp_name=, n_iters=, n_obs=, dgp_function=,
     "difficult_dgp (hc1 + clustered vcov)", 10L, 1e3, \() difficult_dgp(n = 1e3),
     "difficult_dgp (hc1 + clustered vcov)", 10L, 1e4, \() difficult_dgp(n = 1e4),
-    # "difficult_dgp (hc1 + clustered vcov)", 3L, 1e5, \() difficult_dgp(n = 1e5),
-    # "difficult_dgp (hc1 + clustered vcov)", 3L, 1e6, \() difficult_dgp(n = 1e6)
+    "difficult_dgp (hc1 + clustered vcov)", 5L, 1e5, \() difficult_dgp(n = 1e5),
+    "difficult_dgp (hc1 + clustered vcov)", 5L, 1e6, \() difficult_dgp(n = 1e6)
   ),
-  estimators = tibble::tribble(
-    ~est_name, ~n_fe, ~func,
-    "pyfixest.feols", 1L, \(df) {
+  estimators = data.table::rowwiseDT(
+    est_name=, n_fe=, func=,
+    "pyfixest.feols", 1L, list(\(df) {
       pyfixest_feols_multiple_vcov_timer(
         df,
-        "y ~ x1 | id_indiv + id_firm + id_year",
-        "id_firm"
+        "y ~ x1 | indiv_id + firm_id + id_year",
+        "firm_id"
       )
-    },
-    "FixedEffectModels.reg", 1L, \(df) {
+    }),
+    "FixedEffectModels.reg", 1L, list(\(df) {
       julia_call(
         "jl_feols_timer",
         df,
-        "y ~ x1 + fe(id_indiv) + fe(id_firm) + fe(id_year)"
+        "y ~ x1 + fe(indiv_id) + fe(firm_id) + fe(id_year)"
       ) + 
       julia_call(
         "jl_feols_timer",
         df,
-        "y ~ x1 + fe(id_indiv) + fe(id_firm) + fe(id_year)",
-        vcov = "id_firm"
+        "y ~ x1 + fe(indiv_id) + fe(firm_id) + fe(id_year)",
+        vcov = "firm_id"
       )
-    },
-    "lfe::felm", 1L, \(df) {
+    }),
+    "lfe::felm", 1L, list(\(df) {
       lfe_timer(
         df,
-        y ~ x1 | id_indiv + id_firm + id_year
+        y ~ x1 | indiv_id + firm_id + id_year
       ) + 
       lfe_timer(
         df,
-        y ~ x1 | id_indiv + id_firm + id_year | 0 | id_firm
+        y ~ x1 | indiv_id + firm_id + id_year | 0 | firm_id
       )
-    },
-    "fixest::feols", 1L, \(df) {
+    }),
+    "fixest::feols", 1L, list(\(df) {
       feols_multiple_vcov_timer(
         df,
-        y  ~ x1 | id_indiv + id_firm + id_year,
-        cluster = ~id_firm
+        y  ~ x1 | indiv_id + firm_id + id_year,
+        cluster = ~firm_id
       )
-    },
+    })
   )
 )
 
 # %%
 # fmt: skip
-bench_ols_real_data <- run_benchmark(
-  dgps = tibble::tribble(
-    ~dgp_name, ~n_iters, ~n_obs, ~n_fe, ~dgp_function,
+bench_ols_flights <- run_benchmark(
+  dgps = data.table::rowwiseDT(
+    dgp_name=, n_iters=, n_obs=, n_fe=, dgp_function=,
     "nycflights13", 5L, nrow(nycflights13::flights), 3L, \() 
     nycflights13::flights,
   ),
-  estimators = tibble::tribble(
-    ~est_name, ~func,
-    "pyfixest.feols", \(df) {
+  estimators = data.table::rowwiseDT(
+    est_name=, func=,
+    "pyfixest.feols", list(\(df) {
       pyfixest_feols_timer(
         df,
         "arr_delay ~ distance | carrier + origin + dest"
       )
-    },
-    "FixedEffectModels.reg", \(df) {
+    }),
+    "FixedEffectModels.reg", list(\(df) {
       julia_call(
         "jl_feols_timer",
         df,
         "arr_delay ~ distance + fe(carrier) + fe(origin) + fe(dest)"
       )
-    },
-    "lfe::felm", \(df) {
+    }),
+    "lfe::felm", list(\(df) {
       lfe_timer(
         df,
         arr_delay ~ distance | carrier + origin + dest
       )
-    },
-    "fixest::feols", \(df) {
+    }),
+    "fixest::feols", list(\(df) {
       feols_timer(
         df,
         arr_delay ~ distance | carrier + origin + dest
       )
-    }
+    })
   )
 )
 
@@ -584,59 +635,87 @@ write.csv(
 )
 
 # %%
-# library(tidyverse)
-# library(tinytable)
-#
-# bench_ols_basic |>
-#   summarize(
-#     .by = c(everything(), -iter, -time),
-#     mean_time = mean(time, na.rm = TRUE),
-#     n_failures = sum(is.na(time))
-#   ) |>
-#   tinytable::tt() |>
-#   print("markdown")
-#
-# bench_ols_difficult |>
-#   summarize(
-#     .by = c(everything(), -iter, -time),
-#     mean_time = mean(time, na.rm = TRUE),
-#     n_failures = sum(is.na(time))
-#   ) |>
-#   tinytable::tt() |>
-#   print("markdown")
-#
-# bench_poisson |>
-#   summarize(
-#     .by = c(everything(), -iter, -time),
-#     mean_time = mean(time, na.rm = TRUE),
-#     n_failures = sum(is.na(time))
-#   ) |>
-#   tinytable::tt() |>
-#   print("markdown")
-#
-# bench_logit |>
-#   summarize(
-#     .by = c(everything(), -iter, -time),
-#     mean_time = mean(time, na.rm = TRUE),
-#     n_failures = sum(is.na(time))
-#   ) |>
-#   tinytable::tt() |>
-#   print("markdown")
-#
-# bench_ols_multiple_vcov |>
-#   summarize(
-#     .by = c(everything(), -iter, -time),
-#     mean_time = mean(time, na.rm = TRUE),
-#     n_failures = sum(is.na(time))
-#   ) |>
-#   tinytable::tt() |>
-#   print("markdown")
-#
-# bench_ols_real_data |>
-#   summarize(
-#     .by = c(everything(), -iter, -time),
-#     mean_time = mean(time, na.rm = TRUE),
-#     n_failures = sum(is.na(time))
-#   ) |>
-#   tinytable::tt() |>
-#   print("markdown")
+library(tinytable)
+bench_ols_basic |>
+  as.data.table() |>
+  _[,
+    .(
+      mean_time = mean(time, na.rm = TRUE),
+      n_failures = sum(is.na(time))
+    ),
+    by = setdiff(names(bench_ols_basic), c("iter", "time"))
+  ] |>
+  tinytable::tt() |>
+  print("markdown")
+
+bench_ols_difficult |>
+  as.data.table() |>
+  _[,
+    .(
+      mean_time = mean(time, na.rm = TRUE),
+      n_failures = sum(is.na(time))
+    ),
+    by = setdiff(names(bench_ols_difficult), c("iter", "time"))
+  ] |>
+  tinytable::tt() |>
+  print("markdown")
+
+bench_akm |>
+  as.data.table() |>
+  _[,
+    .(
+      mean_time = mean(time, na.rm = TRUE),
+      n_failures = sum(is.na(time))
+    ),
+    by = setdiff(names(bench_akm), c("iter", "time"))
+  ] |>
+  tinytable::tt() |>
+  print("markdown")
+
+bench_poisson |>
+  as.data.table() |>
+  _[,
+    .(
+      mean_time = mean(time, na.rm = TRUE),
+      n_failures = sum(is.na(time))
+    ),
+    by = setdiff(names(bench_poisson), c("iter", "time"))
+  ] |>
+  tinytable::tt() |>
+  print("markdown")
+
+bench_logit |>
+  as.data.table() |>
+  _[,
+    .(
+      mean_time = mean(time, na.rm = TRUE),
+      n_failures = sum(is.na(time))
+    ),
+    by = setdiff(names(bench_logit), c("iter", "time"))
+  ] |>
+  tinytable::tt() |>
+  print("markdown")
+
+bench_ols_multiple_vcov |>
+  as.data.table() |>
+  _[,
+    .(
+      mean_time = mean(time, na.rm = TRUE),
+      n_failures = sum(is.na(time))
+    ),
+    by = setdiff(names(bench_ols_multiple_vcov), c("iter", "time"))
+  ] |>
+  tinytable::tt() |>
+  print("markdown")
+
+bench_ols_flights |>
+  as.data.table() |>
+  _[,
+    .(
+      mean_time = mean(time, na.rm = TRUE),
+      n_failures = sum(is.na(time))
+    ),
+    by = setdiff(names(bench_ols_real_data), c("iter", "time"))
+  ] |>
+  tinytable::tt() |>
+  print("markdown")

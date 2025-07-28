@@ -34,17 +34,17 @@ difficult_dgp <- function(n = 1000) {
   nb_firm = round(n / 160)
   nb_year = round(n**.3)
 
-  id_indiv = sample(1:nb_indiv, n, TRUE)
-  id_firm = pmin(sample(0:20, n, TRUE) + pmax(1, id_indiv %/% 8 - 10), nb_firm)
-  id_year = sample(nb_year, n, TRUE)
+  indiv_id = sample(1:nb_indiv, n, TRUE)
+  firm_id = pmin(sample(0:20, n, TRUE) + pmax(1, indiv_id %/% 8 - 10), nb_firm)
+  year = sample(nb_year, n, TRUE)
 
-  x1 = 5 * cos(id_indiv) + 5 * sin(id_firm) + 5 * sin(id_year) + runif(n)
-  x2 = cos(id_indiv) + sin(id_firm) + sin(id_year) + rnorm(n)
-  y = 3 * x1 + 5 * x2 + cos(id_indiv) + cos(id_firm)^2 + sin(id_year) + rnorm(n)
+  x1 = 5 * cos(indiv_id) + 5 * sin(firm_id) + 5 * sin(year) + runif(n)
+  x2 = cos(indiv_id) + sin(firm_id) + sin(year) + rnorm(n)
+  y = 3 * x1 + 5 * x2 + cos(indiv_id) + cos(firm_id)^2 + sin(year) + rnorm(n)
   df = data.frame(
-    id_indiv = id_indiv,
-    id_firm = id_firm,
-    id_year = id_year,
+    indiv_id = indiv_id,
+    firm_id = firm_id,
+    year = year,
     x1 = x1,
     x2 = x2,
     y = y,
@@ -204,7 +204,7 @@ simulate_bipartite <- function(
   # CONSTRUCT PANEL
   # ============================================================================
   # Create long-format panel structure
-  unit <- rep(seq_len(n_workers), each = n_time)
+  indiv_id <- rep(seq_len(n_workers), each = n_time)
   time <- rep(seq_len(n_time), times = n_workers)
   worker_type <- rep(worker_types, each = n_time)
   firm_type <- as.vector(t(firm_types))
@@ -250,7 +250,7 @@ simulate_bipartite <- function(
 
   # Merge firm IDs back to panel
   panel <- data.frame(
-    unit = unit,
+    indiv_id = indiv_id,
     time = time,
     worker_type = worker_type,
     firm_type = firm_type,
@@ -264,8 +264,8 @@ simulate_bipartite <- function(
   panel$wage <- panel$worker_fe + panel$firm_fe + rnorm(nrow(panel)) * w_sig
 
   # Generate covariate and additional outcomes
-  panel$x <- rnorm(nrow(panel)) * x_sig
-  panel$y1 <- panel$worker_fe +
+  panel$x1 <- rnorm(nrow(panel)) * x_sig
+  panel$y <- panel$worker_fe +
     panel$firm_fe +
     y1_beta * panel$x +
     rnorm(nrow(panel)) * y1_sig
@@ -275,15 +275,15 @@ simulate_bipartite <- function(
     rnorm(nrow(panel)) * y2_sig
 
   # Sort and return final dataset
-  panel <- panel[order(panel$unit, panel$time), ]
+  panel <- panel[order(panel$indiv_id, panel$time), ]
 
   return(panel[c(
-    "unit",
+    "indiv_id",
     "firm_id",
     "wage",
-    "y1",
+    "y",
     "y2",
-    "x",
+    "x1",
     "time",
     "worker_type",
     "firm_type",
