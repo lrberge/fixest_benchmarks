@@ -280,20 +280,16 @@ bench_ols_difficult <- run_benchmark(
 bench_akm <- run_benchmark(
   dgps = data.table::rowwiseDT(
     dgp_name=, p_move=, n_iters=, n_obs=, dgp_function=,
+    "AKM", 0.001, 5L, 1e5, 
+    list(\() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.001)),
     "AKM", 0.01, 5L, 1e5, 
-    \() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.01),
+    list(\() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.01)),
     "AKM", 0.05, 5L, 1e5, 
-    \() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.05),
+    list(\() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.05)),
     "AKM", 0.20, 5L, 1e5, 
-    \() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.20),
-    "AKM", 0.40, 5L, 1e5, 
-    \() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.40),
-    "AKM", 0.60, 5L, 1e5, 
-    \() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.60),
-    "AKM", 0.80, 5L, 1e5, 
-    \() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.80),
-    "AKM", 0.95, 5L, 1e5, 
-    \() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.95),
+    list(\() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.20)),
+    "AKM", 0.40, 5L, 1e5,
+    list(\() simulate_bipartite(n_workers = 1e5/5, n_time = 5, p_move = 0.40))
   ),
   estimators = data.table::rowwiseDT(
     est_name=, n_fe=, func=,
