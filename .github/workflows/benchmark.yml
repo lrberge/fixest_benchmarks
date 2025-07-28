@@ -44,11 +44,14 @@ jobs:
       with:
         version: '1.11.6'
 
+    - name: Install Julia packages
+      run: |
+        julia --project=. -e 'using Pkg; Pkg.activate("."); Pkg.instantiate();'
+
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.13'
-
 
     - name: Create virtual environment
       run: |
@@ -65,10 +68,6 @@ jobs:
         source .venv/bin/activate
         echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
         echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH
-
-    - name: Setup Julia dependencies
-      run: |
-        julia --project=. -e "using Pkg; Pkg.activate(\".\"); Pkg.instantiate()"
 
     - name: Run benchmarks
       run: |
