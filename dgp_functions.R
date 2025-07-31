@@ -1,59 +1,46 @@
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # %%
-basic_dgp <- function(n = 1000) {
-  dum_all = list()
-  nb_dum = c(n / 20, floor(sqrt(n)), floor(n**.33))
-  N = nb_dum**3
-  dum_all[[1]] = sample(nb_dum[1], n, TRUE)
-  dum_all[[2]] = sample(nb_dum[2], n, TRUE)
-  dum_all[[3]] = sample(nb_dum[3], n, TRUE)
+base_dgp <- function(
+  n = 1000,
+  nb_year = 10,
+  nb_indiv_per_firm = 16,
+  type = c("simple", "difficult")
+) {
+  nb_indiv = round(n / nb_year)
+  nb_firm = round(nb_indiv / nb_indiv_per_firm)
+  indiv_id = rep(1:nb_indiv, each = nb_year)
+  year = rep(1:nb_year, times = nb_indiv)
+
+  if (type == "simple") {
+    firm_id = sample(1:nb_firm, n, TRUE)
+  } else if (type == "difficult") {
+    firm_id = rep(1:nb_firm, length.out = n)
+  } else {
+    stop("Unknown type of dgp")
+  }
 
   x1 = rnorm(n)
   x2 = x1**2
 
-  mu = 1 * x1 + 0.05 * x2
-  for (m in 1:3) {
-    coef_dum = rnorm(nb_dum[m])
-    mu = mu + coef_dum[dum_all[[m]]]
-  }
-  mu = exp(mu)
-  y = MASS::rnegbin(mu, theta = 0.5)
+  firm_fe = rnorm(nb_firm)[firm_id]
+  unit_fe = rnorm(nb_indiv)[indiv_id]
+  year_fe = rnorm(nb_year)[year]
+  mu = 1 * x1 + 0.05 * x2 + firm_fe + unit_fe + year_fe
 
-  df = data.frame(y, x1, x2, ln_y = log(y + 1))
-
-  for (m in 1:3) {
-    df[[paste0("dum_", m)]] = dum_all[[m]]
-  }
-
-  return(df)
-}
-
-# %%
-## This benchmark data set is an adaptation of a benchmark of the authors of the Julia FixedEffectModels.jl software
-difficult_dgp <- function(n = 1000) {
-  nb_indiv = n / 20
-  nb_firm = round(n / 160)
-  nb_year = round(n**.3)
-
-  indiv_id = sample(1:nb_indiv, n, TRUE)
-  firm_id = pmin(sample(0:20, n, TRUE) + pmax(1, indiv_id %/% 8 - 10), nb_firm)
-  year = sample(nb_year, n, TRUE)
-
-  x1 = 5 * cos(indiv_id) + 5 * sin(firm_id) + 5 * sin(year) + runif(n)
-  x2 = cos(indiv_id) + sin(firm_id) + sin(year) + rnorm(n)
-  y = 3 * x1 + 5 * x2 + cos(indiv_id) + cos(firm_id)^2 + sin(year) + rnorm(n)
   df = data.frame(
     indiv_id = indiv_id,
     firm_id = firm_id,
     year = year,
     x1 = x1,
     x2 = x2,
-    y = y,
-    abs_y = abs(y),
-    binary_y = as.numeric(y > 0),
-    ln_y = log(abs(y) + 1)
+    y = mu,
+    negbin_y = MASS::rnegbin(exp(mu), theta = 0.5),
+    binary_y = as.numeric(mu > 0),
+    ln_y = log(abs(mu) + 1)
   )
   return(df)
 }
+
 
 # %%
 ## Adapated from bipartitepandas python package
@@ -98,8 +85,8 @@ difficult_dgp <- function(n = 1000) {
 simulate_bipartite <- function(
   n_workers = 10000L,
   n_time = 5L,
-  firm_size = 50,
-  n_firm_types = 10L,
+  firm_size = 10L,
+  n_firm_types = 5L,
   n_worker_types = 5L,
   p_move = 0.5,
   c_sort = 1,
@@ -251,7 +238,7 @@ simulate_bipartite <- function(
   # Merge firm IDs back to panel
   panel <- data.frame(
     indiv_id = indiv_id,
-    time = time,
+    year = time,
     worker_type = worker_type,
     firm_type = firm_type,
     spell = spell
@@ -275,7 +262,7 @@ simulate_bipartite <- function(
     rnorm(nrow(panel)) * y2_sig
 
   # Sort and return final dataset
-  panel <- panel[order(panel$indiv_id, panel$time), ]
+  panel <- panel[order(panel$indiv_id, panel$year), ]
 
   return(panel[c(
     "indiv_id",
@@ -284,7 +271,7 @@ simulate_bipartite <- function(
     "y",
     "y2",
     "x1",
-    "time",
+    "year",
     "worker_type",
     "firm_type",
     "worker_fe",
