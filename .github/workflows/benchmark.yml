@@ -98,10 +98,10 @@ jobs:
         path: data/nyc_taxi.parquet
         retention-days: 30
     
-    - name: Create Release
-      uses: softprops/action-gh-release@v2
-      with:
-        files: data/nyc_taxi.parquet
+    # - name: Create Release
+    #   uses: softprops/action-gh-release@v2
+    #   with:
+    #     files: data/nyc_taxi.parquet
 
     # RUN BENCHMARK
     
