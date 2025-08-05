@@ -78,21 +78,21 @@ jobs:
         echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
         echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH
 
-    # Download NYC Taxi data for benchmarks
-    
-    # Try to download pre-processed data from artifact first
-    - name: Download taxi data artifact
-      id: download_artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: nyc-taxi-data
-        path: data/
-      continue-on-error: true
-    
-    # If artifact download failed, process the data ourselves  
-    - name: Download and process taxi data
-      if: steps.download_artifact.outcome == 'failure'
-      run: Rscript download_taxi.R
+    # # Download NYC Taxi data for benchmarks
+    # 
+    # # Try to download pre-processed data from artifact first
+    # - name: Download taxi data artifact
+    #   id: download_artifact
+    #   uses: actions/download-artifact@v4
+    #   with:
+    #     name: nyc-taxi-data
+    #     path: data/
+    #   continue-on-error: true
+    # 
+    # # If artifact download failed, process the data ourselves  
+    # - name: Download and process taxi data
+    #   if: steps.download_artifact.outcome == 'failure'
+    #   run: Rscript download_taxi.R
 
     # RUN BENCHMARK
     

@@ -626,48 +626,47 @@ bench_tradepolicy_ppml <- run_benchmark(
   )
 )
 
-# fmt: skip
-bench_nyc_taxi_ols <- run_benchmark(
-  dgps = data.table::rowwiseDT(
-    dgp_name=, n_iters=, n_obs=, n_fe=, dgp_function=,
-    "nyc taxi", 2L, nrow(nyc), 3L, list(\() nyc)
-  ),
-  estimators = data.table::rowwiseDT(
-    est_name=, func=,
-    "pyfixest.feols", list(\(df) {
-      pyfixest_feols_timer(
-        df,
-        "tip_amount ~ trip_distance + passenger_count | dofw + vendor_id + payment_type"
-      )
-    }),
-    "FixedEffectModels.reg", list(\(df) {
-      julia_call(
-        "jl_feols_timer",
-        df,
-        "tip_amount ~ trip_distance + passenger_count + fe(dofw) + fe(vendor_id) + fe(payment_type)"
-      )
-    }),
-    # "lfe::felm", list(\(df) {
-    #   lfe_timer(
-    #     df,
-    #     tip_amount ~ trip_distance + passenger_count | dofw + vendor_id + payment_type
-    #   )
-    # }),
-    "fixest::feols", list(\(df) {
-      feols_timer(
-        df,
-        tip_amount ~ trip_distance + passenger_count | dofw + vendor_id + payment_type
-      )
-    })
-  )
-)
+# # fmt: skip
+# bench_nyc_taxi_ols <- run_benchmark(
+#   dgps = data.table::rowwiseDT(
+#     dgp_name=, n_iters=, n_obs=, n_fe=, dgp_function=,
+#     "nyc taxi", 2L, nrow(nyc), 3L, list(\() nyc)
+#   ),
+#   estimators = data.table::rowwiseDT(
+#     est_name=, func=,
+#     "pyfixest.feols", list(\(df) {
+#       pyfixest_feols_timer(
+#         df,
+#         "tip_amount ~ trip_distance + passenger_count | dofw + vendor_id + payment_type"
+#       )
+#     }),
+#     "FixedEffectModels.reg", list(\(df) {
+#       julia_call(
+#         "jl_feols_timer",
+#         df,
+#         "tip_amount ~ trip_distance + passenger_count + fe(dofw) + fe(vendor_id) + fe(payment_type)"
+#       )
+#     }),
+#     # "lfe::felm", list(\(df) {
+#     #   lfe_timer(
+#     #     df,
+#     #     tip_amount ~ trip_distance + passenger_count | dofw + vendor_id + payment_type
+#     #   )
+#     # }),
+#     "fixest::feols", list(\(df) {
+#       feols_timer(
+#         df,
+#         tip_amount ~ trip_distance + passenger_count | dofw + vendor_id + payment_type
+#       )
+#     })
+#   )
+# )
 
 bench_real_data <- rbindlist(
   list(
     bench_ols_flights,
     bench_tradepolicy_ols,
-    bench_tradepolicy_ppml,
-    bench_nyc_taxi_ols
+    bench_tradepolicy_ppml
   ),
   use.names = TRUE,
   fill = TRUE
