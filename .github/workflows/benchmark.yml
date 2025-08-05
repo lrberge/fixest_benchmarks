@@ -80,28 +80,19 @@ jobs:
 
     # Download NYC Taxi data for benchmarks
     
+    # Try to download pre-processed data from artifact first
     - name: Download taxi data artifact
+      id: download_artifact
       uses: actions/download-artifact@v4
       with:
-        name: nyc_taxi_data
-        path: data/nyc_taxi.parquet
+        name: nyc-taxi-data
+        path: data/
       continue-on-error: true
     
-    - name: Run download_taxi.R if artifact download failed
-      if: failure()
+    # If artifact download failed, process the data ourselves  
+    - name: Download and process taxi data
+      if: steps.download_artifact.outcome == 'failure'
       run: Rscript download_taxi.R
-    
-    - name: Upload filtered data as artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: nyc_taxi_data
-        path: data/nyc_taxi.parquet
-        retention-days: 30
-    
-    # - name: Create Release
-    #   uses: softprops/action-gh-release@v2
-    #   with:
-    #     files: data/nyc_taxi.parquet
 
     # RUN BENCHMARK
     
