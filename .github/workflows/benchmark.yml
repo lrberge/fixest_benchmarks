@@ -9,23 +9,25 @@ on:
 jobs:
   benchmark:
     runs-on: ubuntu-latest
-
     steps:
+    
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    # R
+    
     - name: Install libpng-dev
       run: sudo apt-get update && sudo apt-get install -y libpng-dev
-
+    
     - name: Setup R
       uses: r-lib/actions/setup-r@v2
       with:
         r-version: '4.4.0'
         use-public-rspm: true
-
+    
     - name: Install pandoc
       uses: r-lib/actions/setup-pandoc@v2
-
+    
     - name: Cache R packages
       uses: actions/cache@v4
       with:
@@ -33,56 +35,83 @@ jobs:
         key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
         restore-keys: |
           ${{ runner.os }}-renv-
-
+    
     - name: Setup renv
       uses: r-lib/actions/setup-renv@v2
       with:
         cache-version: 1
 
+    # Julia
+    
     - name: Setup Julia
       uses: julia-actions/setup-julia@v2
       with:
         version: '1.11.6'
+    
     - name: Cache Julia pacakges
       uses: julia-actions/cache@v2
-
+    
     - name: Install Julia packages
       run: |
         julia --project=. -e 'using Pkg; Pkg.activate("."); Pkg.instantiate();'
 
+    # Python
+    
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.13'
-
+    
     - name: Create virtual environment
       run: |
         python -m venv .venv
-
+    
     - name: Install Python packages
       run: |
         source .venv/bin/activate
         pip install --upgrade pip
         pip install pandas pyfixest
-
+    
     - name: Make venv available to subsequent steps
       run: |
         source .venv/bin/activate
         echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
         echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH
 
+    # Download NYC Taxi data for benchmarks
+    
     - name: Download taxi data artifact
       uses: actions/download-artifact@v4
       with:
-        name: nyc-taxi-filtered-data
-        path: data/taxi/
-      continue-on-error: true
+        name: nyc_taxi_data
+        path: data/nyc_taxi.parquet
+      continue-on-error: false
+    
+    - name: Run download_taxi.R if artifact download failed
+      if: failure()
+      run: Rscript download_taxi.R
+    
+    - name: Upload filtered data as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: nyc_taxi_data
+        path: data/nyc_taxi.parquet
+        retention-days: 30
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: data/nyc_taxi.parquet
 
+    # RUN BENCHMARK
+    
     - name: Run benchmarks
       run: |
         source .venv/bin/activate
         Rscript bench.R
 
+    ## Commit results
+    
     - name: Commit benchmark results
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       uses: stefanzweifel/git-auto-commit-action@v5

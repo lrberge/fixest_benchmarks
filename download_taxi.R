@@ -1,7 +1,7 @@
 options(timeout = 300)
 bucket = "https://ursa-labs-taxi-data.s3.us-east-2.amazonaws.com"
 for (m in sprintf("%02d", 1:3)) {
-  fp = file.path(paste0("data/nyc-taxi/year=2012/month=", m))
+  fp = file.path(paste0("data/nyc_taxi/year=2012/month=", m))
   dir.create(fp, recursive = TRUE)
   try(
     download.file(
@@ -20,7 +20,7 @@ con = dbConnect(duckdb())
 nyc = dbGetQuery(
   con,
   "
-   FROM 'data/nyc-taxi/**/*.parquet'
+   FROM 'data/nyc_taxi/**/*.parquet'
    SELECT
       tip_amount, trip_distance, passenger_count,
       vendor_id, payment_type, dropoff_at,
@@ -31,5 +31,5 @@ nyc = dbGetQuery(
 dbDisconnect(con)
 rm(con)
 
-write_parquet(nyc, "data/nyc-taxi.parquet")
-unlink("data/nyc-taxi", recursive = TRUE)
+write_parquet(nyc, "data/nyc_taxi.parquet")
+unlink("data/nyc_taxi", recursive = TRUE)
