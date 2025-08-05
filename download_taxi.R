@@ -13,7 +13,7 @@ for (m in sprintf("%02d", 1:3)) {
   )
 }
 
-
+library(arrow)
 library(duckdb)
 con = dbConnect(duckdb())
 
