@@ -88,7 +88,7 @@ ch1_application3 <- tradepolicy::agtpa_applications |>
   dcast(... ~ year, value.var = "intl_brdr_2", fill = 0) |>
   _[, sum_trade := sum(trade), by = pair_id]
 
-nyc <- read_parquet(here("data/nyc_taxi.parquet"))
+# nyc <- read_parquet(here("data/nyc_taxi.parquet"))
 
 
 # set seed for (somewhat) reproducibility
