@@ -71,6 +71,13 @@ jobs:
         echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
         echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH
 
+    - name: Download taxi data artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: nyc-taxi-filtered-data
+        path: data/taxi/
+      continue-on-error: true
+
     - name: Run benchmarks
       run: |
         source .venv/bin/activate
