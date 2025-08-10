@@ -35,9 +35,9 @@ base_dgp <- function(
     x1 = x1,
     x2 = x2,
     y = y,
+    exp_y = exp(y),
     negbin_y = MASS::rnegbin(exp(y), theta = 0.5),
-    binary_y = as.numeric(y > 0),
-    ln_y = log(abs(y) + 1)
+    binary_y = as.numeric(y > 0)
   )
   return(df)
 }

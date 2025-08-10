@@ -1,7 +1,8 @@
 # %%
 source("setup.R")
 source("dgp_functions.R")
-
+options(lfe.threads = 2)
+setFixest_nthreads(2)
 
 # %%
 # fmt: skip
@@ -14,8 +15,8 @@ bench_ols <- run_benchmark(
     "difficult", 10L, 1e4, list(\() base_dgp(n = 1e4, type = "difficult")),
     "simple",    10L, 1e5, list(\() base_dgp(n = 1e5, type = "simple")),
     "difficult",  5L, 1e5, list(\() base_dgp(n = 1e5, type = "difficult")),
-    "simple",    10L, 1e6, list(\() base_dgp(n = 1e6, type = "simple")),
-    "difficult",  5L, 1e6, list(\() base_dgp(n = 1e6, type = "difficult"))
+    "simple",    10L, 5e5, list(\() base_dgp(n = 5e5, type = "simple")),
+    "difficult",  5L, 5e5, list(\() base_dgp(n = 5e5, type = "difficult"))
   ),
   estimators = data.table::rowwiseDT(
     est_name=, n_fe=, func=,
@@ -149,58 +150,62 @@ bench_poisson <- run_benchmark(
     "simple", 10L, 1e3, list(\() base_dgp(n = 1e3, type = "simple")),
     "simple", 10L, 1e4, list(\() base_dgp(n = 1e4, type = "simple")),
     "simple",  5L, 1e5, list(\() base_dgp(n = 1e5, type = "simple")),
-    "simple",  5L, 1e6, list(\() base_dgp(n = 1e6, type = "simple"))
+    "simple",  5L, 5e5, list(\() base_dgp(n = 5e5, type = "simple")),
+    "difficult", 10L, 1e3, list(\() base_dgp(n = 1e3, type = "difficult")),
+    "difficult", 10L, 1e4, list(\() base_dgp(n = 1e4, type = "difficult")),
+    "difficult",  5L, 1e5, list(\() base_dgp(n = 1e5, type = "difficult")),
+    "difficult",  5L, 5e5, list(\() base_dgp(n = 5e5, type = "difficult"))
   ),
   estimators = data.table::rowwiseDT(
     est_name=, n_fe=, func=,
     "pyfixest.fepois", 2L, list(\(df) {
       pyfixest_fepois_timer(
         df,
-        "ln_y ~ x1 | indiv_id + firm_id"
+        "exp_y ~ x1 | indiv_id + firm_id"
       )
     }),
     "GLFixedEffectModels Poisson", 2L, list(\(df) {
       julia_call(
         "jl_poisson_timer",
         df,
-        "ln_y ~ x1 + fe(indiv_id) + fe(firm_id)"
+        "exp_y ~ x1 + fe(indiv_id) + fe(firm_id)"
       )
     }),
     "alpaca Poisson", 2L, list(\(df) {
       alpaca_poisson_timer(
         df,
-        ln_y ~ x1 | indiv_id + firm_id
+        exp_y ~ x1 | indiv_id + firm_id
       )
     }),
     "fixest::fepois", 2L, list(\(df) {
       fepois_timer(
         df,
-        ln_y ~ x1 | indiv_id + firm_id
+        exp_y ~ x1 | indiv_id + firm_id
       )
     }),
     "pyfixest.fepois", 3L, list(\(df) {
       pyfixest_fepois_timer(
         df,
-        "ln_y ~ x1 | indiv_id + firm_id + year"
+        "exp_y ~ x1 | indiv_id + firm_id + year"
       )
     }),
     "GLFixedEffectModels Poisson", 3L, list(\(df) {
       julia_call(
         "jl_poisson_timer",
         df,
-        "ln_y ~ x1 + fe(indiv_id) + fe(firm_id) + fe(year)"
+        "exp_y ~ x1 + fe(indiv_id) + fe(firm_id) + fe(year)"
       )
     }),
     "alpaca Poisson", 3L, list(\(df) {
       alpaca_poisson_timer(
         df,
-        ln_y ~ x1 | indiv_id + firm_id + year      
+        exp_y ~ x1 | indiv_id + firm_id + year      
       )
     }),
     "fixest::fepois", 3L, list(\(df) {
       fepois_timer(
         df,
-        ln_y ~ x1 | indiv_id + firm_id + year      
+        exp_y ~ x1 | indiv_id + firm_id + year      
       )
     })
   )
@@ -214,7 +219,11 @@ bench_logit <- run_benchmark(
     "simple", 10L, 1e3, list(\() base_dgp(n = 1e3, type = "simple")),
     "simple", 10L, 1e4, list(\() base_dgp(n = 1e4, type = "simple")),
     "simple",  5L, 1e5, list(\() base_dgp(n = 1e5, type = "simple")),
-    "simple",  5L, 1e6, list(\() base_dgp(n = 1e6, type = "simple"))
+    "simple",  5L, 5e5, list(\() base_dgp(n = 5e5, type = "simple")),
+    "difficult", 10L, 1e3, list(\() base_dgp(n = 1e3, type = "difficult")),
+    "difficult", 10L, 1e4, list(\() base_dgp(n = 1e4, type = "difficult")),
+    "difficult",  5L, 1e5, list(\() base_dgp(n = 1e5, type = "difficult")),
+    "difficult",  5L, 5e5, list(\() base_dgp(n = 5e5, type = "difficult"))
   ),
   estimators = data.table::rowwiseDT(
     est_name=, n_fe=, func=,
@@ -275,22 +284,22 @@ bench_logit <- run_benchmark(
 # fmt: skip
 bench_ols_multiple_y <- run_benchmark(
   dgps = data.table::rowwiseDT(
-    dgp_name=, n_iters=, n_obs=, dgp_function=,
-    "base_dgp (simple, 2 outcomes)", 10L, 1e3, 
-    list(\() base_dgp(n = 1e3, type = "simple")),
-    "base_dgp (simple, 2 outcomes)", 10L, 1e4, 
-    list(\() base_dgp(n = 1e4, type = "simple")),
-    "base_dgp (simple, 2 outcomes)",  5L, 1e5, 
-    list(\() base_dgp(n = 1e5, type = "simple")),
-    "base_dgp (simple, 2 outcomes)",  5L, 1e6, 
-    list(\() base_dgp(n = 1e6, type = "simple"))
+    dgp_name=, n_outcomes=, n_iters=, n_obs=, dgp_function=,
+    "difficult", 2L, 10L, 1e3, 
+    list(\() base_dgp(n = 1e3, type = "difficult")),
+    "difficult", 2L, 10L, 1e4, 
+    list(\() base_dgp(n = 1e4, type = "difficult")),
+    "difficult", 2L,  5L, 1e5, 
+    list(\() base_dgp(n = 1e5, type = "difficult")),
+    "difficult", 2L,  5L, 5e5, 
+    list(\() base_dgp(n = 5e5, type = "difficult"))
   ),
   estimators = data.table::rowwiseDT(
     est_name=, n_fe=, func=,
     "pyfixest.feols", 1L, list(\(df) {
       pyfixest_feols_timer(
         df,
-        "y + ln_y ~ x1 | indiv_id + firm_id + year"
+        "y + exp_y ~ x1 | indiv_id + firm_id + year"
       )
     }),
     "FixedEffectModels.reg", 1L, list(\(df) {
@@ -302,7 +311,7 @@ bench_ols_multiple_y <- run_benchmark(
       julia_call(
         "jl_feols_timer",
         df,
-        "ln_y ~ x1 + fe(indiv_id) + fe(firm_id) + fe(year)"
+        "exp_y ~ x1 + fe(indiv_id) + fe(firm_id) + fe(year)"
       )
     }),
     "lfe::felm", 1L, list(\(df) {
@@ -312,13 +321,13 @@ bench_ols_multiple_y <- run_benchmark(
       ) + 
       lfe_timer(
         df,
-        ln_y ~ x1 | indiv_id + firm_id + year
+        exp_y ~ x1 | indiv_id + firm_id + year
       )
     }),
     "fixest::feols", 1L, list(\(df) {
       feols_timer(
         df,
-        c(y, ln_y) ~ x1 | indiv_id + firm_id + year
+        c(y, exp_y) ~ x1 | indiv_id + firm_id + year
       )
     })
   )
@@ -328,15 +337,13 @@ bench_ols_multiple_y <- run_benchmark(
 # fmt: skip
 bench_ols_multiple_vcov <- run_benchmark(
   dgps = data.table::rowwiseDT(
-    dgp_name=, n_iters=, n_obs=, dgp_function=,
-    "base_dgp (simple, hc1 + clustered)", 10L, 1e3, 
-    list(\() base_dgp(n = 1e3, type = "simple")),
-    "base_dgp (simple, hc1 + clustered)", 10L, 1e4, 
-    list(\() base_dgp(n = 1e4, type = "simple")),
-    "base_dgp (simple, hc1 + clustered)",  5L, 1e5, 
-    list(\() base_dgp(n = 1e5, type = "simple")),
-    "base_dgp (simple, hc1 + clustered)",  5L, 1e6, 
-    list(\() base_dgp(n = 1e6, type = "simple"))
+    dgp_name=, vcov_uses=, n_iters=, n_obs=, dgp_function=,
+    "difficult", "hc1 + clustered", 10L, 1e3, 
+    list(\() base_dgp(n = 1e3, type = "difficult")),
+    "difficult", "hc1 + clustered", 10L, 1e4, 
+    list(\() base_dgp(n = 1e4, type = "difficult")),
+    "difficult", "hc1 + clustered",  5L, 1e5, 
+    list(\() base_dgp(n = 1e5, type = "difficult"))
   ),
   estimators = data.table::rowwiseDT(
     est_name=, n_fe=, func=,
