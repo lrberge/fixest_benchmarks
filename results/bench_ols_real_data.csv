@@ -1,61 +1,81 @@
 "iter","time","est_name","dgp_name","n_iters","n_obs","n_fe"
-2,0.423015594482422,"pyfixest.feols","nycflights13",5,336776,3
-2,0.290314912796021,"FixedEffectModels.reg","nycflights13",5,336776,3
-2,0.254822731018066,"lfe::felm","nycflights13",5,336776,3
-2,0.210865497589111,"fixest::feols","nycflights13",5,336776,3
-3,0.434213399887085,"pyfixest.feols","nycflights13",5,336776,3
-3,0.122366905212402,"FixedEffectModels.reg","nycflights13",5,336776,3
-3,0.218014240264893,"lfe::felm","nycflights13",5,336776,3
-3,0.239705801010132,"fixest::feols","nycflights13",5,336776,3
-4,0.439727306365967,"pyfixest.feols","nycflights13",5,336776,3
-4,0.134625911712646,"FixedEffectModels.reg","nycflights13",5,336776,3
-4,0.221026659011841,"lfe::felm","nycflights13",5,336776,3
-4,0.240521669387817,"fixest::feols","nycflights13",5,336776,3
-5,0.429016828536987,"pyfixest.feols","nycflights13",5,336776,3
-5,0.129797220230103,"FixedEffectModels.reg","nycflights13",5,336776,3
-5,0.234833955764771,"lfe::felm","nycflights13",5,336776,3
-5,0.224865198135376,"fixest::feols","nycflights13",5,336776,3
-6,0.463429927825928,"pyfixest.feols","nycflights13",5,336776,3
-6,0.138684034347534,"FixedEffectModels.reg","nycflights13",5,336776,3
-6,0.242467880249023,"lfe::felm","nycflights13",5,336776,3
-6,0.229520559310913,"fixest::feols","nycflights13",5,336776,3
-2,0.12782883644104,"pyfixest.feols","tradepolicy",5,28566,3
-2,0.0131158828735352,"FixedEffectModels.reg","tradepolicy",5,28566,3
-2,0.0449433326721191,"lfe::felm","tradepolicy",5,28566,3
-2,0.0312230587005615,"fixest::feols","tradepolicy",5,28566,3
-3,0.133459091186523,"pyfixest.feols","tradepolicy",5,28566,3
-3,0.0132210254669189,"FixedEffectModels.reg","tradepolicy",5,28566,3
-3,0.023385763168335,"lfe::felm","tradepolicy",5,28566,3
-3,0.0313906669616699,"fixest::feols","tradepolicy",5,28566,3
-4,0.125837087631226,"pyfixest.feols","tradepolicy",5,28566,3
-4,0.0133540630340576,"FixedEffectModels.reg","tradepolicy",5,28566,3
-4,0.0409255027770996,"lfe::felm","tradepolicy",5,28566,3
-4,0.0315961837768555,"fixest::feols","tradepolicy",5,28566,3
-5,0.131458282470703,"pyfixest.feols","tradepolicy",5,28566,3
-5,0.0129878520965576,"FixedEffectModels.reg","tradepolicy",5,28566,3
-5,0.0200726985931396,"lfe::felm","tradepolicy",5,28566,3
-5,0.0309293270111084,"fixest::feols","tradepolicy",5,28566,3
-6,0.134010314941406,"pyfixest.feols","tradepolicy",5,28566,3
-6,0.0264780521392822,"FixedEffectModels.reg","tradepolicy",5,28566,3
-6,0.0199694633483887,"lfe::felm","tradepolicy",5,28566,3
-6,0.031719446182251,"fixest::feols","tradepolicy",5,28566,3
-2,3.09913372993469,"pyfixest.fepois","tradepolicy",5,28566,3
-2,2.22791504859924,"GLFixedEffectModels Poisson","tradepolicy",5,28566,3
-2,6.01237654685974,"alpaca Poisson","tradepolicy",5,28566,3
-2,0.532494068145752,"fixest::fepois","tradepolicy",5,28566,3
-3,3.02526807785034,"pyfixest.fepois","tradepolicy",5,28566,3
-3,2.40666389465332,"GLFixedEffectModels Poisson","tradepolicy",5,28566,3
-3,6.0137791633606,"alpaca Poisson","tradepolicy",5,28566,3
-3,0.532023668289185,"fixest::fepois","tradepolicy",5,28566,3
-4,2.98352837562561,"pyfixest.fepois","tradepolicy",5,28566,3
-4,2.22796607017517,"GLFixedEffectModels Poisson","tradepolicy",5,28566,3
-4,6.00484132766724,"alpaca Poisson","tradepolicy",5,28566,3
-4,0.534302949905396,"fixest::fepois","tradepolicy",5,28566,3
-5,3.02069115638733,"pyfixest.fepois","tradepolicy",5,28566,3
-5,2.22884488105774,"GLFixedEffectModels Poisson","tradepolicy",5,28566,3
-5,6.01141142845154,"alpaca Poisson","tradepolicy",5,28566,3
-5,0.531152486801147,"fixest::fepois","tradepolicy",5,28566,3
-6,3.04015302658081,"pyfixest.fepois","tradepolicy",5,28566,3
-6,2.40352511405945,"GLFixedEffectModels Poisson","tradepolicy",5,28566,3
-6,6.14011597633362,"alpaca Poisson","tradepolicy",5,28566,3
-6,0.533347606658936,"fixest::fepois","tradepolicy",5,28566,3
+2,0.280388116836548,"pyfixest.feols","nycflights13",5,336776,3
+2,0.216996908187866,"FixedEffectModels.reg","nycflights13",5,336776,3
+2,0.287123918533325,"lfe::felm","nycflights13",5,336776,3
+2,0.0992929935455322,"fixest::feols","nycflights13",5,336776,3
+3,0.340360403060913,"pyfixest.feols","nycflights13",5,336776,3
+3,4.53879499435425,"FixedEffectModels.reg","nycflights13",5,336776,3
+3,0.246917009353638,"lfe::felm","nycflights13",5,336776,3
+3,0.132122993469238,"fixest::feols","nycflights13",5,336776,3
+4,0.379478931427002,"pyfixest.feols","nycflights13",5,336776,3
+4,0.222309112548828,"FixedEffectModels.reg","nycflights13",5,336776,3
+4,0.194864988327026,"lfe::felm","nycflights13",5,336776,3
+4,1.96013522148132,"fixest::feols","nycflights13",5,336776,3
+5,0.267823934555054,"pyfixest.feols","nycflights13",5,336776,3
+5,0.218342065811157,"FixedEffectModels.reg","nycflights13",5,336776,3
+5,0.16800594329834,"lfe::felm","nycflights13",5,336776,3
+5,0.0837209224700928,"fixest::feols","nycflights13",5,336776,3
+6,0.262833833694458,"pyfixest.feols","nycflights13",5,336776,3
+6,0.203680038452148,"FixedEffectModels.reg","nycflights13",5,336776,3
+6,0.165611028671265,"lfe::felm","nycflights13",5,336776,3
+6,0.0852680206298828,"fixest::feols","nycflights13",5,336776,3
+2,0.0611188411712646,"pyfixest.feols","tradepolicy",5,28566,3
+2,0.0150520801544189,"FixedEffectModels.reg","tradepolicy",5,28566,3
+2,0.06563401222229,"lfe::felm","tradepolicy",5,28566,3
+2,0.00849699974060059,"fixest::feols","tradepolicy",5,28566,3
+3,0.0608997344970703,"pyfixest.feols","tradepolicy",5,28566,3
+3,0.0136160850524902,"FixedEffectModels.reg","tradepolicy",5,28566,3
+3,0.0659589767456055,"lfe::felm","tradepolicy",5,28566,3
+3,0.00832486152648926,"fixest::feols","tradepolicy",5,28566,3
+4,0.0606198310852051,"pyfixest.feols","tradepolicy",5,28566,3
+4,0.0978050231933594,"FixedEffectModels.reg","tradepolicy",5,28566,3
+4,0.0652780532836914,"lfe::felm","tradepolicy",5,28566,3
+4,0.00745487213134766,"fixest::feols","tradepolicy",5,28566,3
+5,0.0610268115997314,"pyfixest.feols","tradepolicy",5,28566,3
+5,0.0156300067901611,"FixedEffectModels.reg","tradepolicy",5,28566,3
+5,0.0660300254821777,"lfe::felm","tradepolicy",5,28566,3
+5,0.00771498680114746,"fixest::feols","tradepolicy",5,28566,3
+6,0.0627379417419434,"pyfixest.feols","tradepolicy",5,28566,3
+6,0.0146541595458984,"FixedEffectModels.reg","tradepolicy",5,28566,3
+6,0.0662410259246826,"lfe::felm","tradepolicy",5,28566,3
+6,0.0076909065246582,"fixest::feols","tradepolicy",5,28566,3
+2,0.868535757064819,"pyfixest.fepois","tradepolicy",5,28566,3
+2,2.33946490287781,"GLFixedEffectModels Poisson","tradepolicy",5,28566,3
+2,2.11405181884766,"alpaca Poisson","tradepolicy",5,28566,3
+2,0.0995709896087646,"fixest::fepois","tradepolicy",5,28566,3
+3,0.879029989242554,"pyfixest.fepois","tradepolicy",5,28566,3
+3,2.26827788352966,"GLFixedEffectModels Poisson","tradepolicy",5,28566,3
+3,2.11564493179321,"alpaca Poisson","tradepolicy",5,28566,3
+3,0.101217031478882,"fixest::fepois","tradepolicy",5,28566,3
+4,0.865000009536743,"pyfixest.fepois","tradepolicy",5,28566,3
+4,2.32728695869446,"GLFixedEffectModels Poisson","tradepolicy",5,28566,3
+4,2.08753800392151,"alpaca Poisson","tradepolicy",5,28566,3
+4,0.100240230560303,"fixest::fepois","tradepolicy",5,28566,3
+5,0.848284006118774,"pyfixest.fepois","tradepolicy",5,28566,3
+5,2.27473306655884,"GLFixedEffectModels Poisson","tradepolicy",5,28566,3
+5,2.09893298149109,"alpaca Poisson","tradepolicy",5,28566,3
+5,0.101153135299683,"fixest::fepois","tradepolicy",5,28566,3
+6,0.846481323242188,"pyfixest.fepois","tradepolicy",5,28566,3
+6,2.39510297775269,"GLFixedEffectModels Poisson","tradepolicy",5,28566,3
+6,2.12027907371521,"alpaca Poisson","tradepolicy",5,28566,3
+6,0.0998170375823975,"fixest::fepois","tradepolicy",5,28566,3
+2,58.8978719711304,"pyfixest.feols","nyc taxi",5,46099576,3
+2,23.9848659038544,"FixedEffectModels.reg","nyc taxi",5,46099576,3
+2,1.2090280175209,"lfe::felm","nyc taxi",5,46099576,3
+2,13.1660771369934,"fixest::feols","nyc taxi",5,46099576,3
+3,55.5187747478485,"pyfixest.feols","nyc taxi",5,46099576,3
+3,919.51163983345,"FixedEffectModels.reg","nyc taxi",5,46099576,3
+3,1.20400568246841,"lfe::felm","nyc taxi",5,46099576,3
+3,22.7691698074341,"fixest::feols","nyc taxi",5,46099576,3
+4,53.395879983902,"pyfixest.feols","nyc taxi",5,46099576,3
+4,21.1820931434631,"FixedEffectModels.reg","nyc taxi",5,46099576,3
+4,1.20845193465551,"lfe::felm","nyc taxi",5,46099576,3
+4,14.8095710277557,"fixest::feols","nyc taxi",5,46099576,3
+5,62.6528248786926,"pyfixest.feols","nyc taxi",5,46099576,3
+5,20.0197649002075,"FixedEffectModels.reg","nyc taxi",5,46099576,3
+5,1.11228849887848,"lfe::felm","nyc taxi",5,46099576,3
+5,19.6150689125061,"fixest::feols","nyc taxi",5,46099576,3
+6,56.3098361492157,"pyfixest.feols","nyc taxi",5,46099576,3
+6,23.4133400917053,"FixedEffectModels.reg","nyc taxi",5,46099576,3
+6,2.08430848519007,"lfe::felm","nyc taxi",5,46099576,3
+6,21.1585907936096,"fixest::feols","nyc taxi",5,46099576,3
