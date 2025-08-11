@@ -1,4 +1,4 @@
-name: Run Benchmarks
+name: Run Real Data Benchmarks
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main, master ]
 
 jobs:
-  benchmark:
+  benchmark-real-data:
     runs-on: ubuntu-latest
     steps:
     
@@ -48,7 +48,7 @@ jobs:
       with:
         version: '1.11.6'
     
-    - name: Cache Julia pacakges
+    - name: Cache Julia packages
       uses: julia-actions/cache@v2
     
     - name: Install Julia packages
@@ -84,39 +84,49 @@ jobs:
     - name: set numba parallel flags
       run: echo "NUMBA_NUM_THREADS=2" >> $GITHUB_ENV
 
-    # # Download NYC Taxi data for benchmarks
-    # 
-    # # Try to download pre-processed data from artifact first
-    # - name: Download taxi data artifact
-    #   id: download_artifact
-    #   uses: actions/download-artifact@v4
-    #   with:
-    #     name: nyc-taxi-data
-    #     path: data/
-    #   continue-on-error: true
-    # 
-    # # If artifact download failed, process the data ourselves  
-    # - name: Download and process taxi data
-    #   if: steps.download_artifact.outcome == 'failure'
-    #   run: Rscript download_taxi.R
+    # Download NYC Taxi data for benchmarks
+    
+    # Try to download pre-processed data from artifact first
+    - name: Download taxi data artifact
+      id: download_artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: nyc-taxi-data
+        path: data/
+      continue-on-error: true
+    
+    # If artifact download failed, process the data ourselves  
+    - name: Download and process taxi data
+      if: steps.download_artifact.outcome == 'failure'
+      run: Rscript download_taxi.R
+
+    # Upload processed data as artifact for future runs
+    - name: Upload taxi data artifact
+      if: steps.download_artifact.outcome == 'failure'
+      uses: actions/upload-artifact@v4
+      with:
+        name: nyc-taxi-data
+        path: data/nyc_taxi.parquet
+        retention-days: 30
 
     # RUN BENCHMARK
     
-    - name: Run benchmarks
+    - name: Run real data benchmarks
       run: |
         source .venv/bin/activate
-        Rscript bench.R
+        Rscript bench_real_data.R
 
     - name: Create figures
       run: |
         source .venv/bin/activate
         Rscript summarize_benchmark.R
 
-    ## Commit results
+    ## Upload results as artifacts
     
-    - name: Commit benchmark results
+    - name: Upload benchmark results
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      uses: stefanzweifel/git-auto-commit-action@v5
+      uses: actions/upload-artifact@v4
       with:
-        commit_message: "Update benchmark results [skip ci]"
-        file_pattern: "results/*"
+        name: benchmark-results-real-data
+        path: results/
+        retention-days: 1

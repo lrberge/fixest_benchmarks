@@ -119,3 +119,17 @@ run_benchmark <- function(
 
   return(res)
 }
+
+# %%
+write_and_print_csv <- function(data, file, ...) {
+  # Write the CSV file
+  write.csv(data, file, row.names = FALSE, ...)
+
+  # Print the file name
+  cat("File written:", file, "\n")
+
+  # Print the contents
+  cat("Contents:\n")
+  cat(readLines(file), sep = "\n")
+  cat("\n")
+}

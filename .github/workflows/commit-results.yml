@@ -1,0 +1,88 @@
+name: Commit Benchmark Results
+
+on:
+  workflow_run:
+    workflows: ["Run OLS Benchmarks", "Run Poisson Benchmarks", "Run Logit Benchmarks", "Run Real Data Benchmarks"]
+    types:
+      - completed
+    branches: [main, master]
+
+jobs:
+  commit-results:
+    needs: check-all-workflows
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Download all benchmark artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: benchmark-results-*
+          path: results/
+          merge-multiple: true
+
+      - name: Configure git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Robust commit and push
+        run: |
+          # Function to retry git operations
+          retry_git() {
+            local max_attempts=5
+            local attempt=1
+            local command="$*"
+            
+            while [ $attempt -le $max_attempts ]; do
+              echo "Attempt $attempt of $max_attempts: $command"
+              if eval "$command"; then
+                echo "Command succeeded on attempt $attempt"
+                return 0
+              else
+                echo "Command failed on attempt $attempt"
+                if [ $attempt -lt $max_attempts ]; then
+                  echo "Waiting 10 seconds before retry..."
+                  sleep 10
+                fi
+                attempt=$((attempt + 1))
+              fi
+            done
+            
+            echo "Command failed after $max_attempts attempts"
+            return 1
+          }
+          
+          # Check if there are any changes
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          
+          # Pull latest changes with retry
+          retry_git "git pull --rebase origin ${{ github.ref_name }}"
+          
+          # Add changes
+          git add results/
+          
+          # Check again if there are changes after pull
+          if git diff --cached --quiet; then
+            echo "No changes to commit after pull"
+            exit 0
+          fi
+          
+          # Commit changes
+          git commit -m "Update benchmark results [skip ci]
+          
+          - Updated from OLS, Poisson, and Logit benchmark workflows
+          - Commit SHA: ${{ github.sha }}
+          - Workflow run: ${{ github.run_id }}"
+          
+          # Push with retry
+          retry_git "git push origin ${{ github.ref_name }}"
+          
+          echo "Successfully committed and pushed benchmark results"
