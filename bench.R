@@ -33,12 +33,12 @@ bench_ols <- run_benchmark(
         "y ~ x1 + fe(indiv_id)"
       )
     }),
-    "lfe::felm", 1L, list(\(df) {
-      lfe_timer(
-        df,
-        y ~ x1 | indiv_id
-      )
-    }),
+    # "lfe::felm", 1L, list(\(df) {
+    #   lfe_timer(
+    #     df,
+    #     y ~ x1 | indiv_id
+    #   )
+    # }),
     "fixest::feols", 1L, list(\(df) {
       feols_timer(
         df,
@@ -58,12 +58,12 @@ bench_ols <- run_benchmark(
         "y ~ x1 + fe(indiv_id) + fe(year)"
       )
     }),
-    "lfe::felm", 2L, list(\(df) {
-      lfe_timer(
-        df,
-        y ~ x1 | indiv_id + year
-      )
-    }),
+    # "lfe::felm", 2L, list(\(df) {
+    #   lfe_timer(
+    #     df,
+    #     y ~ x1 | indiv_id + year
+    #   )
+    # }),
     "fixest::feols", 2L, list(\(df) {
       feols_timer(
         df,
@@ -83,12 +83,12 @@ bench_ols <- run_benchmark(
         "y ~ x1 + fe(indiv_id) + fe(year) + fe(firm_id)"
       )
     }),
-    "lfe::felm", 3L, list(\(df) {
-      lfe_timer(
-        df,
-        y ~ x1 | indiv_id + year + firm_id
-      )
-    }),
+    # "lfe::felm", 3L, list(\(df) {
+    #   lfe_timer(
+    #     df,
+    #     y ~ x1 | indiv_id + year + firm_id
+    #   )
+    # }),
     "fixest::feols", 3L, list(\(df) {
       feols_timer(
         df,
@@ -314,16 +314,16 @@ bench_ols_multiple_y <- run_benchmark(
         "exp_y ~ x1 + fe(indiv_id) + fe(firm_id) + fe(year)"
       )
     }),
-    "lfe::felm", 1L, list(\(df) {
-      lfe_timer(
-        df,
-        y ~ x1 | indiv_id + firm_id + year
-      ) + 
-      lfe_timer(
-        df,
-        exp_y ~ x1 | indiv_id + firm_id + year
-      )
-    }),
+    # "lfe::felm", 1L, list(\(df) {
+    #   lfe_timer(
+    #     df,
+    #     y ~ x1 | indiv_id + firm_id + year
+    #   ) + 
+    #   lfe_timer(
+    #     df,
+    #     exp_y ~ x1 | indiv_id + firm_id + year
+    #   )
+    # }),
     "fixest::feols", 1L, list(\(df) {
       feols_timer(
         df,
@@ -367,16 +367,16 @@ bench_ols_multiple_vcov <- run_benchmark(
         vcov = "firm_id"
       )
     }),
-    "lfe::felm", 1L, list(\(df) {
-      lfe_timer(
-        df,
-        y ~ x1 | indiv_id + firm_id + year
-      ) + 
-      lfe_timer(
-        df,
-        y ~ x1 | indiv_id + firm_id + year | 0 | firm_id
-      )
-    }),
+    # "lfe::felm", 1L, list(\(df) {
+    #   lfe_timer(
+    #     df,
+    #     y ~ x1 | indiv_id + firm_id + year
+    #   ) + 
+    #   lfe_timer(
+    #     df,
+    #     y ~ x1 | indiv_id + firm_id + year | 0 | firm_id
+    #   )
+    # }),
     "fixest::feols", 1L, list(\(df) {
       feols_multiple_vcov_timer(
         df,
