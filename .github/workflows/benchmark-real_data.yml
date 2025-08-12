@@ -84,11 +84,11 @@ jobs:
     - name: set numba parallel flags
       run: echo "NUMBA_NUM_THREADS=2" >> $GITHUB_ENV
 
-    # Download NYC Taxi data for benchmarks
+    # NYC Taxi ----
     
     # Try to download pre-processed data from artifact first
     - name: Download taxi data artifact
-      id: download_artifact
+      id: download_nyc_artifact
       uses: actions/download-artifact@v4
       with:
         name: nyc-taxi-data
@@ -97,17 +97,43 @@ jobs:
     
     # If artifact download failed, process the data ourselves  
     - name: Download and process taxi data
-      if: steps.download_artifact.outcome == 'failure'
+      if: steps.download_nyc_artifact.outcome == 'failure'
       run: Rscript download_taxi.R
 
     # Upload processed data as artifact for future runs
     - name: Upload taxi data artifact
-      if: steps.download_artifact.outcome == 'failure'
+      if: steps.download_nyc_artifact.outcome == 'failure'
       uses: actions/upload-artifact@v4
       with:
         name: nyc-taxi-data
         path: data/nyc_taxi.parquet
         retention-days: 30
+
+    # Medicare Provider ----
+    
+    # Try to download pre-processed data from artifact first
+    - name: Download medicare payments artifact
+      id: download_medicate_artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: medicare-payments-2016
+        path: data/Medicare_Provider_Util_Payment_PUF_CY2016.tsv
+      continue-on-error: true
+    
+    # If artifact download failed, process the data ourselves  
+    - name: Download and process medicare payments data
+      if: steps.download_medicate_artifact.outcome == 'failure'
+      run: Rscript download_medicare_payments.R
+
+    # Upload processed data as artifact for future runs
+    - name: Upload taxi data artifact
+      if: steps.download_medicate_artifact.outcome == 'failure'
+      uses: actions/upload-artifact@v4
+      with:
+        name: medicare-payments-2016
+        path: data/Medicare_Provider_Util_Payment_PUF_CY2016.tsv
+        retention-days: 30
+
 
     # RUN BENCHMARK
     

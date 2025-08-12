@@ -72,7 +72,7 @@ bench_logit_large <- run_benchmark(
     est_name=, n_fe=, func=,
     "GLFixedEffectModels logit", 2L, list(\(df) {
       julia_call(
-        "jl_logit_timer",s
+        "jl_logit_timer",
         df,
         "binary_y ~ x1 + fe(indiv_id) + fe(firm_id)"
       )

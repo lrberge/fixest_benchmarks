@@ -23,19 +23,19 @@ ch1_application3 <- tradepolicy::agtpa_applications |>
 
 nyc <- read_parquet(here("data/nyc_taxi.parquet"))
 
-# Load medicare claims data
-# fmt: skip
-medicare <- fread(
-  here("data", "Medicare_Provider_Util_Payment_PUF_CY2016.tsv"),
-  sep = "\t",
-  skip = 2, # firstobs = 3 in SAS means skip first 2 lines
-  header = FALSE,
-  col.names = c("npi", "nppes_provider_last_org_name", "nppes_provider_first_name", "nppes_provider_mi", "nppes_credentials", "nppes_provider_gender", "nppes_entity_code", "nppes_provider_street1", "nppes_provider_street2", "nppes_provider_city", "nppes_provider_zip", "nppes_provider_state", "nppes_provider_country", "provider_type", "medicare_participation_indicator", "place_of_service", "hcpcs_code", "hcpcs_description", "hcpcs_drug_indicator", "line_srvc_cnt", "bene_unique_cnt", "bene_day_srvc_cnt", "average_Medicare_allowed_amt", "average_submitted_chrg_amt", "average_Medicare_payment_amt", "average_Medicare_standard_amt"),
-  colClasses = list(
-    character = c("npi", "nppes_provider_last_org_name", "nppes_provider_first_name", "nppes_provider_mi", "nppes_credentials", "nppes_provider_gender", "nppes_entity_code", "nppes_provider_street1", "nppes_provider_street2", "nppes_provider_city", "nppes_provider_zip", "nppes_provider_state", "nppes_provider_country", "provider_type", "medicare_participation_indicator", "place_of_service", "hcpcs_code", "hcpcs_description", "hcpcs_drug_indicator"),
-    numeric = c("line_srvc_cnt", "bene_unique_cnt", "bene_day_srvc_cnt", "average_Medicare_allowed_amt", "average_submitted_chrg_amt", "average_Medicare_payment_amt", "average_Medicare_standard_amt")
-  )
-)
+# # Load medicare claims data
+# # fmt: skip
+# medicare <- fread(
+#   here("data", "Medicare_Provider_Util_Payment_PUF_CY2016.txt"),
+#   sep = "\t",
+#   skip = 2, # firstobs = 3 in SAS means skip first 2 lines
+#   header = FALSE,
+#   col.names = c("npi", "nppes_provider_last_org_name", "nppes_provider_first_name", "nppes_provider_mi", "nppes_credentials", "nppes_provider_gender", "nppes_entity_code", "nppes_provider_street1", "nppes_provider_street2", "nppes_provider_city", "nppes_provider_zip", "nppes_provider_state", "nppes_provider_country", "provider_type", "medicare_participation_indicator", "place_of_service", "hcpcs_code", "hcpcs_description", "hcpcs_drug_indicator", "line_srvc_cnt", "bene_unique_cnt", "bene_day_srvc_cnt", "average_Medicare_allowed_amt", "average_submitted_chrg_amt", "average_Medicare_payment_amt", "average_Medicare_standard_amt"),
+#   colClasses = list(
+#     character = c("npi", "nppes_provider_last_org_name", "nppes_provider_first_name", "nppes_provider_mi", "nppes_credentials", "nppes_provider_gender", "nppes_entity_code", "nppes_provider_street1", "nppes_provider_street2", "nppes_provider_city", "nppes_provider_zip", "nppes_provider_state", "nppes_provider_country", "provider_type", "medicare_participation_indicator", "place_of_service", "hcpcs_code", "hcpcs_description", "hcpcs_drug_indicator"),
+#     numeric = c("line_srvc_cnt", "bene_unique_cnt", "bene_day_srvc_cnt", "average_Medicare_allowed_amt", "average_submitted_chrg_amt", "average_Medicare_payment_amt", "average_Medicare_standard_amt")
+#   )
+# )
 
 # %%
 # fmt: skip
@@ -159,35 +159,35 @@ bench_nyc_taxi_ols <- run_benchmark(
   )
 )
 
-# fmt: skip
-bench_medicare_ols <- run_benchmark(
-  dgps = data.table::rowwiseDT(
-    dgp_name=, n_iters=, n_obs=, n_fe=, dgp_function=,
-    "Medicare Provider", 3L, nrow(medicare_data), 3L, list(\() medicare_data[1:1000, ])
-  ),
-  estimators = data.table::rowwiseDT(
-    est_name=, func=,
-    "pyfixest.feols", list(\(df) {
-      pyfixest_feols_timer(
-        df,
-        "average_Medicare_payment_amt ~ line_srvc_cnt + bene_unique_cnt | nppes_provider_state + provider_type + hcpcs_code"
-      )
-    }),
-    "FixedEffectModels.reg", list(\(df) {
-      julia_call(
-        "jl_feols_timer",
-        df,
-        "average_Medicare_payment_amt ~ line_srvc_cnt + bene_unique_cnt + fe(nppes_provider_state) + fe(provider_type) + fe(hcpcs_code)"
-      )
-    }),
-    "fixest::feols", list(\(df) {
-      feols_timer(
-        df,
-        average_Medicare_payment_amt ~ line_srvc_cnt + bene_unique_cnt | nppes_provider_state + provider_type + hcpcs_code
-      )
-    })
-  )
-)
+# # fmt: skip
+# bench_medicare_ols <- run_benchmark(
+#   dgps = data.table::rowwiseDT(
+#     dgp_name=, n_iters=, n_obs=, n_fe=, dgp_function=,
+#     "Medicare Provider", 3L, nrow(medicare), 3L, list(\() medicare)
+#   ),
+#   estimators = data.table::rowwiseDT(
+#     est_name=, func=,
+#     "pyfixest.feols", list(\(df) {
+#       pyfixest_feols_timer(
+#         df,
+#         "average_Medicare_payment_amt ~ line_srvc_cnt + bene_unique_cnt | nppes_provider_state + provider_type + hcpcs_code"
+#       )
+#     }),
+#     "FixedEffectModels.reg", list(\(df) {
+#       julia_call(
+#         "jl_feols_timer",
+#         df,
+#         "average_Medicare_payment_amt ~ line_srvc_cnt + bene_unique_cnt + fe(nppes_provider_state) + fe(provider_type) + fe(hcpcs_code)"
+#       )
+#     }),
+#     "fixest::feols", list(\(df) {
+#       feols_timer(
+#         df,
+#         average_Medicare_payment_amt ~ line_srvc_cnt + bene_unique_cnt | nppes_provider_state + provider_type + hcpcs_code
+#       )
+#     })
+#   )
+# )
 
 # %%
 bench_real_data <- rbindlist(

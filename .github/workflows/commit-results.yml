@@ -9,7 +9,6 @@ on:
 
 jobs:
   commit-results:
-    needs: check-all-workflows
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

@@ -123,7 +123,7 @@ run_benchmark <- function(
 # %%
 write_and_print_csv <- function(data, file, ...) {
   # Write the CSV file
-  write.csv(data, file, row.names = FALSE, ...)
+  write.csv(data, file, ...)
 
   # Print the file name
   cat("File written:", file, "\n")
