@@ -1,241 +1,457 @@
 "iter","time","est_name","n_fe","dgp_name","n_iters","n_obs"
-2,0.105954647064209,"pyfixest.fepois",2,"simple",10,1000
-2,0.00254392623901367,"GLFixedEffectModels Poisson",2,"simple",10,1000
-2,0.00979304313659668,"alpaca Poisson",2,"simple",10,1000
-2,0.0139555931091309,"fixest::fepois",2,"simple",10,1000
-2,0.105934381484985,"pyfixest.fepois",3,"simple",10,1000
-2,0.00306892395019531,"GLFixedEffectModels Poisson",3,"simple",10,1000
-2,0.0114645957946777,"alpaca Poisson",3,"simple",10,1000
-2,0.0139455795288086,"fixest::fepois",3,"simple",10,1000
-3,0.103499174118042,"pyfixest.fepois",2,"simple",10,1000
-3,0.00249195098876953,"GLFixedEffectModels Poisson",2,"simple",10,1000
-3,0.00997567176818848,"alpaca Poisson",2,"simple",10,1000
-3,0.0137104988098145,"fixest::fepois",2,"simple",10,1000
-3,0.0977656841278076,"pyfixest.fepois",3,"simple",10,1000
-3,0.00305509567260742,"GLFixedEffectModels Poisson",3,"simple",10,1000
-3,0.01180100440979,"alpaca Poisson",3,"simple",10,1000
-3,0.0142233371734619,"fixest::fepois",3,"simple",10,1000
-4,0.0934839248657227,"pyfixest.fepois",2,"simple",10,1000
-4,0.00249195098876953,"GLFixedEffectModels Poisson",2,"simple",10,1000
-4,0.0315721035003662,"alpaca Poisson",2,"simple",10,1000
-4,0.0141036510467529,"fixest::fepois",2,"simple",10,1000
-4,0.0957870483398438,"pyfixest.fepois",3,"simple",10,1000
-4,0.00301909446716309,"GLFixedEffectModels Poisson",3,"simple",10,1000
-4,0.0120046138763428,"alpaca Poisson",3,"simple",10,1000
-4,0.0138885974884033,"fixest::fepois",3,"simple",10,1000
-5,0.0947399139404297,"pyfixest.fepois",2,"simple",10,1000
-5,0.00269508361816406,"GLFixedEffectModels Poisson",2,"simple",10,1000
-5,0.0101816654205322,"alpaca Poisson",2,"simple",10,1000
-5,0.0139553546905518,"fixest::fepois",2,"simple",10,1000
-5,0.0896437168121338,"pyfixest.fepois",3,"simple",10,1000
-5,0.00326418876647949,"GLFixedEffectModels Poisson",3,"simple",10,1000
-5,0.0115845203399658,"alpaca Poisson",3,"simple",10,1000
-5,0.0136542320251465,"fixest::fepois",3,"simple",10,1000
-6,0.10124683380127,"pyfixest.fepois",2,"simple",10,1000
-6,0.00255298614501953,"GLFixedEffectModels Poisson",2,"simple",10,1000
-6,0.0100159645080566,"alpaca Poisson",2,"simple",10,1000
-6,0.0136673450469971,"fixest::fepois",2,"simple",10,1000
-6,0.102382659912109,"pyfixest.fepois",3,"simple",10,1000
-6,0.00308990478515625,"GLFixedEffectModels Poisson",3,"simple",10,1000
-6,0.0118858814239502,"alpaca Poisson",3,"simple",10,1000
-6,0.0138790607452393,"fixest::fepois",3,"simple",10,1000
-7,0.102670431137085,"pyfixest.fepois",2,"simple",10,1000
-7,0.0024559497833252,"GLFixedEffectModels Poisson",2,"simple",10,1000
-7,0.0101490020751953,"alpaca Poisson",2,"simple",10,1000
-7,0.0137090682983398,"fixest::fepois",2,"simple",10,1000
-7,0.105318546295166,"pyfixest.fepois",3,"simple",10,1000
-7,0.00310206413269043,"GLFixedEffectModels Poisson",3,"simple",10,1000
-7,0.0117545127868652,"alpaca Poisson",3,"simple",10,1000
-7,0.0140016078948975,"fixest::fepois",3,"simple",10,1000
-8,0.102739334106445,"pyfixest.fepois",2,"simple",10,1000
-8,0.00249814987182617,"GLFixedEffectModels Poisson",2,"simple",10,1000
-8,0.0103602409362793,"alpaca Poisson",2,"simple",10,1000
-8,0.0141372680664062,"fixest::fepois",2,"simple",10,1000
-8,0.108608245849609,"pyfixest.fepois",3,"simple",10,1000
-8,0.00298595428466797,"GLFixedEffectModels Poisson",3,"simple",10,1000
-8,0.0116922855377197,"alpaca Poisson",3,"simple",10,1000
-8,0.0139093399047852,"fixest::fepois",3,"simple",10,1000
-9,0.102750778198242,"pyfixest.fepois",2,"simple",10,1000
-9,0.00260305404663086,"GLFixedEffectModels Poisson",2,"simple",10,1000
-9,0.0101394653320312,"alpaca Poisson",2,"simple",10,1000
-9,0.0136620998382568,"fixest::fepois",2,"simple",10,1000
-9,0.0987873077392578,"pyfixest.fepois",3,"simple",10,1000
-9,0.00330495834350586,"GLFixedEffectModels Poisson",3,"simple",10,1000
-9,0.0119733810424805,"alpaca Poisson",3,"simple",10,1000
-9,0.0142297744750977,"fixest::fepois",3,"simple",10,1000
-10,0.0942156314849854,"pyfixest.fepois",2,"simple",10,1000
-10,0.00266885757446289,"GLFixedEffectModels Poisson",2,"simple",10,1000
-10,0.0100617408752441,"alpaca Poisson",2,"simple",10,1000
-10,0.0137917995452881,"fixest::fepois",2,"simple",10,1000
-10,0.102581977844238,"pyfixest.fepois",3,"simple",10,1000
-10,0.00339794158935547,"GLFixedEffectModels Poisson",3,"simple",10,1000
-10,0.0117766857147217,"alpaca Poisson",3,"simple",10,1000
-10,0.0137021541595459,"fixest::fepois",3,"simple",10,1000
-11,0.100161075592041,"pyfixest.fepois",2,"simple",10,1000
-11,0.00246691703796387,"GLFixedEffectModels Poisson",2,"simple",10,1000
-11,0.0101842880249023,"alpaca Poisson",2,"simple",10,1000
-11,0.0137946605682373,"fixest::fepois",2,"simple",10,1000
-11,0.0998044013977051,"pyfixest.fepois",3,"simple",10,1000
-11,0.00298595428466797,"GLFixedEffectModels Poisson",3,"simple",10,1000
-11,0.0116808414459229,"alpaca Poisson",3,"simple",10,1000
-11,0.0356335639953613,"fixest::fepois",3,"simple",10,1000
-2,0.10854959487915,"pyfixest.fepois",2,"simple",10,10000
-2,0.0224349498748779,"GLFixedEffectModels Poisson",2,"simple",10,10000
-2,0.283265352249146,"alpaca Poisson",2,"simple",10,10000
-2,0.0302484035491943,"fixest::fepois",2,"simple",10,10000
-2,0.110653400421143,"pyfixest.fepois",3,"simple",10,10000
-2,0.0117619037628174,"GLFixedEffectModels Poisson",3,"simple",10,10000
-2,0.07729172706604,"alpaca Poisson",3,"simple",10,10000
-2,0.0357978343963623,"fixest::fepois",3,"simple",10,10000
-3,0.103249073028564,"pyfixest.fepois",2,"simple",10,10000
-3,0.00967502593994141,"GLFixedEffectModels Poisson",2,"simple",10,10000
-3,0.0701420307159424,"alpaca Poisson",2,"simple",10,10000
-3,0.029731273651123,"fixest::fepois",2,"simple",10,10000
-3,0.105555534362793,"pyfixest.fepois",3,"simple",10,10000
-3,0.0128068923950195,"GLFixedEffectModels Poisson",3,"simple",10,10000
-3,0.090965747833252,"alpaca Poisson",3,"simple",10,10000
-3,0.0351302623748779,"fixest::fepois",3,"simple",10,10000
-4,0.112888336181641,"pyfixest.fepois",2,"simple",10,10000
-4,0.0166969299316406,"GLFixedEffectModels Poisson",2,"simple",10,10000
-4,0.0693428516387939,"alpaca Poisson",2,"simple",10,10000
-4,0.029587984085083,"fixest::fepois",2,"simple",10,10000
-4,0.124913454055786,"pyfixest.fepois",3,"simple",10,10000
-4,0.0116839408874512,"GLFixedEffectModels Poisson",3,"simple",10,10000
-4,0.076967716217041,"alpaca Poisson",3,"simple",10,10000
-4,0.035552978515625,"fixest::fepois",3,"simple",10,10000
-5,0.103165864944458,"pyfixest.fepois",2,"simple",10,10000
-5,0.00946497917175293,"GLFixedEffectModels Poisson",2,"simple",10,10000
-5,0.0820648670196533,"alpaca Poisson",2,"simple",10,10000
-5,0.0293681621551514,"fixest::fepois",2,"simple",10,10000
-5,0.112231731414795,"pyfixest.fepois",3,"simple",10,10000
-5,0.0118319988250732,"GLFixedEffectModels Poisson",3,"simple",10,10000
-5,0.0762796401977539,"alpaca Poisson",3,"simple",10,10000
-5,0.0342793464660645,"fixest::fepois",3,"simple",10,10000
-6,0.115352630615234,"pyfixest.fepois",2,"simple",10,10000
-6,0.0110681056976318,"GLFixedEffectModels Poisson",2,"simple",10,10000
-6,0.0755751132965088,"alpaca Poisson",2,"simple",10,10000
-6,0.0298173427581787,"fixest::fepois",2,"simple",10,10000
-6,0.112316608428955,"pyfixest.fepois",3,"simple",10,10000
-6,0.0131139755249023,"GLFixedEffectModels Poisson",3,"simple",10,10000
-6,0.0939638614654541,"alpaca Poisson",3,"simple",10,10000
-6,0.0348529815673828,"fixest::fepois",3,"simple",10,10000
-7,0.117182493209839,"pyfixest.fepois",2,"simple",10,10000
-7,0.0115678310394287,"GLFixedEffectModels Poisson",2,"simple",10,10000
-7,0.0687036514282227,"alpaca Poisson",2,"simple",10,10000
-7,0.0297293663024902,"fixest::fepois",2,"simple",10,10000
-7,0.113051414489746,"pyfixest.fepois",3,"simple",10,10000
-7,0.0121200084686279,"GLFixedEffectModels Poisson",3,"simple",10,10000
-7,0.089728832244873,"alpaca Poisson",3,"simple",10,10000
-7,0.0348560810089111,"fixest::fepois",3,"simple",10,10000
-8,0.103585720062256,"pyfixest.fepois",2,"simple",10,10000
-8,0.0117201805114746,"GLFixedEffectModels Poisson",2,"simple",10,10000
-8,0.0706276893615723,"alpaca Poisson",2,"simple",10,10000
-8,0.0292408466339111,"fixest::fepois",2,"simple",10,10000
-8,0.139220237731934,"pyfixest.fepois",3,"simple",10,10000
-8,0.0117850303649902,"GLFixedEffectModels Poisson",3,"simple",10,10000
-8,0.0778520107269287,"alpaca Poisson",3,"simple",10,10000
-8,0.0352013111114502,"fixest::fepois",3,"simple",10,10000
-9,0.123443603515625,"pyfixest.fepois",2,"simple",10,10000
-9,0.00953292846679688,"GLFixedEffectModels Poisson",2,"simple",10,10000
-9,0.08418869972229,"alpaca Poisson",2,"simple",10,10000
-9,0.0294475555419922,"fixest::fepois",2,"simple",10,10000
-9,0.105849027633667,"pyfixest.fepois",3,"simple",10,10000
-9,0.0128529071807861,"GLFixedEffectModels Poisson",3,"simple",10,10000
-9,0.0771703720092773,"alpaca Poisson",3,"simple",10,10000
-9,0.0347001552581787,"fixest::fepois",3,"simple",10,10000
-10,0.110936164855957,"pyfixest.fepois",2,"simple",10,10000
-10,0.0124399662017822,"GLFixedEffectModels Poisson",2,"simple",10,10000
-10,0.0691511631011963,"alpaca Poisson",2,"simple",10,10000
-10,0.0295586585998535,"fixest::fepois",2,"simple",10,10000
-10,0.124953031539917,"pyfixest.fepois",3,"simple",10,10000
-10,0.0144720077514648,"GLFixedEffectModels Poisson",3,"simple",10,10000
-10,0.09201979637146,"alpaca Poisson",3,"simple",10,10000
-10,0.0370352268218994,"fixest::fepois",3,"simple",10,10000
-11,0.106127977371216,"pyfixest.fepois",2,"simple",10,10000
-11,0.0113708972930908,"GLFixedEffectModels Poisson",2,"simple",10,10000
-11,0.073617696762085,"alpaca Poisson",2,"simple",10,10000
-11,0.0300350189208984,"fixest::fepois",2,"simple",10,10000
-11,0.130072355270386,"pyfixest.fepois",3,"simple",10,10000
-11,0.0149579048156738,"GLFixedEffectModels Poisson",3,"simple",10,10000
-11,0.0813958644866943,"alpaca Poisson",3,"simple",10,10000
-11,0.0354518890380859,"fixest::fepois",3,"simple",10,10000
-2,0.249050855636597,"pyfixest.fepois",2,"simple",5,1e+05
-2,0.086007833480835,"GLFixedEffectModels Poisson",2,"simple",5,1e+05
-2,0.615363597869873,"alpaca Poisson",2,"simple",5,1e+05
-2,0.0945851802825928,"fixest::fepois",2,"simple",5,1e+05
-2,0.294585704803467,"pyfixest.fepois",3,"simple",5,1e+05
-2,0.283156871795654,"GLFixedEffectModels Poisson",3,"simple",5,1e+05
-2,0.689145088195801,"alpaca Poisson",3,"simple",5,1e+05
-2,0.107171297073364,"fixest::fepois",3,"simple",5,1e+05
-3,0.275179147720337,"pyfixest.fepois",2,"simple",5,1e+05
-3,0.0854630470275879,"GLFixedEffectModels Poisson",2,"simple",5,1e+05
-3,0.611624240875244,"alpaca Poisson",2,"simple",5,1e+05
-3,0.0856044292449951,"fixest::fepois",2,"simple",5,1e+05
-3,0.275187492370605,"pyfixest.fepois",3,"simple",5,1e+05
-3,0.100892066955566,"GLFixedEffectModels Poisson",3,"simple",5,1e+05
-3,0.66487455368042,"alpaca Poisson",3,"simple",5,1e+05
-3,0.1059889793396,"fixest::fepois",3,"simple",5,1e+05
-4,0.264243602752686,"pyfixest.fepois",2,"simple",5,1e+05
-4,0.263835906982422,"GLFixedEffectModels Poisson",2,"simple",5,1e+05
-4,0.626635074615479,"alpaca Poisson",2,"simple",5,1e+05
-4,0.0953159332275391,"fixest::fepois",2,"simple",5,1e+05
-4,0.294117212295532,"pyfixest.fepois",3,"simple",5,1e+05
-4,0.100531101226807,"GLFixedEffectModels Poisson",3,"simple",5,1e+05
-4,0.72801947593689,"alpaca Poisson",3,"simple",5,1e+05
-4,0.107857227325439,"fixest::fepois",3,"simple",5,1e+05
-5,0.266580820083618,"pyfixest.fepois",2,"simple",5,1e+05
-5,0.0979139804840088,"GLFixedEffectModels Poisson",2,"simple",5,1e+05
-5,0.805720567703247,"alpaca Poisson",2,"simple",5,1e+05
-5,0.0843145847320557,"fixest::fepois",2,"simple",5,1e+05
-5,0.298981666564941,"pyfixest.fepois",3,"simple",5,1e+05
-5,0.299004077911377,"GLFixedEffectModels Poisson",3,"simple",5,1e+05
-5,0.709393501281738,"alpaca Poisson",3,"simple",5,1e+05
-5,0.109402418136597,"fixest::fepois",3,"simple",5,1e+05
-6,0.264818668365479,"pyfixest.fepois",2,"simple",5,1e+05
-6,0.0971508026123047,"GLFixedEffectModels Poisson",2,"simple",5,1e+05
-6,0.622229814529419,"alpaca Poisson",2,"simple",5,1e+05
-6,0.0953600406646729,"fixest::fepois",2,"simple",5,1e+05
-6,0.294915914535522,"pyfixest.fepois",3,"simple",5,1e+05
-6,0.114490985870361,"GLFixedEffectModels Poisson",3,"simple",5,1e+05
-6,0.848209142684937,"alpaca Poisson",3,"simple",5,1e+05
-6,0.107367753982544,"fixest::fepois",3,"simple",5,1e+05
-2,0.963104486465454,"pyfixest.fepois",2,"simple",5,1e+06
-2,1.17975616455078,"GLFixedEffectModels Poisson",2,"simple",5,1e+06
-2,6.24932169914246,"alpaca Poisson",2,"simple",5,1e+06
-2,0.993293523788452,"fixest::fepois",2,"simple",5,1e+06
-2,1.07154512405396,"pyfixest.fepois",3,"simple",5,1e+06
-2,1.34798097610474,"GLFixedEffectModels Poisson",3,"simple",5,1e+06
-2,7.19911122322083,"alpaca Poisson",3,"simple",5,1e+06
-2,1.29934048652649,"fixest::fepois",3,"simple",5,1e+06
-3,0.941055774688721,"pyfixest.fepois",2,"simple",5,1e+06
-3,1.28095817565918,"GLFixedEffectModels Poisson",2,"simple",5,1e+06
-3,5.79954123497009,"alpaca Poisson",2,"simple",5,1e+06
-3,0.962999582290649,"fixest::fepois",2,"simple",5,1e+06
-3,1.09823083877563,"pyfixest.fepois",3,"simple",5,1e+06
-3,1.38346910476685,"GLFixedEffectModels Poisson",3,"simple",5,1e+06
-3,6.7252185344696,"alpaca Poisson",3,"simple",5,1e+06
-3,1.13464379310608,"fixest::fepois",3,"simple",5,1e+06
-4,0.943396091461182,"pyfixest.fepois",2,"simple",5,1e+06
-4,1.01713609695435,"GLFixedEffectModels Poisson",2,"simple",5,1e+06
-4,5.72973585128784,"alpaca Poisson",2,"simple",5,1e+06
-4,1.13308763504028,"fixest::fepois",2,"simple",5,1e+06
-4,1.06589436531067,"pyfixest.fepois",3,"simple",5,1e+06
-4,1.19298410415649,"GLFixedEffectModels Poisson",3,"simple",5,1e+06
-4,6.36337757110596,"alpaca Poisson",3,"simple",5,1e+06
-4,1.1062638759613,"fixest::fepois",3,"simple",5,1e+06
-5,0.950382947921753,"pyfixest.fepois",2,"simple",5,1e+06
-5,1.15567421913147,"GLFixedEffectModels Poisson",2,"simple",5,1e+06
-5,5.93064594268799,"alpaca Poisson",2,"simple",5,1e+06
-5,1.13212943077087,"fixest::fepois",2,"simple",5,1e+06
-5,1.05888724327087,"pyfixest.fepois",3,"simple",5,1e+06
-5,1.36407804489136,"GLFixedEffectModels Poisson",3,"simple",5,1e+06
-5,6.62598347663879,"alpaca Poisson",3,"simple",5,1e+06
-5,1.13845252990723,"fixest::fepois",3,"simple",5,1e+06
-6,0.928892374038696,"pyfixest.fepois",2,"simple",5,1e+06
-6,1.33607888221741,"GLFixedEffectModels Poisson",2,"simple",5,1e+06
-6,5.87378215789795,"alpaca Poisson",2,"simple",5,1e+06
-6,1.14512538909912,"fixest::fepois",2,"simple",5,1e+06
-6,1.06277441978455,"pyfixest.fepois",3,"simple",5,1e+06
-6,1.53633618354797,"GLFixedEffectModels Poisson",3,"simple",5,1e+06
-6,6.43968367576599,"alpaca Poisson",3,"simple",5,1e+06
-6,1.12720775604248,"fixest::fepois",3,"simple",5,1e+06
+2,0.100330591201782,"pyfixest.fepois",2,"simple",10,1000
+2,0.00473690032958984,"GLFixedEffectModels Poisson",2,"simple",10,1000
+2,0.0190024375915527,"alpaca Poisson",2,"simple",10,1000
+2,0.0182614326477051,"fixest::fepois",2,"simple",10,1000
+2,0.0924572944641113,"pyfixest.fepois",3,"simple",10,1000
+2,0.00694704055786133,"GLFixedEffectModels Poisson",3,"simple",10,1000
+2,0.0264256000518799,"alpaca Poisson",3,"simple",10,1000
+2,0.0150799751281738,"fixest::fepois",3,"simple",10,1000
+3,0.0895686149597168,"pyfixest.fepois",2,"simple",10,1000
+3,0.00418281555175781,"GLFixedEffectModels Poisson",2,"simple",10,1000
+3,0.0139477252960205,"alpaca Poisson",2,"simple",10,1000
+3,0.0160317420959473,"fixest::fepois",2,"simple",10,1000
+3,0.0892271995544434,"pyfixest.fepois",3,"simple",10,1000
+3,0.00751614570617676,"GLFixedEffectModels Poisson",3,"simple",10,1000
+3,0.0215578079223633,"alpaca Poisson",3,"simple",10,1000
+3,0.0152990818023682,"fixest::fepois",3,"simple",10,1000
+4,0.0871388912200928,"pyfixest.fepois",2,"simple",10,1000
+4,0.00447487831115723,"GLFixedEffectModels Poisson",2,"simple",10,1000
+4,0.0165238380432129,"alpaca Poisson",2,"simple",10,1000
+4,0.0156600475311279,"fixest::fepois",2,"simple",10,1000
+4,0.0903375148773193,"pyfixest.fepois",3,"simple",10,1000
+4,0.00793886184692383,"GLFixedEffectModels Poisson",3,"simple",10,1000
+4,0.0256443023681641,"alpaca Poisson",3,"simple",10,1000
+4,0.0152771472930908,"fixest::fepois",3,"simple",10,1000
+5,0.0885629653930664,"pyfixest.fepois",2,"simple",10,1000
+5,0.0044550895690918,"GLFixedEffectModels Poisson",2,"simple",10,1000
+5,0.0143561363220215,"alpaca Poisson",2,"simple",10,1000
+5,0.0165474414825439,"fixest::fepois",2,"simple",10,1000
+5,0.0971994400024414,"pyfixest.fepois",3,"simple",10,1000
+5,0.00746893882751465,"GLFixedEffectModels Poisson",3,"simple",10,1000
+5,0.0246660709381104,"alpaca Poisson",3,"simple",10,1000
+5,0.014223575592041,"fixest::fepois",3,"simple",10,1000
+6,0.0891849994659424,"pyfixest.fepois",2,"simple",10,1000
+6,0.00387692451477051,"GLFixedEffectModels Poisson",2,"simple",10,1000
+6,0.0152823925018311,"alpaca Poisson",2,"simple",10,1000
+6,0.0156824588775635,"fixest::fepois",2,"simple",10,1000
+6,0.0916860103607178,"pyfixest.fepois",3,"simple",10,1000
+6,0.00576090812683105,"GLFixedEffectModels Poisson",3,"simple",10,1000
+6,0.0216858386993408,"alpaca Poisson",3,"simple",10,1000
+6,0.0151145458221436,"fixest::fepois",3,"simple",10,1000
+7,0.0887458324432373,"pyfixest.fepois",2,"simple",10,1000
+7,0.0040590763092041,"GLFixedEffectModels Poisson",2,"simple",10,1000
+7,0.013451099395752,"alpaca Poisson",2,"simple",10,1000
+7,0.0164525508880615,"fixest::fepois",2,"simple",10,1000
+7,0.0904138088226318,"pyfixest.fepois",3,"simple",10,1000
+7,0.0208969116210938,"GLFixedEffectModels Poisson",3,"simple",10,1000
+7,0.0241820812225342,"alpaca Poisson",3,"simple",10,1000
+7,0.0152695178985596,"fixest::fepois",3,"simple",10,1000
+8,0.0899887084960938,"pyfixest.fepois",2,"simple",10,1000
+8,0.00388813018798828,"GLFixedEffectModels Poisson",2,"simple",10,1000
+8,0.0133404731750488,"alpaca Poisson",2,"simple",10,1000
+8,0.0154194831848145,"fixest::fepois",2,"simple",10,1000
+8,0.0913653373718262,"pyfixest.fepois",3,"simple",10,1000
+8,0.00592899322509766,"GLFixedEffectModels Poisson",3,"simple",10,1000
+8,0.0218148231506348,"alpaca Poisson",3,"simple",10,1000
+8,0.0150153636932373,"fixest::fepois",3,"simple",10,1000
+9,0.091787576675415,"pyfixest.fepois",2,"simple",10,1000
+9,0.0041201114654541,"GLFixedEffectModels Poisson",2,"simple",10,1000
+9,0.0137736797332764,"alpaca Poisson",2,"simple",10,1000
+9,0.0165495872497559,"fixest::fepois",2,"simple",10,1000
+9,0.0896506309509277,"pyfixest.fepois",3,"simple",10,1000
+9,0.00638914108276367,"GLFixedEffectModels Poisson",3,"simple",10,1000
+9,0.0188500881195068,"alpaca Poisson",3,"simple",10,1000
+9,0.0152227878570557,"fixest::fepois",3,"simple",10,1000
+10,0.0909287929534912,"pyfixest.fepois",2,"simple",10,1000
+10,0.00402379035949707,"GLFixedEffectModels Poisson",2,"simple",10,1000
+10,0.0148792266845703,"alpaca Poisson",2,"simple",10,1000
+10,0.0154354572296143,"fixest::fepois",2,"simple",10,1000
+10,0.0909581184387207,"pyfixest.fepois",3,"simple",10,1000
+10,0.00629997253417969,"GLFixedEffectModels Poisson",3,"simple",10,1000
+10,0.0232062339782715,"alpaca Poisson",3,"simple",10,1000
+10,0.015331506729126,"fixest::fepois",3,"simple",10,1000
+11,0.0880978107452393,"pyfixest.fepois",2,"simple",10,1000
+11,0.00390005111694336,"GLFixedEffectModels Poisson",2,"simple",10,1000
+11,0.014336109161377,"alpaca Poisson",2,"simple",10,1000
+11,0.0163676738739014,"fixest::fepois",2,"simple",10,1000
+11,0.0883059501647949,"pyfixest.fepois",3,"simple",10,1000
+11,0.0066521167755127,"GLFixedEffectModels Poisson",3,"simple",10,1000
+11,0.0195457935333252,"alpaca Poisson",3,"simple",10,1000
+11,0.0156064033508301,"fixest::fepois",3,"simple",10,1000
+2,0.113436222076416,"pyfixest.fepois",2,"simple",10,10000
+2,0.0307760238647461,"GLFixedEffectModels Poisson",2,"simple",10,10000
+2,0.247062921524048,"alpaca Poisson",2,"simple",10,10000
+2,0.0577695369720459,"fixest::fepois",2,"simple",10,10000
+2,0.172930717468262,"pyfixest.fepois",3,"simple",10,10000
+2,0.056797981262207,"GLFixedEffectModels Poisson",3,"simple",10,10000
+2,0.579599142074585,"alpaca Poisson",3,"simple",10,10000
+2,0.0479423999786377,"fixest::fepois",3,"simple",10,10000
+3,0.110047817230225,"pyfixest.fepois",2,"simple",10,10000
+3,0.0288059711456299,"GLFixedEffectModels Poisson",2,"simple",10,10000
+3,0.338590621948242,"alpaca Poisson",2,"simple",10,10000
+3,0.0479397773742676,"fixest::fepois",2,"simple",10,10000
+3,0.125179052352905,"pyfixest.fepois",3,"simple",10,10000
+3,0.0359210968017578,"GLFixedEffectModels Poisson",3,"simple",10,10000
+3,0.265323400497437,"alpaca Poisson",3,"simple",10,10000
+3,0.0597655773162842,"fixest::fepois",3,"simple",10,10000
+4,0.109288215637207,"pyfixest.fepois",2,"simple",10,10000
+4,0.0246851444244385,"GLFixedEffectModels Poisson",2,"simple",10,10000
+4,0.192731380462646,"alpaca Poisson",2,"simple",10,10000
+4,0.0555922985076904,"fixest::fepois",2,"simple",10,10000
+4,0.116642236709595,"pyfixest.fepois",3,"simple",10,10000
+4,0.031851053237915,"GLFixedEffectModels Poisson",3,"simple",10,10000
+4,0.374303102493286,"alpaca Poisson",3,"simple",10,10000
+4,0.054337739944458,"fixest::fepois",3,"simple",10,10000
+5,0.116161823272705,"pyfixest.fepois",2,"simple",10,10000
+5,0.0329990386962891,"GLFixedEffectModels Poisson",2,"simple",10,10000
+5,0.211000204086304,"alpaca Poisson",2,"simple",10,10000
+5,0.0531272888183594,"fixest::fepois",2,"simple",10,10000
+5,0.132534980773926,"pyfixest.fepois",3,"simple",10,10000
+5,0.0475060939788818,"GLFixedEffectModels Poisson",3,"simple",10,10000
+5,0.325842380523682,"alpaca Poisson",3,"simple",10,10000
+5,0.0570850372314453,"fixest::fepois",3,"simple",10,10000
+6,0.113614320755005,"pyfixest.fepois",2,"simple",10,10000
+6,0.0318460464477539,"GLFixedEffectModels Poisson",2,"simple",10,10000
+6,0.254908323287964,"alpaca Poisson",2,"simple",10,10000
+6,0.0525298118591309,"fixest::fepois",2,"simple",10,10000
+6,0.145765542984009,"pyfixest.fepois",3,"simple",10,10000
+6,0.230122804641724,"GLFixedEffectModels Poisson",3,"simple",10,10000
+6,0.391841650009155,"alpaca Poisson",3,"simple",10,10000
+6,0.0638604164123535,"fixest::fepois",3,"simple",10,10000
+7,0.106920003890991,"pyfixest.fepois",2,"simple",10,10000
+7,0.0226638317108154,"GLFixedEffectModels Poisson",2,"simple",10,10000
+7,0.188289165496826,"alpaca Poisson",2,"simple",10,10000
+7,0.0501639842987061,"fixest::fepois",2,"simple",10,10000
+7,0.134557723999023,"pyfixest.fepois",3,"simple",10,10000
+7,0.039376974105835,"GLFixedEffectModels Poisson",3,"simple",10,10000
+7,0.310963153839111,"alpaca Poisson",3,"simple",10,10000
+7,0.0611562728881836,"fixest::fepois",3,"simple",10,10000
+8,0.106939077377319,"pyfixest.fepois",2,"simple",10,10000
+8,0.0276660919189453,"GLFixedEffectModels Poisson",2,"simple",10,10000
+8,0.185197591781616,"alpaca Poisson",2,"simple",10,10000
+8,0.0616819858551025,"fixest::fepois",2,"simple",10,10000
+8,0.123972177505493,"pyfixest.fepois",3,"simple",10,10000
+8,0.0441129207611084,"GLFixedEffectModels Poisson",3,"simple",10,10000
+8,0.290205717086792,"alpaca Poisson",3,"simple",10,10000
+8,0.0540947914123535,"fixest::fepois",3,"simple",10,10000
+9,0.114649534225464,"pyfixest.fepois",2,"simple",10,10000
+9,0.026364803314209,"GLFixedEffectModels Poisson",2,"simple",10,10000
+9,0.237742185592651,"alpaca Poisson",2,"simple",10,10000
+9,0.0478999614715576,"fixest::fepois",2,"simple",10,10000
+9,0.134526968002319,"pyfixest.fepois",3,"simple",10,10000
+9,0.0438289642333984,"GLFixedEffectModels Poisson",3,"simple",10,10000
+9,0.346640586853027,"alpaca Poisson",3,"simple",10,10000
+9,0.068434476852417,"fixest::fepois",3,"simple",10,10000
+10,0.104213237762451,"pyfixest.fepois",2,"simple",10,10000
+10,0.0197861194610596,"GLFixedEffectModels Poisson",2,"simple",10,10000
+10,0.154404878616333,"alpaca Poisson",2,"simple",10,10000
+10,0.0620436668395996,"fixest::fepois",2,"simple",10,10000
+10,0.115283966064453,"pyfixest.fepois",3,"simple",10,10000
+10,0.0297119617462158,"GLFixedEffectModels Poisson",3,"simple",10,10000
+10,0.326784133911133,"alpaca Poisson",3,"simple",10,10000
+10,0.0490005016326904,"fixest::fepois",3,"simple",10,10000
+11,0.119592428207397,"pyfixest.fepois",2,"simple",10,10000
+11,0.0248310565948486,"GLFixedEffectModels Poisson",2,"simple",10,10000
+11,0.192082643508911,"alpaca Poisson",2,"simple",10,10000
+11,0.0495531558990479,"fixest::fepois",2,"simple",10,10000
+11,0.126949787139893,"pyfixest.fepois",3,"simple",10,10000
+11,0.0371561050415039,"GLFixedEffectModels Poisson",3,"simple",10,10000
+11,0.293294429779053,"alpaca Poisson",3,"simple",10,10000
+11,0.0611391067504883,"fixest::fepois",3,"simple",10,10000
+2,0.775442123413086,"pyfixest.fepois",2,"simple",5,1e+05
+2,0.565959215164185,"GLFixedEffectModels Poisson",2,"simple",5,1e+05
+2,3.20952177047729,"alpaca Poisson",2,"simple",5,1e+05
+2,0.129602432250977,"fixest::fepois",2,"simple",5,1e+05
+2,1.10953855514526,"pyfixest.fepois",3,"simple",5,1e+05
+2,0.536748886108398,"GLFixedEffectModels Poisson",3,"simple",5,1e+05
+2,4.29033517837524,"alpaca Poisson",3,"simple",5,1e+05
+2,0.160425424575806,"fixest::fepois",3,"simple",5,1e+05
+3,0.859546184539795,"pyfixest.fepois",2,"simple",5,1e+05
+3,0.389972925186157,"GLFixedEffectModels Poisson",2,"simple",5,1e+05
+3,3.15538096427917,"alpaca Poisson",2,"simple",5,1e+05
+3,0.138672590255737,"fixest::fepois",2,"simple",5,1e+05
+3,1.23833465576172,"pyfixest.fepois",3,"simple",5,1e+05
+3,0.728507995605469,"GLFixedEffectModels Poisson",3,"simple",5,1e+05
+3,4.14529061317444,"alpaca Poisson",3,"simple",5,1e+05
+3,0.187996387481689,"fixest::fepois",3,"simple",5,1e+05
+4,0.841687679290771,"pyfixest.fepois",2,"simple",5,1e+05
+4,0.567595958709717,"GLFixedEffectModels Poisson",2,"simple",5,1e+05
+4,4.45811915397644,"alpaca Poisson",2,"simple",5,1e+05
+4,0.119532585144043,"fixest::fepois",2,"simple",5,1e+05
+4,1.07447624206543,"pyfixest.fepois",3,"simple",5,1e+05
+4,0.688033103942871,"GLFixedEffectModels Poisson",3,"simple",5,1e+05
+4,5.38979744911194,"alpaca Poisson",3,"simple",5,1e+05
+4,0.148647546768188,"fixest::fepois",3,"simple",5,1e+05
+5,0.851430654525757,"pyfixest.fepois",2,"simple",5,1e+05
+5,0.261893033981323,"GLFixedEffectModels Poisson",2,"simple",5,1e+05
+5,2.4469997882843,"alpaca Poisson",2,"simple",5,1e+05
+5,0.12980842590332,"fixest::fepois",2,"simple",5,1e+05
+5,1.18734645843506,"pyfixest.fepois",3,"simple",5,1e+05
+5,0.530494928359985,"GLFixedEffectModels Poisson",3,"simple",5,1e+05
+5,3.26384663581848,"alpaca Poisson",3,"simple",5,1e+05
+5,0.166768312454224,"fixest::fepois",3,"simple",5,1e+05
+6,0.939007759094238,"pyfixest.fepois",2,"simple",5,1e+05
+6,0.318940877914429,"GLFixedEffectModels Poisson",2,"simple",5,1e+05
+6,3.21356606483459,"alpaca Poisson",2,"simple",5,1e+05
+6,0.266124486923218,"fixest::fepois",2,"simple",5,1e+05
+6,1.50833964347839,"pyfixest.fepois",3,"simple",5,1e+05
+6,0.472490787506104,"GLFixedEffectModels Poisson",3,"simple",5,1e+05
+6,5.75297856330872,"alpaca Poisson",3,"simple",5,1e+05
+6,0.196556568145752,"fixest::fepois",3,"simple",5,1e+05
+2,0.08786940574646,"pyfixest.fepois",2,"difficult",10,1000
+2,0.00380992889404297,"GLFixedEffectModels Poisson",2,"difficult",10,1000
+2,0.0169382095336914,"alpaca Poisson",2,"difficult",10,1000
+2,0.0147149562835693,"fixest::fepois",2,"difficult",10,1000
+2,0.0932879447937012,"pyfixest.fepois",3,"difficult",10,1000
+2,0.00589704513549805,"GLFixedEffectModels Poisson",3,"difficult",10,1000
+2,0.0162332057952881,"alpaca Poisson",3,"difficult",10,1000
+2,0.015333890914917,"fixest::fepois",3,"difficult",10,1000
+3,0.0941891670227051,"pyfixest.fepois",2,"difficult",10,1000
+3,0.00431203842163086,"GLFixedEffectModels Poisson",2,"difficult",10,1000
+3,0.0127556324005127,"alpaca Poisson",2,"difficult",10,1000
+3,0.019026517868042,"fixest::fepois",2,"difficult",10,1000
+3,0.091439962387085,"pyfixest.fepois",3,"difficult",10,1000
+3,0.00649023056030273,"GLFixedEffectModels Poisson",3,"difficult",10,1000
+3,0.0227289199829102,"alpaca Poisson",3,"difficult",10,1000
+3,0.0150704383850098,"fixest::fepois",3,"difficult",10,1000
+4,0.0869603157043457,"pyfixest.fepois",2,"difficult",10,1000
+4,0.00607895851135254,"GLFixedEffectModels Poisson",2,"difficult",10,1000
+4,0.0125837326049805,"alpaca Poisson",2,"difficult",10,1000
+4,0.0148403644561768,"fixest::fepois",2,"difficult",10,1000
+4,0.0909280776977539,"pyfixest.fepois",3,"difficult",10,1000
+4,0.0063319206237793,"GLFixedEffectModels Poisson",3,"difficult",10,1000
+4,0.0237002372741699,"alpaca Poisson",3,"difficult",10,1000
+4,0.0138928890228271,"fixest::fepois",3,"difficult",10,1000
+5,0.0892391204833984,"pyfixest.fepois",2,"difficult",10,1000
+5,0.00378203392028809,"GLFixedEffectModels Poisson",2,"difficult",10,1000
+5,0.0126216411590576,"alpaca Poisson",2,"difficult",10,1000
+5,0.0160036087036133,"fixest::fepois",2,"difficult",10,1000
+5,0.0903465747833252,"pyfixest.fepois",3,"difficult",10,1000
+5,0.00588011741638184,"GLFixedEffectModels Poisson",3,"difficult",10,1000
+5,0.0162675380706787,"alpaca Poisson",3,"difficult",10,1000
+5,0.0152029991149902,"fixest::fepois",3,"difficult",10,1000
+6,0.0902142524719238,"pyfixest.fepois",2,"difficult",10,1000
+6,0.00484609603881836,"GLFixedEffectModels Poisson",2,"difficult",10,1000
+6,0.0165424346923828,"alpaca Poisson",2,"difficult",10,1000
+6,0.0158805847167969,"fixest::fepois",2,"difficult",10,1000
+6,0.0916845798492432,"pyfixest.fepois",3,"difficult",10,1000
+6,0.00857806205749512,"GLFixedEffectModels Poisson",3,"difficult",10,1000
+6,0.0178990364074707,"alpaca Poisson",3,"difficult",10,1000
+6,0.0152435302734375,"fixest::fepois",3,"difficult",10,1000
+7,0.0923564434051514,"pyfixest.fepois",2,"difficult",10,1000
+7,0.00616884231567383,"GLFixedEffectModels Poisson",2,"difficult",10,1000
+7,0.0170741081237793,"alpaca Poisson",2,"difficult",10,1000
+7,0.015944242477417,"fixest::fepois",2,"difficult",10,1000
+7,0.092132568359375,"pyfixest.fepois",3,"difficult",10,1000
+7,0.00717687606811523,"GLFixedEffectModels Poisson",3,"difficult",10,1000
+7,0.0202701091766357,"alpaca Poisson",3,"difficult",10,1000
+7,0.0151183605194092,"fixest::fepois",3,"difficult",10,1000
+8,0.0873351097106934,"pyfixest.fepois",2,"difficult",10,1000
+8,0.00425100326538086,"GLFixedEffectModels Poisson",2,"difficult",10,1000
+8,0.0131330490112305,"alpaca Poisson",2,"difficult",10,1000
+8,0.0184562206268311,"fixest::fepois",2,"difficult",10,1000
+8,0.0904223918914795,"pyfixest.fepois",3,"difficult",10,1000
+8,0.00672507286071777,"GLFixedEffectModels Poisson",3,"difficult",10,1000
+8,0.025158166885376,"alpaca Poisson",3,"difficult",10,1000
+8,0.0152244567871094,"fixest::fepois",3,"difficult",10,1000
+9,0.093355655670166,"pyfixest.fepois",2,"difficult",10,1000
+9,0.00431704521179199,"GLFixedEffectModels Poisson",2,"difficult",10,1000
+9,0.0126547813415527,"alpaca Poisson",2,"difficult",10,1000
+9,0.0160825252532959,"fixest::fepois",2,"difficult",10,1000
+9,0.0973315238952637,"pyfixest.fepois",3,"difficult",10,1000
+9,0.00838613510131836,"GLFixedEffectModels Poisson",3,"difficult",10,1000
+9,0.0209934711456299,"alpaca Poisson",3,"difficult",10,1000
+9,0.0151066780090332,"fixest::fepois",3,"difficult",10,1000
+10,0.0934545993804932,"pyfixest.fepois",2,"difficult",10,1000
+10,0.00386214256286621,"GLFixedEffectModels Poisson",2,"difficult",10,1000
+10,0.0133802890777588,"alpaca Poisson",2,"difficult",10,1000
+10,0.0151374340057373,"fixest::fepois",2,"difficult",10,1000
+10,0.0981423854827881,"pyfixest.fepois",3,"difficult",10,1000
+10,0.00579500198364258,"GLFixedEffectModels Poisson",3,"difficult",10,1000
+10,0.0213799476623535,"alpaca Poisson",3,"difficult",10,1000
+10,0.0150220394134521,"fixest::fepois",3,"difficult",10,1000
+11,0.093285083770752,"pyfixest.fepois",2,"difficult",10,1000
+11,0.00383305549621582,"GLFixedEffectModels Poisson",2,"difficult",10,1000
+11,0.0127301216125488,"alpaca Poisson",2,"difficult",10,1000
+11,0.0153677463531494,"fixest::fepois",2,"difficult",10,1000
+11,0.0944538116455078,"pyfixest.fepois",3,"difficult",10,1000
+11,0.00617003440856934,"GLFixedEffectModels Poisson",3,"difficult",10,1000
+11,0.0163166522979736,"alpaca Poisson",3,"difficult",10,1000
+11,0.0151150226593018,"fixest::fepois",3,"difficult",10,1000
+2,0.166525363922119,"pyfixest.fepois",2,"difficult",10,10000
+2,0.0351810455322266,"GLFixedEffectModels Poisson",2,"difficult",10,10000
+2,0.91932487487793,"alpaca Poisson",2,"difficult",10,10000
+2,0.0406515598297119,"fixest::fepois",2,"difficult",10,10000
+2,0.305322408676147,"pyfixest.fepois",3,"difficult",10,10000
+2,0.0554521083831787,"GLFixedEffectModels Poisson",3,"difficult",10,10000
+2,1.30957794189453,"alpaca Poisson",3,"difficult",10,10000
+2,0.032034158706665,"fixest::fepois",3,"difficult",10,10000
+3,0.15585470199585,"pyfixest.fepois",2,"difficult",10,10000
+3,0.0320308208465576,"GLFixedEffectModels Poisson",2,"difficult",10,10000
+3,0.549723863601685,"alpaca Poisson",2,"difficult",10,10000
+3,0.0421416759490967,"fixest::fepois",2,"difficult",10,10000
+3,0.173216104507446,"pyfixest.fepois",3,"difficult",10,10000
+3,0.0456480979919434,"GLFixedEffectModels Poisson",3,"difficult",10,10000
+3,0.686809778213501,"alpaca Poisson",3,"difficult",10,10000
+3,0.0544164180755615,"fixest::fepois",3,"difficult",10,10000
+4,0.156764268875122,"pyfixest.fepois",2,"difficult",10,10000
+4,0.0266320705413818,"GLFixedEffectModels Poisson",2,"difficult",10,10000
+4,0.534392595291138,"alpaca Poisson",2,"difficult",10,10000
+4,0.0481843948364258,"fixest::fepois",2,"difficult",10,10000
+4,0.196058750152588,"pyfixest.fepois",3,"difficult",10,10000
+4,0.0376760959625244,"GLFixedEffectModels Poisson",3,"difficult",10,10000
+4,0.756819725036621,"alpaca Poisson",3,"difficult",10,10000
+4,0.040855884552002,"fixest::fepois",3,"difficult",10,10000
+5,0.160090684890747,"pyfixest.fepois",2,"difficult",10,10000
+5,0.053412914276123,"GLFixedEffectModels Poisson",2,"difficult",10,10000
+5,0.603101253509521,"alpaca Poisson",2,"difficult",10,10000
+5,0.0450088977813721,"fixest::fepois",2,"difficult",10,10000
+5,0.225544691085815,"pyfixest.fepois",3,"difficult",10,10000
+5,0.0492260456085205,"GLFixedEffectModels Poisson",3,"difficult",10,10000
+5,0.924930095672607,"alpaca Poisson",3,"difficult",10,10000
+5,0.0295486450195312,"fixest::fepois",3,"difficult",10,10000
+6,0.203536748886108,"pyfixest.fepois",2,"difficult",10,10000
+6,0.0293371677398682,"GLFixedEffectModels Poisson",2,"difficult",10,10000
+6,1.00569128990173,"alpaca Poisson",2,"difficult",10,10000
+6,0.0318942070007324,"fixest::fepois",2,"difficult",10,10000
+6,0.330103158950806,"pyfixest.fepois",3,"difficult",10,10000
+6,0.0427920818328857,"GLFixedEffectModels Poisson",3,"difficult",10,10000
+6,1.52670001983643,"alpaca Poisson",3,"difficult",10,10000
+6,0.0341536998748779,"fixest::fepois",3,"difficult",10,10000
+7,0.156909227371216,"pyfixest.fepois",2,"difficult",10,10000
+7,0.0334079265594482,"GLFixedEffectModels Poisson",2,"difficult",10,10000
+7,0.679611206054688,"alpaca Poisson",2,"difficult",10,10000
+7,0.0423252582550049,"fixest::fepois",2,"difficult",10,10000
+7,0.220911979675293,"pyfixest.fepois",3,"difficult",10,10000
+7,0.0401551723480225,"GLFixedEffectModels Poisson",3,"difficult",10,10000
+7,1.00501084327698,"alpaca Poisson",3,"difficult",10,10000
+7,0.0337464809417725,"fixest::fepois",3,"difficult",10,10000
+8,0.178228855133057,"pyfixest.fepois",2,"difficult",10,10000
+8,0.0361671447753906,"GLFixedEffectModels Poisson",2,"difficult",10,10000
+8,0.766932725906372,"alpaca Poisson",2,"difficult",10,10000
+8,0.0411202907562256,"fixest::fepois",2,"difficult",10,10000
+8,0.22541618347168,"pyfixest.fepois",3,"difficult",10,10000
+8,0.0536060333251953,"GLFixedEffectModels Poisson",3,"difficult",10,10000
+8,1.06277012825012,"alpaca Poisson",3,"difficult",10,10000
+8,0.0444314479827881,"fixest::fepois",3,"difficult",10,10000
+9,0.179656028747559,"pyfixest.fepois",2,"difficult",10,10000
+9,0.0356819629669189,"GLFixedEffectModels Poisson",2,"difficult",10,10000
+9,0.718345642089844,"alpaca Poisson",2,"difficult",10,10000
+9,0.0373923778533936,"fixest::fepois",2,"difficult",10,10000
+9,0.227250099182129,"pyfixest.fepois",3,"difficult",10,10000
+9,0.0495638847351074,"GLFixedEffectModels Poisson",3,"difficult",10,10000
+9,0.960523128509521,"alpaca Poisson",3,"difficult",10,10000
+9,0.0323238372802734,"fixest::fepois",3,"difficult",10,10000
+10,0.164425134658813,"pyfixest.fepois",2,"difficult",10,10000
+10,0.0344600677490234,"GLFixedEffectModels Poisson",2,"difficult",10,10000
+10,0.582820177078247,"alpaca Poisson",2,"difficult",10,10000
+10,0.0386273860931396,"fixest::fepois",2,"difficult",10,10000
+10,0.19617772102356,"pyfixest.fepois",3,"difficult",10,10000
+10,0.0421180725097656,"GLFixedEffectModels Poisson",3,"difficult",10,10000
+10,0.733920335769653,"alpaca Poisson",3,"difficult",10,10000
+10,0.0442614555358887,"fixest::fepois",3,"difficult",10,10000
+11,0.186969757080078,"pyfixest.fepois",2,"difficult",10,10000
+11,0.0416650772094727,"GLFixedEffectModels Poisson",2,"difficult",10,10000
+11,0.985537528991699,"alpaca Poisson",2,"difficult",10,10000
+11,0.0431859493255615,"fixest::fepois",2,"difficult",10,10000
+11,0.300473690032959,"pyfixest.fepois",3,"difficult",10,10000
+11,0.066417932510376,"GLFixedEffectModels Poisson",3,"difficult",10,10000
+11,1.56847381591797,"alpaca Poisson",3,"difficult",10,10000
+11,0.0383665561676025,"fixest::fepois",3,"difficult",10,10000
+2,76.067901134491,"pyfixest.fepois",2,"difficult",3,1e+05
+2,2.27763676643372,"GLFixedEffectModels Poisson",2,"difficult",3,1e+05
+2,266.729144573212,"alpaca Poisson",2,"difficult",3,1e+05
+2,1.3145124912262,"fixest::fepois",2,"difficult",3,1e+05
+2,104.769296169281,"pyfixest.fepois",3,"difficult",3,1e+05
+2,3.46271800994873,"GLFixedEffectModels Poisson",3,"difficult",3,1e+05
+2,310.321903944016,"alpaca Poisson",3,"difficult",3,1e+05
+2,1.76643586158752,"fixest::fepois",3,"difficult",3,1e+05
+3,85.5449690818787,"pyfixest.fepois",2,"difficult",3,1e+05
+3,2.07129192352295,"GLFixedEffectModels Poisson",2,"difficult",3,1e+05
+3,255.645369529724,"alpaca Poisson",2,"difficult",3,1e+05
+3,1.44986128807068,"fixest::fepois",2,"difficult",3,1e+05
+3,134.234555006027,"pyfixest.fepois",3,"difficult",3,1e+05
+3,2.93189907073975,"GLFixedEffectModels Poisson",3,"difficult",3,1e+05
+3,301.725605726242,"alpaca Poisson",3,"difficult",3,1e+05
+3,1.83775162696838,"fixest::fepois",3,"difficult",3,1e+05
+4,62.8986170291901,"pyfixest.fepois",2,"difficult",3,1e+05
+4,1.96278500556946,"GLFixedEffectModels Poisson",2,"difficult",3,1e+05
+4,270.272115945816,"alpaca Poisson",2,"difficult",3,1e+05
+4,1.12948608398438,"fixest::fepois",2,"difficult",3,1e+05
+4,90.4272849559784,"pyfixest.fepois",3,"difficult",3,1e+05
+4,2.57363605499268,"GLFixedEffectModels Poisson",3,"difficult",3,1e+05
+4,363.144630670547,"alpaca Poisson",3,"difficult",3,1e+05
+4,1.73462772369385,"fixest::fepois",3,"difficult",3,1e+05
+2,3.78844451904297,"pyfixest.fepois",2,"simple",3,5e+05
+2,2.56803107261658,"GLFixedEffectModels Poisson",2,"simple",3,5e+05
+2,0.835618495941162,"fixest::fepois",2,"simple",3,5e+05
+2,6.2372145652771,"pyfixest.fepois",3,"simple",3,5e+05
+2,3.34275484085083,"GLFixedEffectModels Poisson",3,"simple",3,5e+05
+2,0.954909086227417,"fixest::fepois",3,"simple",3,5e+05
+3,5.51883554458618,"pyfixest.fepois",2,"simple",3,5e+05
+3,3.01447486877441,"GLFixedEffectModels Poisson",2,"simple",3,5e+05
+3,0.957317352294922,"fixest::fepois",2,"simple",3,5e+05
+3,9.47533631324768,"pyfixest.fepois",3,"simple",3,5e+05
+3,4.35743093490601,"GLFixedEffectModels Poisson",3,"simple",3,5e+05
+3,1.35890412330627,"fixest::fepois",3,"simple",3,5e+05
+4,4.3322856426239,"pyfixest.fepois",2,"simple",3,5e+05
+4,2.31499886512756,"GLFixedEffectModels Poisson",2,"simple",3,5e+05
+4,0.88294529914856,"fixest::fepois",2,"simple",3,5e+05
+4,7.82221841812134,"pyfixest.fepois",3,"simple",3,5e+05
+4,3.44528198242188,"GLFixedEffectModels Poisson",3,"simple",3,5e+05
+4,1.13934373855591,"fixest::fepois",3,"simple",3,5e+05
+2,NA,"pyfixest.fepois",2,"difficult",3,5e+05
+2,24.1369619369507,"GLFixedEffectModels Poisson",2,"difficult",3,5e+05
+2,14.2955322265625,"fixest::fepois",2,"difficult",3,5e+05
+2,NA,"pyfixest.fepois",3,"difficult",3,5e+05
+2,35.3305478096008,"GLFixedEffectModels Poisson",3,"difficult",3,5e+05
+2,35.2894060611725,"fixest::fepois",3,"difficult",3,5e+05
+3,NA,"pyfixest.fepois",2,"difficult",3,5e+05
+3,NA,"GLFixedEffectModels Poisson",2,"difficult",3,5e+05
+3,157.454190969467,"fixest::fepois",2,"difficult",3,5e+05
+3,NA,"pyfixest.fepois",3,"difficult",3,5e+05
+3,45.7469079494476,"GLFixedEffectModels Poisson",3,"difficult",3,5e+05
+3,19.8023686408997,"fixest::fepois",3,"difficult",3,5e+05
+4,NA,"pyfixest.fepois",2,"difficult",3,5e+05
+4,NA,"GLFixedEffectModels Poisson",2,"difficult",3,5e+05
+4,122.204409122467,"fixest::fepois",2,"difficult",3,5e+05
+4,NA,"pyfixest.fepois",3,"difficult",3,5e+05
+4,42.9723069667816,"GLFixedEffectModels Poisson",3,"difficult",3,5e+05
+4,27.0340361595154,"fixest::fepois",3,"difficult",3,5e+05
+2,5.80766940116882,"pyfixest.fepois",2,"simple",3,1e+06
+2,5.33649206161499,"GLFixedEffectModels Poisson",2,"simple",3,1e+06
+2,1.47337985038757,"fixest::fepois",2,"simple",3,1e+06
+2,9.23578000068665,"pyfixest.fepois",3,"simple",3,1e+06
+2,6.31892800331116,"GLFixedEffectModels Poisson",3,"simple",3,1e+06
+2,1.94636940956116,"fixest::fepois",3,"simple",3,1e+06
+3,6.99747371673584,"pyfixest.fepois",2,"simple",3,1e+06
+3,4.31415104866028,"GLFixedEffectModels Poisson",2,"simple",3,1e+06
+3,1.77898168563843,"fixest::fepois",2,"simple",3,1e+06
+3,14.1308674812317,"pyfixest.fepois",3,"simple",3,1e+06
+3,6.63891005516052,"GLFixedEffectModels Poisson",3,"simple",3,1e+06
+3,2.41979932785034,"fixest::fepois",3,"simple",3,1e+06
+4,6.34801888465881,"pyfixest.fepois",2,"simple",3,1e+06
+4,4.40885591506958,"GLFixedEffectModels Poisson",2,"simple",3,1e+06
+4,1.57138013839722,"fixest::fepois",2,"simple",3,1e+06
+4,11.2319312095642,"pyfixest.fepois",3,"simple",3,1e+06
+4,6.03293490409851,"GLFixedEffectModels Poisson",3,"simple",3,1e+06
+4,2.03863930702209,"fixest::fepois",3,"simple",3,1e+06
+2,NA,"pyfixest.fepois",2,"difficult",3,1e+06
+2,101.144914865494,"GLFixedEffectModels Poisson",2,"difficult",3,1e+06
+2,51.6564157009125,"fixest::fepois",2,"difficult",3,1e+06
+2,NA,"pyfixest.fepois",3,"difficult",3,1e+06
+2,105.769204854965,"GLFixedEffectModels Poisson",3,"difficult",3,1e+06
+2,87.735223531723,"fixest::fepois",3,"difficult",3,1e+06
+3,NA,"pyfixest.fepois",2,"difficult",3,1e+06
+3,77.9586429595947,"GLFixedEffectModels Poisson",2,"difficult",3,1e+06
+3,37.641854763031,"fixest::fepois",2,"difficult",3,1e+06
+3,NA,"pyfixest.fepois",3,"difficult",3,1e+06
+3,116.374788999557,"GLFixedEffectModels Poisson",3,"difficult",3,1e+06
+3,91.5766899585724,"fixest::fepois",3,"difficult",3,1e+06
+4,NA,"pyfixest.fepois",2,"difficult",3,1e+06
+4,97.8155131340027,"GLFixedEffectModels Poisson",2,"difficult",3,1e+06
+4,36.5293228626251,"fixest::fepois",2,"difficult",3,1e+06
+4,NA,"pyfixest.fepois",3,"difficult",3,1e+06
+4,129.658435106277,"GLFixedEffectModels Poisson",3,"difficult",3,1e+06
+4,43.8042204380035,"fixest::fepois",3,"difficult",3,1e+06

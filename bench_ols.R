@@ -77,10 +77,10 @@ bench_ols_small <- run_benchmark(
 bench_ols_large <- run_benchmark(
   dgps = data.table::rowwiseDT(
     dgp_name=, n_iters=, n_obs=, dgp_function=,
-    "simple",     5L, 1e6, list(\() base_dgp(n = 1e6, type = "simple")),
-    "difficult",  5L, 1e6, list(\() base_dgp(n = 1e6, type = "difficult")),
-    "simple",     3L, 5e6, list(\() base_dgp(n = 5e6, type = "simple")),
-    "difficult",  3L, 5e6, list(\() base_dgp(n = 5e6, type = "difficult"))
+    "simple",     3L, 1e6, list(\() base_dgp(n = 1e6, type = "simple")),
+    "difficult",  3L, 1e6, list(\() base_dgp(n = 1e6, type = "difficult")),
+    # "simple",     3L, 2e6, list(\() base_dgp(n = 2e6, type = "simple")),
+    # "difficult",  3L, 2e6, list(\() base_dgp(n = 2e6, type = "difficult"))
   ),
   estimators = data.table::rowwiseDT(
     est_name=, n_fe=, func=,

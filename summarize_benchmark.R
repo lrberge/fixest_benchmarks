@@ -287,7 +287,6 @@ n_fe_labels <- c(
 
 ## OLS ----
 (plot_ols <- bench_ols |>
-  _[n_fe %in% c(2L, 3L), ] |>
   _[,
     .(
       mean_time = mean(time, na.rm = TRUE),
@@ -328,8 +327,16 @@ n_fe_labels <- c(
   facet_grid(
     dgp_label ~ n_fe_label,
   ) +
-  scale_x_log10() +
-  scale_y_log10() +
+  scale_x_continuous(
+    transform = "log10",
+    labels = scales::label_number(
+      scale_cut = scales::cut_long_scale()
+    )
+  ) +
+  scale_y_continuous(
+    transform = "log10",
+    labels = scales::label_timespan()
+  ) +
   scale_color_manual(
     values = color_switch
   ) +
@@ -368,8 +375,16 @@ n_fe_labels <- c(
     linewidth = 1.15
   ) +
   facet_grid(~dgp_name) +
-  scale_x_log10() +
-  scale_y_log10() +
+  scale_x_continuous(
+    transform = "log10",
+    labels = scales::label_number(
+      scale_cut = scales::cut_long_scale()
+    )
+  ) +
+  scale_y_continuous(
+    transform = "log10",
+    labels = scales::label_timespan()
+  ) +
   scale_color_manual(
     values = color_switch
   ) +
@@ -382,7 +397,6 @@ n_fe_labels <- c(
 
 ## Poisson ----
 (plot_poisson <- bench_poisson |>
-  _[n_fe %in% c(2L, 3L), ] |>
   _[,
     .(
       mean_time = mean(time, na.rm = TRUE),
@@ -423,8 +437,16 @@ n_fe_labels <- c(
   facet_grid(
     dgp_label ~ n_fe_label,
   ) +
-  scale_x_log10() +
-  scale_y_log10() +
+  scale_x_continuous(
+    transform = "log10",
+    labels = scales::label_number(
+      scale_cut = scales::cut_long_scale()
+    )
+  ) +
+  scale_y_continuous(
+    transform = "log10",
+    labels = scales::label_timespan()
+  ) +
   scale_color_manual(
     values = color_switch
   ) +
@@ -437,7 +459,6 @@ n_fe_labels <- c(
 
 ## Logit ----
 (plot_logit <- bench_logit |>
-  _[n_fe %in% c(2L, 3L), ] |>
   _[,
     .(
       mean_time = mean(time, na.rm = TRUE),
@@ -478,8 +499,16 @@ n_fe_labels <- c(
   facet_grid(
     dgp_label ~ n_fe_label,
   ) +
-  scale_x_log10() +
-  scale_y_log10() +
+  scale_x_continuous(
+    transform = "log10",
+    labels = scales::label_number(
+      scale_cut = scales::cut_long_scale()
+    )
+  ) +
+  scale_y_continuous(
+    transform = "log10",
+    labels = scales::label_timespan()
+  ) +
   scale_color_manual(
     values = color_switch
   ) +
@@ -517,8 +546,16 @@ n_fe_labels <- c(
     ),
     linewidth = 1.15
   ) +
-  scale_x_log10() +
-  scale_y_log10() +
+  scale_x_continuous(
+    transform = "log10",
+    labels = scales::label_number(
+      scale_cut = scales::cut_long_scale()
+    )
+  ) +
+  scale_y_continuous(
+    transform = "log10",
+    labels = scales::label_timespan()
+  ) +
   scale_color_manual(
     values = color_switch
   ) +
@@ -556,8 +593,16 @@ n_fe_labels <- c(
     ),
     linewidth = 1.15
   ) +
-  scale_x_log10() +
-  scale_y_log10() +
+  scale_x_continuous(
+    transform = "log10",
+    labels = scales::label_number(
+      scale_cut = scales::cut_long_scale()
+    )
+  ) +
+  scale_y_continuous(
+    transform = "log10",
+    labels = scales::label_timespan()
+  ) +
   scale_color_manual(
     values = color_switch
   ) +
