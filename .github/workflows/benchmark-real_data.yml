@@ -98,7 +98,7 @@ jobs:
     # If artifact download failed, process the data ourselves  
     - name: Download and process taxi data
       if: steps.download_nyc_artifact.outcome == 'failure'
-      run: Rscript download_taxi.R
+      run: Rscript data/download_taxi.R
 
     # Upload processed data as artifact for future runs
     - name: Upload taxi data artifact
@@ -123,10 +123,10 @@ jobs:
     # If artifact download failed, process the data ourselves  
     - name: Download and process medicare payments data
       if: steps.download_medicate_artifact.outcome == 'failure'
-      run: Rscript download_medicare_payments.R
+      run: Rscript data/download_medicare_payments.R
 
     # Upload processed data as artifact for future runs
-    - name: Upload taxi data artifact
+    - name: Upload medicare payments data artifact
       if: steps.download_medicate_artifact.outcome == 'failure'
       uses: actions/upload-artifact@v4
       with:
