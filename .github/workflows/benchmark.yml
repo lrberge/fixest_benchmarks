@@ -1,0 +1,261 @@
+name: Benchmark Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        script: [bench_ols.R, bench_poisson.R, bench_logit.R]
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # R
+    
+    - name: Install libpng-dev
+      run: sudo apt-get update && sudo apt-get install -y libpng-dev
+    
+    - name: Setup R
+      uses: r-lib/actions/setup-r@v2
+      with:
+        r-version: '4.4.0'
+        use-public-rspm: true
+    
+    - name: Install pandoc
+      uses: r-lib/actions/setup-pandoc@v2
+    
+    - name: Cache R packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.local/share/renv
+        key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-renv-
+    
+    - name: Setup renv
+      uses: r-lib/actions/setup-renv@v2
+      with:
+        cache-version: 1
+
+    # Julia
+    
+    - name: Setup Julia
+      uses: julia-actions/setup-julia@v2
+      with:
+        version: '1.11.6'
+    
+    - name: Cache Julia pacakges
+      uses: julia-actions/cache@v2
+    
+    - name: Install Julia packages
+      run: |
+        julia --project=. -e 'using Pkg; Pkg.activate("."); Pkg.instantiate();'
+
+    - name: set julia thread count
+      run: echo "JULIA_NUM_THREADS=2" >> $GITHUB_ENV
+
+    # Python
+    
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+    
+    - name: Create virtual environment
+      run: |
+        python -m venv .venv
+    
+    - name: Install Python packages
+      run: |
+        source .venv/bin/activate
+        pip install --upgrade pip
+        pip install pandas pyfixest
+    
+    - name: Make venv available to subsequent steps
+      run: |
+        source .venv/bin/activate
+        echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
+        echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH
+
+    - name: set numba parallel flags
+      run: echo "NUMBA_NUM_THREADS=2" >> $GITHUB_ENV
+
+    # RUN BENCHMARK
+    
+    - name: Run benchmark
+      run: |
+        source .venv/bin/activate
+        Rscript ${{ matrix.script }}
+
+    ## Upload results as artifacts
+    
+    - name: Upload benchmark results
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      uses: actions/upload-artifact@v4
+      with:
+        name: benchmark-results-${{ matrix.script }}
+        path: results/
+        retention-days: 1
+
+  summarize:
+    needs: benchmark
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # R
+      
+      - name: Install libpng-dev
+        run: sudo apt-get update && sudo apt-get install -y libpng-dev
+      
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.4.0'
+          use-public-rspm: true
+      
+      - name: Install pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+      
+      - name: Cache R packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/renv
+          key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-renv-
+      
+      - name: Setup renv
+        uses: r-lib/actions/setup-renv@v2
+        with:
+          cache-version: 1
+
+      # Python
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      
+      - name: Create virtual environment
+        run: |
+          python -m venv .venv
+      
+      - name: Install Python packages
+        run: |
+          source .venv/bin/activate
+          pip install --upgrade pip
+          pip install pandas pyfixest
+      
+      - name: Make venv available to subsequent steps
+        run: |
+          source .venv/bin/activate
+          echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
+          echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH
+
+      - name: Download all results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: benchmark-results-*
+          path: results/
+          merge-multiple: true
+      
+      - name: Summarize results
+        run: |
+          source .venv/bin/activate
+          Rscript summarize_benchmark.R
+      
+      - name: Upload summarized results
+        uses: actions/upload-artifact@v4
+        with:
+          name: summarized-results
+          path: results/
+          retention-days: 1
+
+  commit:
+    needs: summarize
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Download summarized results
+        uses: actions/download-artifact@v4
+        with:
+          name: summarized-results
+          path: results/
+
+      - name: Configure git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Robust commit and push
+        run: |
+          # Function to retry git operations
+          retry_git() {
+            local max_attempts=5
+            local attempt=1
+            local command="$*"
+            
+            while [ $attempt -le $max_attempts ]; do
+              echo "Attempt $attempt of $max_attempts: $command"
+              if eval "$command"; then
+                echo "Command succeeded on attempt $attempt"
+                return 0
+              else
+                echo "Command failed on attempt $attempt"
+                if [ $attempt -lt $max_attempts ]; then
+                  echo "Waiting 10 seconds before retry..."
+                  sleep 10
+                fi
+                attempt=$((attempt + 1))
+              fi
+            done
+            
+            echo "Command failed after $max_attempts attempts"
+            return 1
+          }
+          
+          # Check if there are any changes
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          
+          # Pull latest changes with retry
+          retry_git "git pull --rebase origin ${{ github.ref_name }}"
+          
+          # Add changes
+          git add results/
+          
+          # Check again if there are changes after pull
+          if git diff --cached --quiet; then
+            echo "No changes to commit after pull"
+            exit 0
+          fi
+          
+          # Commit changes
+          git commit -m "Update benchmark results [skip ci]
+          
+          - Updated from OLS, Poisson, and Logit benchmark workflows
+          - Commit SHA: ${{ github.sha }}
+          - Workflow run: ${{ github.run_id }}"
+          
+          # Push with retry
+          retry_git "git push origin ${{ github.ref_name }}"
+          
+          echo "Successfully committed and pushed benchmark results"
