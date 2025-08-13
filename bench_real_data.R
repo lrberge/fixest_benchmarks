@@ -26,7 +26,7 @@ nyc <- read_parquet(here("data/nyc_taxi.parquet"))
 # Load medicare claims data
 # fmt: skip
 medicare <- fread(
-  here("data", "Medicare_Provider_Util_Payment_PUF_CY2016.txt"),
+  here("data/Medicare_Provider_Util_Payment_PUF_CY2016.txt"),
   sep = "\t",
   skip = 2, # firstobs = 3 in SAS means skip first 2 lines
   header = FALSE,
@@ -80,20 +80,20 @@ bench_tradepolicy_ols <- run_benchmark(
     "pyfixest.feols", list(\(df) {
       pyfixest_feols_timer(
         df,
-        "trade ~ log_dist + cntg + lang + clny + rta | exp_year + imp_year + intl_brdr"
+        "trade ~ rta + rta_lag4 + rta_lag8 + rta_lag12 + intl_border_1986 + intl_border_1990 + intl_border_1994 + intl_border_1998 + intl_border_2002 | exp_year + imp_year + pair_id_2"
       )
     }),
     "FixedEffectModels.reg", list(\(df) {
       julia_call(
         "jl_feols_timer",
         df,
-        "trade ~ log_dist + cntg + lang + clny + rta + fe(exp_year) + fe(imp_year) + fe(intl_brdr)"
+        "trade ~ rta + rta_lag4 + rta_lag8 + rta_lag12 + intl_border_1986 + intl_border_1990 + intl_border_1994 + intl_border_1998 + intl_border_2002 + fe(exp_year) + fe(imp_year) + fe(pair_id_2)"
       )
     }),
     "fixest::feols", list(\(df) {
       feols_timer(
         df,
-        trade ~ log_dist + cntg + lang + clny + rta | exp_year + imp_year + intl_brdr
+        trade ~ rta + rta_lag4 + rta_lag8 + rta_lag12 + intl_border_1986 + intl_border_1990 + intl_border_1994 + intl_border_1998 + intl_border_2002 | exp_year + imp_year + pair_id_2
       )
     })
   )
@@ -110,20 +110,20 @@ bench_tradepolicy_ppml <- run_benchmark(
     "pyfixest.fepois", list(\(df) {
       pyfixest_fepois_timer(
         df,
-        "trade ~ log_dist + cntg + lang + clny + rta | exp_year + imp_year + intl_brdr"
+        "trade ~ rta + rta_lag4 + rta_lag8 + rta_lag12 + intl_border_1986 + intl_border_1990 + intl_border_1994 + intl_border_1998 + intl_border_2002 | exp_year + imp_year + pair_id_2"
       )
     }),
     "GLFixedEffectModels Poisson", list(\(df) {
       julia_call(
         "jl_poisson_timer",
         df,
-        "trade ~ log_dist + cntg + lang + clny + rta + fe(exp_year) + fe(imp_year) + fe(intl_brdr)"
+        "trade ~ rta + rta_lag4 + rta_lag8 + rta_lag12 + intl_border_1986 + intl_border_1990 + intl_border_1994 + intl_border_1998 + intl_border_2002 + fe(exp_year) + fe(imp_year) + fe(pair_id_2)"
       )
     }),
     "fixest::fepois", list(\(df) {
       fepois_timer(
         df,
-        trade ~ log_dist + cntg + lang + clny + rta | exp_year + imp_year + intl_brdr
+        trade ~ rta + rta_lag4 + rta_lag8 + rta_lag12 + intl_border_1986 + intl_border_1990 + intl_border_1994 + intl_border_1998 + intl_border_2002 | exp_year + imp_year + pair_id_2
       )
     })
   )
@@ -167,12 +167,12 @@ bench_medicare_ols <- run_benchmark(
   ),
   estimators = data.table::rowwiseDT(
     est_name=, func=,
-    "pyfixest.feols", list(\(df) {
-      pyfixest_feols_timer(
-        df,
-        "average_Medicare_payment_amt ~ line_srvc_cnt + bene_unique_cnt | nppes_provider_state + provider_type + hcpcs_code"
-      )
-    }),
+    # "pyfixest.feols", list(\(df) {
+    #   pyfixest_feols_timer(
+    #     df,
+    #     "average_Medicare_payment_amt ~ line_srvc_cnt + bene_unique_cnt | nppes_provider_state + provider_type + hcpcs_code"
+    #   )
+    # }),
     "FixedEffectModels.reg", list(\(df) {
       julia_call(
         "jl_feols_timer",

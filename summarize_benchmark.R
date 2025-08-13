@@ -12,7 +12,7 @@ bench_real_data = fread(here("results/bench_ols_real_data.csv"))
 
 
 # Custom theme ----
-# Needed b/c ggplot2::element_* acts weird with `ifelse`
+# Needed b/c ggplot2::element_* acts weird with `ife`lse`
 grepl_ifelse <- function(pattern, x, yes, no) {
   if (grepl(pattern, x)) {
     return(yes)
@@ -286,7 +286,8 @@ n_fe_labels <- c(
 )
 
 ## OLS ----
-(plot_ols <- bench_ols |>
+summ_ols <- bench_ols |>
+  _[n_fe %in% c(2L, 3L), ] |>
   _[,
     .(
       mean_time = mean(time, na.rm = TRUE),
@@ -306,6 +307,9 @@ n_fe_labels <- c(
       n_fe_labels
     )
   ] |>
+  _[order(dgp_label, n_fe_label), ]
+
+(plot_ols <- summ_ols |>
   ggplot() +
   geom_point(
     aes(
@@ -334,54 +338,7 @@ n_fe_labels <- c(
     )
   ) +
   scale_y_continuous(
-    transform = "log10",
-    labels = scales::label_timespan()
-  ) +
-  scale_color_manual(
-    values = color_switch
-  ) +
-  labs(
-    x = "Number of Observations",
-    y = "Mean Estimation Time",
-    color = NULL
-  ) +
-  custom_theme(legend = "bottom"))
-
-## Real Data ----
-(plot_real_data <- bench_real_data |>
-  _[,
-    .(
-      mean_time = mean(time, na.rm = TRUE),
-      n_failures = sum(is.na(time))
-    ),
-    by = setdiff(names(bench_real_data), c("iter", "time"))
-  ] |>
-  ggplot() +
-  geom_point(
-    aes(
-      x = n_obs,
-      y = mean_time,
-      color = est_name
-    ),
-    size = 2,
-    shape = 15
-  ) +
-  geom_line(
-    aes(
-      x = n_obs,
-      y = mean_time,
-      color = est_name
-    ),
-    linewidth = 1.15
-  ) +
-  facet_grid(~dgp_name) +
-  scale_x_continuous(
-    transform = "log10",
-    labels = scales::label_number(
-      scale_cut = scales::cut_long_scale()
-    )
-  ) +
-  scale_y_continuous(
+    breaks = c(0.01, 0.1, 1, 10, 60, 300),
     transform = "log10",
     labels = scales::label_timespan()
   ) +
@@ -396,7 +353,7 @@ n_fe_labels <- c(
   custom_theme(legend = "bottom"))
 
 ## Poisson ----
-(plot_poisson <- bench_poisson |>
+summ_poisson <- bench_poisson |>
   _[,
     .(
       mean_time = mean(time, na.rm = TRUE),
@@ -415,7 +372,9 @@ n_fe_labels <- c(
       n_fe_labels[match(n_fe, names(n_fe_labels))],
       n_fe_labels
     )
-  ] |>
+  ]
+
+(plot_poisson <- summ_poisson |>
   ggplot() +
   geom_point(
     aes(
@@ -444,6 +403,7 @@ n_fe_labels <- c(
     )
   ) +
   scale_y_continuous(
+    breaks = c(0.01, 0.1, 1, 10, 60, 300),
     transform = "log10",
     labels = scales::label_timespan()
   ) +
@@ -458,7 +418,7 @@ n_fe_labels <- c(
   custom_theme(legend = "bottom"))
 
 ## Logit ----
-(plot_logit <- bench_logit |>
+summ_logit <- bench_logit |>
   _[,
     .(
       mean_time = mean(time, na.rm = TRUE),
@@ -477,7 +437,9 @@ n_fe_labels <- c(
       n_fe_labels[match(n_fe, names(n_fe_labels))],
       n_fe_labels
     )
-  ] |>
+  ]
+
+(plot_logit <- summ_logit |>
   ggplot() +
   geom_point(
     aes(
@@ -506,6 +468,7 @@ n_fe_labels <- c(
     )
   ) +
   scale_y_continuous(
+    breaks = c(0.01, 0.1, 1, 10, 60, 300),
     transform = "log10",
     labels = scales::label_timespan()
   ) +
@@ -518,6 +481,47 @@ n_fe_labels <- c(
     color = NULL
   ) +
   custom_theme(legend = "bottom"))
+
+
+## Real Data ----
+summ_real_data <- bench_real_data |>
+  _[,
+    .(
+      mean_time = mean(time, na.rm = TRUE),
+      n_failures = sum(is.na(time))
+    ),
+    by = setdiff(names(bench_real_data), c("iter", "time"))
+  ] |>
+  _[order(n_obs), ]
+
+tab_real_data <- summ_real_data |>
+  _[, .(
+    `Dataset` = dgp_name,
+    `Num. obs.` = n_obs,
+    `Estimator` = est_name,
+    `Mean Estimation Time` = mean_time
+  )] |>
+  tt() |>
+  format_tt(j = "Mean Estimation Time", digits = 2)
+tab_md_string <- tab_real_data |>
+  tinytable:::build_tt("markdown") |>
+  _@table_string |>
+  strsplit("\n") |>
+  unlist()
+
+# Hacky way to change table text
+readme <- xfun::read_utf8(here("README.md"))
+insert_idx <- which(grepl("<!-- Real Data -->", readme))
+if (insert_idx[2] > insert_idx[1] + 1) {
+  rows_to_keep <- setdiff(
+    seq_len(length(readme)),
+    (insert_idx[1] + 1):(insert_idx[2] - 1)
+  )
+  readme <- readme[rows_to_keep]
+}
+readme <- append(readme, tab_md_string, after = insert_idx[1])
+xfun::write_utf8(readme, here("README.md"))
+
 
 ## Multiple y ----
 (plot_ols_multiple_y <- bench_ols_multiple_y |>
@@ -553,6 +557,7 @@ n_fe_labels <- c(
     )
   ) +
   scale_y_continuous(
+    breaks = c(0.01, 0.1, 1, 10, 60, 300),
     transform = "log10",
     labels = scales::label_timespan()
   ) +
@@ -600,6 +605,7 @@ n_fe_labels <- c(
     )
   ) +
   scale_y_continuous(
+    breaks = c(0.01, 0.1, 1, 10, 60, 300),
     transform = "log10",
     labels = scales::label_timespan()
   ) +
