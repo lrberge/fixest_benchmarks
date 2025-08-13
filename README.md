@@ -42,6 +42,9 @@ create a very “sparse” network. This makes estimation more difficult and
 time-consuming. These can be seen as two extreme cases and where a
 particular dataset may fall depends on the specific application.
 
+
+<details closed>
+  <summary>DGP Code</summary>
 ``` r
 base_dgp <- function(
   n = 1000,
@@ -84,6 +87,8 @@ base_dgp <- function(
   return(df)
 }
 ```
+</details>
+
 
 ### OLS Results
 
