@@ -1,6 +1,7 @@
 library(here)
 library(data.table)
 library(ggplot2)
+library(tinytable)
 
 # load data
 bench_ols = fread(here("results/bench_ols.csv"))
@@ -504,7 +505,7 @@ tab_real_data <- summ_real_data |>
   tt() |>
   format_tt(j = "Mean Estimation Time", digits = 2)
 tab_md_string <- tab_real_data |>
-  tinytable:::build_tt("markdown") |>
+  tinytable:::build_tt("gfm") |>
   _@table_string |>
   strsplit("\n") |>
   unlist()
@@ -623,12 +624,6 @@ xfun::write_utf8(readme, here("README.md"))
 ggsave(
   filename = here("results/plot_ols.svg"),
   plot = plot_ols,
-  width = 8,
-  height = 6
-)
-ggsave(
-  filename = here("results/plot_real_data.svg"),
-  plot = plot_real_data,
   width = 8,
   height = 6
 )
