@@ -16,7 +16,9 @@ bench_ols_small <- run_benchmark(
     "simple",    10L, 1e5, list(\() base_dgp(n = 1e5, type = "simple")),
     "difficult",  5L, 1e5, list(\() base_dgp(n = 1e5, type = "difficult")),
     "simple",     5L, 5e5, list(\() base_dgp(n = 5e5, type = "simple")),
-    "difficult",  5L, 5e5, list(\() base_dgp(n = 5e5, type = "difficult"))
+    "difficult",  5L, 5e5, list(\() base_dgp(n = 5e5, type = "difficult")),
+    "simple",     3L, 1e6, list(\() base_dgp(n = 1e6, type = "simple")),
+    "simple",     3L, 2e6, list(\() base_dgp(n = 2e6, type = "simple")),
   ),
   estimators = data.table::rowwiseDT(
     est_name=, n_fe=, func=,
@@ -74,16 +76,19 @@ bench_ols_small <- run_benchmark(
 )
 
 # fmt: skip
-bench_ols_large <- run_benchmark(
+bench_ols_medium <- run_benchmark(
   dgps = data.table::rowwiseDT(
     dgp_name=, n_iters=, n_obs=, dgp_function=,
-    "simple",     3L, 1e6, list(\() base_dgp(n = 1e6, type = "simple")),
     "difficult",  3L, 1e6, list(\() base_dgp(n = 1e6, type = "difficult")),
-    "simple",     3L, 2e6, list(\() base_dgp(n = 2e6, type = "simple")),
-    "difficult",  3L, 2e6, list(\() base_dgp(n = 2e6, type = "difficult"))
   ),
   estimators = data.table::rowwiseDT(
     est_name=, n_fe=, func=,
+    "lfe::felm", 2L, list(\(df) {
+      lfe_timer(
+        df,
+        y ~ x1 | indiv_id + year
+      )
+    }),
     "pyfixest.feols", 2L, list(\(df) {
       pyfixest_feols_timer(
         df,
@@ -124,9 +129,54 @@ bench_ols_large <- run_benchmark(
     })
   )
 )
+
+# fmt: skip
+bench_ols_large <- run_benchmark(
+  dgps = data.table::rowwiseDT(
+    dgp_name=, n_iters=, n_obs=, dgp_function=,
+    "difficult",  3L, 2e6, list(\() base_dgp(n = 2e6, type = "difficult"))
+  ),
+  estimators = data.table::rowwiseDT(
+    est_name=, n_fe=, func=,
+    "pyfixest.feols", 2L, list(\(df) {
+      pyfixest_feols_timer(
+        df,
+        "y ~ x1 | indiv_id + year"
+      )
+    }),
+    "FixedEffectModels.reg", 2L, list(\(df) {
+      julia_call(
+        "jl_feols_timer",
+        df,
+        "y ~ x1 + fe(indiv_id) + fe(year)"
+      )
+    }),
+    "fixest::feols", 2L, list(\(df) {
+      feols_timer(
+        df,
+        y ~ x1 | indiv_id + year
+      )
+    }),
+    "FixedEffectModels.reg", 3L, list(\(df) {
+      julia_call(
+        "jl_feols_timer",
+        df,
+        "y ~ x1 + fe(indiv_id) + fe(year) + fe(firm_id)"
+      )
+    }),
+    "fixest::feols", 3L, list(\(df) {
+      feols_timer(
+        df,
+        y ~ x1 | indiv_id + year + firm_id
+      )
+    })
+  )
+)
+
 bench_ols <- rbindlist(
   list(
     bench_ols_small,
+    bench_ols_medium,
     bench_ols_large
   ),
   use.names = TRUE,
