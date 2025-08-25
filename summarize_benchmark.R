@@ -504,8 +504,15 @@ tab_real_data <- summ_real_data |>
   )] |>
   tt() |>
   format_tt(j = "Mean Estimation Time", digits = 2)
+
 tab_md_string <- tab_real_data |>
   tinytable:::build_tt("gfm") |>
+  _@table_string |>
+  strsplit("\n") |>
+  unlist()
+
+tab_latex_string <- tab_real_data |>
+  tinytable:::build_tt("latex") |>
   _@table_string |>
   strsplit("\n") |>
   unlist()
@@ -522,6 +529,8 @@ if (insert_idx[2] > insert_idx[1] + 1) {
 }
 readme <- append(readme, tab_md_string, after = insert_idx[1])
 xfun::write_utf8(readme, here("README.md"))
+
+cat(tab_latex_string, file = "results/table_real_data.tex", sep = "\n")
 
 
 ## Multiple y ----
@@ -622,6 +631,25 @@ xfun::write_utf8(readme, here("README.md"))
 
 # Export ----
 ggsave(
+  filename = here("results/plot_ols.pdf"),
+  plot = plot_ols,
+  width = 8,
+  height = 6
+)
+ggsave(
+  filename = here("results/plot_poisson.pdf"),
+  plot = plot_poisson,
+  width = 8,
+  height = 6
+)
+ggsave(
+  filename = here("results/plot_logit.pdf"),
+  plot = plot_logit,
+  width = 8,
+  height = 6
+)
+
+ggsave(
   filename = here("results/plot_ols.svg"),
   plot = plot_ols,
   width = 8,
@@ -639,15 +667,27 @@ ggsave(
   width = 8,
   height = 6
 )
-ggsave(
-  filename = here("results/plot_ols_multiple_y.svg"),
-  plot = plot_ols_multiple_y,
-  width = 8,
-  height = 6
-)
-ggsave(
-  filename = here("results/plot_ols_multiple_vcov.svg"),
-  plot = plot_ols_multiple_vcov,
-  width = 8,
-  height = 6
-)
+# ggsave(
+#   filename = here("results/plot_ols_multiple_y.pdf"),
+#   plot = plot_ols_multiple_y,
+#   width = 8,
+#   height = 6
+# )
+# ggsave(
+#   filename = here("results/plot_ols_multiple_y.svg"),
+#   plot = plot_ols_multiple_y,
+#   width = 8,
+#   height = 6
+# )
+# ggsave(
+#   filename = here("results/plot_ols_multiple_vcov.pdf"),
+#   plot = plot_ols_multiple_vcov,
+#   width = 8,
+#   height = 6
+# )
+# ggsave(
+#   filename = here("results/plot_ols_multiple_vcov.svg"),
+#   plot = plot_ols_multiple_vcov,
+#   width = 8,
+#   height = 6
+# )

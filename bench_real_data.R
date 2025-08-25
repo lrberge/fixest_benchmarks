@@ -159,6 +159,7 @@ bench_nyc_taxi_ols <- run_benchmark(
   )
 )
 
+# %%
 # fmt: skip
 bench_medicare_ols <- run_benchmark(
   dgps = data.table::rowwiseDT(
@@ -195,7 +196,8 @@ bench_real_data <- rbindlist(
     bench_ols_flights,
     bench_tradepolicy_ols,
     bench_tradepolicy_ppml,
-    bench_nyc_taxi_ols
+    bench_nyc_taxi_ols,
+    bench_medicare_ols
   ),
   use.names = TRUE,
   fill = TRUE

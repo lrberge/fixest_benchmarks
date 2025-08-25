@@ -107,16 +107,18 @@ base_dgp <- function(
 <!-- Real Data -->
 | Dataset | Num. obs. | Estimator | Mean Estimation Time |
 |----|----|----|----|
-| tradepolicy (OLS) | 28566 | pyfixest.feols | 0.063 |
-| tradepolicy (OLS) | 28566 | FixedEffectModels.reg | 0.011 |
-| tradepolicy (OLS) | 28566 | fixest::feols | 0.012 |
-| tradepolicy (Poisson) | 28566 | pyfixest.fepois | 0.899 |
-| tradepolicy (Poisson) | 28566 | GLFixedEffectModels Poisson | 2.298 |
-| tradepolicy (Poisson) | 28566 | fixest::fepois | 0.351 |
-| nycflights13 | 336776 | pyfixest.feols | 0.376 |
-| nycflights13 | 336776 | FixedEffectModels.reg | 0.139 |
-| nycflights13 | 336776 | fixest::feols | 0.264 |
-| nyc taxi | 46099576 | pyfixest.feols | 48.317 |
-| nyc taxi | 46099576 | FixedEffectModels.reg | 21.391 |
-| nyc taxi | 46099576 | fixest::feols | 51.612 |
+| tradepolicy (OLS) | 28566 | pyfixest.feols | 0.262 |
+| tradepolicy (OLS) | 28566 | FixedEffectModels.reg | 0.058 |
+| tradepolicy (OLS) | 28566 | fixest::feols | 0.037 |
+| tradepolicy (Poisson) | 28566 | pyfixest.fepois | 1.894 |
+| tradepolicy (Poisson) | 28566 | GLFixedEffectModels Poisson | 4.689 |
+| tradepolicy (Poisson) | 28566 | fixest::fepois | 0.243 |
+| nycflights13 | 336776 | pyfixest.feols | 0.29 |
+| nycflights13 | 336776 | FixedEffectModels.reg | 0.183 |
+| nycflights13 | 336776 | fixest::feols | 0.095 |
+| Medicare Provider | 9714896 | FixedEffectModels.reg | 13.208 |
+| Medicare Provider | 9714896 | fixest::feols | 59.428 |
+| nyc taxi | 46099576 | pyfixest.feols | 57.76 |
+| nyc taxi | 46099576 | FixedEffectModels.reg | 24.5 |
+| nyc taxi | 46099576 | fixest::feols | 43.61 |
 <!-- Real Data -->

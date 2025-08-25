@@ -1,61 +1,67 @@
 "iter","time","est_name","dgp_name","n_iters","n_obs","n_fe"
-2,0.558824300765991,"pyfixest.feols","nycflights13",5,336776,3
-2,0.118917542,"FixedEffectModels.reg","nycflights13",5,336776,3
-2,0.611278057098389,"fixest::feols","nycflights13",5,336776,3
-3,0.299935340881348,"pyfixest.feols","nycflights13",5,336776,3
-3,0.121330542,"FixedEffectModels.reg","nycflights13",5,336776,3
-3,0.0981299877166748,"fixest::feols","nycflights13",5,336776,3
-4,0.496263980865479,"pyfixest.feols","nycflights13",5,336776,3
-4,0.117427417,"FixedEffectModels.reg","nycflights13",5,336776,3
-4,0.0971710681915283,"fixest::feols","nycflights13",5,336776,3
-5,0.265212059020996,"pyfixest.feols","nycflights13",5,336776,3
-5,0.136034167,"FixedEffectModels.reg","nycflights13",5,336776,3
-5,0.431380033493042,"fixest::feols","nycflights13",5,336776,3
-6,0.260028123855591,"pyfixest.feols","nycflights13",5,336776,3
-6,0.203385708,"FixedEffectModels.reg","nycflights13",5,336776,3
-6,0.0808310508728027,"fixest::feols","nycflights13",5,336776,3
-2,0.0582966804504395,"pyfixest.feols","tradepolicy (OLS)",5,28566,3
-2,0.0111525,"FixedEffectModels.reg","tradepolicy (OLS)",5,28566,3
-2,0.00949788093566895,"fixest::feols","tradepolicy (OLS)",5,28566,3
-3,0.0825619697570801,"pyfixest.feols","tradepolicy (OLS)",5,28566,3
-3,0.010778084,"FixedEffectModels.reg","tradepolicy (OLS)",5,28566,3
-3,0.00945496559143066,"fixest::feols","tradepolicy (OLS)",5,28566,3
-4,0.0606489181518555,"pyfixest.feols","tradepolicy (OLS)",5,28566,3
-4,0.011633625,"FixedEffectModels.reg","tradepolicy (OLS)",5,28566,3
-4,0.0115010738372803,"fixest::feols","tradepolicy (OLS)",5,28566,3
-5,0.0586428642272949,"pyfixest.feols","tradepolicy (OLS)",5,28566,3
-5,0.010962834,"FixedEffectModels.reg","tradepolicy (OLS)",5,28566,3
-5,0.00965094566345215,"fixest::feols","tradepolicy (OLS)",5,28566,3
-6,0.0563902854919434,"pyfixest.feols","tradepolicy (OLS)",5,28566,3
-6,0.011247583,"FixedEffectModels.reg","tradepolicy (OLS)",5,28566,3
-6,0.0190479755401611,"fixest::feols","tradepolicy (OLS)",5,28566,3
-2,0.890924215316772,"pyfixest.fepois","tradepolicy (Poisson)",5,28566,3
-2,2.25475478172302,"GLFixedEffectModels Poisson","tradepolicy (Poisson)",5,28566,3
-2,0.943581104278564,"fixest::fepois","tradepolicy (Poisson)",5,28566,3
-3,0.963145017623901,"pyfixest.fepois","tradepolicy (Poisson)",5,28566,3
-3,2.3677179813385,"GLFixedEffectModels Poisson","tradepolicy (Poisson)",5,28566,3
-3,0.201431035995483,"fixest::fepois","tradepolicy (Poisson)",5,28566,3
-4,0.872846126556396,"pyfixest.fepois","tradepolicy (Poisson)",5,28566,3
-4,2.26154398918152,"GLFixedEffectModels Poisson","tradepolicy (Poisson)",5,28566,3
-4,0.20315408706665,"fixest::fepois","tradepolicy (Poisson)",5,28566,3
-5,0.871915102005005,"pyfixest.fepois","tradepolicy (Poisson)",5,28566,3
-5,2.25368618965149,"GLFixedEffectModels Poisson","tradepolicy (Poisson)",5,28566,3
-5,0.201771974563599,"fixest::fepois","tradepolicy (Poisson)",5,28566,3
-6,0.896422863006592,"pyfixest.fepois","tradepolicy (Poisson)",5,28566,3
-6,2.34994721412659,"GLFixedEffectModels Poisson","tradepolicy (Poisson)",5,28566,3
-6,0.202841997146606,"fixest::fepois","tradepolicy (Poisson)",5,28566,3
-2,44.6043949127197,"pyfixest.feols","nyc taxi",5,46099576,3
-2,22.349157791,"FixedEffectModels.reg","nyc taxi",5,46099576,3
-2,51.0340309143066,"fixest::feols","nyc taxi",5,46099576,3
-3,47.9228732585907,"pyfixest.feols","nyc taxi",5,46099576,3
-3,21.993632708,"FixedEffectModels.reg","nyc taxi",5,46099576,3
-3,51.8230290412903,"fixest::feols","nyc taxi",5,46099576,3
-4,53.655181646347,"pyfixest.feols","nyc taxi",5,46099576,3
-4,20.778763542,"FixedEffectModels.reg","nyc taxi",5,46099576,3
-4,53.7603459358215,"fixest::feols","nyc taxi",5,46099576,3
-5,49.1750159263611,"pyfixest.feols","nyc taxi",5,46099576,3
-5,20.518226542,"FixedEffectModels.reg","nyc taxi",5,46099576,3
-5,52.5852859020233,"fixest::feols","nyc taxi",5,46099576,3
-6,46.2278261184692,"pyfixest.feols","nyc taxi",5,46099576,3
-6,21.31743575,"FixedEffectModels.reg","nyc taxi",5,46099576,3
-6,48.8576340675354,"fixest::feols","nyc taxi",5,46099576,3
+2,0.259111881256104,"pyfixest.feols","nycflights13",5,336776,3
+2,0.14159893989563,"FixedEffectModels.reg","nycflights13",5,336776,3
+2,0.123929023742676,"fixest::feols","nycflights13",5,336776,3
+3,0.440285921096802,"pyfixest.feols","nycflights13",5,336776,3
+3,0.21674108505249,"FixedEffectModels.reg","nycflights13",5,336776,3
+3,0.0841588973999023,"fixest::feols","nycflights13",5,336776,3
+4,0.275190114974976,"pyfixest.feols","nycflights13",5,336776,3
+4,0.11321496963501,"FixedEffectModels.reg","nycflights13",5,336776,3
+4,0.0870721340179443,"fixest::feols","nycflights13",5,336776,3
+5,0.233263254165649,"pyfixest.feols","nycflights13",5,336776,3
+5,0.236979961395264,"FixedEffectModels.reg","nycflights13",5,336776,3
+5,0.0936570167541504,"fixest::feols","nycflights13",5,336776,3
+6,0.24391508102417,"pyfixest.feols","nycflights13",5,336776,3
+6,0.207741022109985,"FixedEffectModels.reg","nycflights13",5,336776,3
+6,0.0858139991760254,"fixest::feols","nycflights13",5,336776,3
+2,0.230407953262329,"pyfixest.feols","tradepolicy (OLS)",5,28566,3
+2,0.0876970291137695,"FixedEffectModels.reg","tradepolicy (OLS)",5,28566,3
+2,0.0437591075897217,"fixest::feols","tradepolicy (OLS)",5,28566,3
+3,0.241295099258423,"pyfixest.feols","tradepolicy (OLS)",5,28566,3
+3,0.0500218868255615,"FixedEffectModels.reg","tradepolicy (OLS)",5,28566,3
+3,0.0468499660491943,"fixest::feols","tradepolicy (OLS)",5,28566,3
+4,0.283812999725342,"pyfixest.feols","tradepolicy (OLS)",5,28566,3
+4,0.0546231269836426,"FixedEffectModels.reg","tradepolicy (OLS)",5,28566,3
+4,0.0273280143737793,"fixest::feols","tradepolicy (OLS)",5,28566,3
+5,0.241039991378784,"pyfixest.feols","tradepolicy (OLS)",5,28566,3
+5,0.0328929424285889,"FixedEffectModels.reg","tradepolicy (OLS)",5,28566,3
+5,0.0392169952392578,"fixest::feols","tradepolicy (OLS)",5,28566,3
+6,0.310962200164795,"pyfixest.feols","tradepolicy (OLS)",5,28566,3
+6,0.0625779628753662,"FixedEffectModels.reg","tradepolicy (OLS)",5,28566,3
+6,0.0285720825195312,"fixest::feols","tradepolicy (OLS)",5,28566,3
+2,1.8100438117981,"pyfixest.fepois","tradepolicy (Poisson)",5,28566,3
+2,4.62906694412231,"GLFixedEffectModels Poisson","tradepolicy (Poisson)",5,28566,3
+2,0.240248918533325,"fixest::fepois","tradepolicy (Poisson)",5,28566,3
+3,2.06501603126526,"pyfixest.fepois","tradepolicy (Poisson)",5,28566,3
+3,4.8222029209137,"GLFixedEffectModels Poisson","tradepolicy (Poisson)",5,28566,3
+3,0.253422021865845,"fixest::fepois","tradepolicy (Poisson)",5,28566,3
+4,1.85766100883484,"pyfixest.fepois","tradepolicy (Poisson)",5,28566,3
+4,4.6573531627655,"GLFixedEffectModels Poisson","tradepolicy (Poisson)",5,28566,3
+4,0.242188930511475,"fixest::fepois","tradepolicy (Poisson)",5,28566,3
+5,1.90108394622803,"pyfixest.fepois","tradepolicy (Poisson)",5,28566,3
+5,4.67176985740662,"GLFixedEffectModels Poisson","tradepolicy (Poisson)",5,28566,3
+5,0.240844011306763,"fixest::fepois","tradepolicy (Poisson)",5,28566,3
+6,1.83652997016907,"pyfixest.fepois","tradepolicy (Poisson)",5,28566,3
+6,4.66432809829712,"GLFixedEffectModels Poisson","tradepolicy (Poisson)",5,28566,3
+6,0.240726947784424,"fixest::fepois","tradepolicy (Poisson)",5,28566,3
+2,60.0882451534271,"pyfixest.feols","nyc taxi",5,46099576,3
+2,23.9883689880371,"FixedEffectModels.reg","nyc taxi",5,46099576,3
+2,54.0146961212158,"fixest::feols","nyc taxi",5,46099576,3
+3,51.9324040412903,"pyfixest.feols","nyc taxi",5,46099576,3
+3,26.4405090808868,"FixedEffectModels.reg","nyc taxi",5,46099576,3
+3,55.9853398799896,"fixest::feols","nyc taxi",5,46099576,3
+4,60.681370973587,"pyfixest.feols","nyc taxi",5,46099576,3
+4,27.6932170391083,"FixedEffectModels.reg","nyc taxi",5,46099576,3
+4,49.1058311462402,"fixest::feols","nyc taxi",5,46099576,3
+5,61.0470809936523,"pyfixest.feols","nyc taxi",5,46099576,3
+5,20.6716458797455,"FixedEffectModels.reg","nyc taxi",5,46099576,3
+5,17.0767300128937,"fixest::feols","nyc taxi",5,46099576,3
+6,55.0490372180939,"pyfixest.feols","nyc taxi",5,46099576,3
+6,23.7046749591827,"FixedEffectModels.reg","nyc taxi",5,46099576,3
+6,41.8672709465027,"fixest::feols","nyc taxi",5,46099576,3
+2,12.8144729137421,"FixedEffectModels.reg","Medicare Provider",3,9714896,3
+2,60.0707669258118,"fixest::feols","Medicare Provider",3,9714896,3
+3,13.7303547859192,"FixedEffectModels.reg","Medicare Provider",3,9714896,3
+3,58.0742518901825,"fixest::feols","Medicare Provider",3,9714896,3
+4,13.078861951828,"FixedEffectModels.reg","Medicare Provider",3,9714896,3
+4,60.1377239227295,"fixest::feols","Medicare Provider",3,9714896,3
