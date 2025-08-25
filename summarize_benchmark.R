@@ -2,6 +2,8 @@ library(here)
 library(data.table)
 library(ggplot2)
 library(tinytable)
+library(pandoc)
+library(svglite)
 
 # load data
 bench_ols = fread(here("results/bench_ols.csv"))
@@ -506,14 +508,9 @@ tab_real_data <- summ_real_data |>
   tt() |>
   format_tt(j = "Mean Estimation Time", digits = 2)
 
+## README
 tab_md_string <- tab_real_data |>
   tinytable:::build_tt("gfm") |>
-  _@table_string |>
-  strsplit("\n") |>
-  unlist()
-
-tab_latex_string <- tab_real_data |>
-  tinytable:::build_tt("latex") |>
   _@table_string |>
   strsplit("\n") |>
   unlist()
@@ -530,6 +527,21 @@ if (insert_idx[2] > insert_idx[1] + 1) {
 }
 readme <- append(readme, tab_md_string, after = insert_idx[1])
 xfun::write_utf8(readme, here("README.md"))
+
+## LATEX TABLE
+tab_latex_string <- tab_real_data |>
+  tinytable:::build_tt("latex") |>
+  _@table_string |>
+  strsplit("\n") |>
+  unlist()
+
+# # extract main body
+# tab_latex_string <- tab_latex_string[
+#   seq(
+#     1 + grep("%% TinyTableHeader", tab_latex_string),
+#     grep("\\\\bottomrule", tab_latex_string) - 1
+#   )
+# ]
 
 cat(tab_latex_string, file = "results/table_real_data.tex", sep = "\n")
 
@@ -634,38 +646,38 @@ cat(tab_latex_string, file = "results/table_real_data.tex", sep = "\n")
 ggsave(
   filename = here("results/plot_ols.pdf"),
   plot = plot_ols,
-  width = 8,
+  width = 9,
   height = 6
 )
 ggsave(
   filename = here("results/plot_poisson.pdf"),
   plot = plot_poisson,
-  width = 8,
+  width = 9,
   height = 6
 )
 ggsave(
   filename = here("results/plot_logit.pdf"),
   plot = plot_logit,
-  width = 8,
+  width = 9,
   height = 6
 )
 
 ggsave(
   filename = here("results/plot_ols.svg"),
   plot = plot_ols,
-  width = 8,
+  width = 9,
   height = 6
 )
 ggsave(
   filename = here("results/plot_poisson.svg"),
   plot = plot_poisson,
-  width = 8,
+  width = 9,
   height = 6
 )
 ggsave(
   filename = here("results/plot_logit.svg"),
   plot = plot_logit,
-  width = 8,
+  width = 9,
   height = 6
 )
 # ggsave(
