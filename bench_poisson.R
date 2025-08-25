@@ -21,26 +21,26 @@ bench_poisson_small <- run_benchmark(
     "pyfixest.fepois", 2L, list(\(df) {
       pyfixest_fepois_timer(
         df,
-        "exp_y ~ x1 | indiv_id + firm_id"
+        "exp_y ~ x1 | indiv_id + year"
       )
     }),
     "GLFixedEffectModels Poisson", 2L, list(\(df) {
       julia_call(
         "jl_poisson_timer",
         df,
-        "exp_y ~ x1 + fe(indiv_id) + fe(firm_id)"
+        "exp_y ~ x1 + fe(indiv_id) + fe(year)"
       )
     }),
     "alpaca Poisson", 2L, list(\(df) {
       alpaca_poisson_timer(
         df,
-        exp_y ~ x1 | indiv_id + firm_id
+        exp_y ~ x1 | indiv_id + year
       )
     }),
     "fixest::fepois", 2L, list(\(df) {
       fepois_timer(
         df,
-        exp_y ~ x1 | indiv_id + firm_id
+        exp_y ~ x1 | indiv_id + year
       )
     }),
     "pyfixest.fepois", 3L, list(\(df) {
@@ -86,20 +86,20 @@ bench_poisson_large <- run_benchmark(
     "pyfixest.fepois", 2L, list(\(df) {
       pyfixest_fepois_timer(
         df,
-        "exp_y ~ x1 | indiv_id + firm_id"
+        "exp_y ~ x1 | indiv_id + year"
       )
     }),
     "GLFixedEffectModels Poisson", 2L, list(\(df) {
       julia_call(
         "jl_poisson_timer",
         df,
-        "exp_y ~ x1 + fe(indiv_id) + fe(firm_id)"
+        "exp_y ~ x1 + fe(indiv_id) + fe(year)"
       )
     }),
     "fixest::fepois", 2L, list(\(df) {
       fepois_timer(
         df,
-        exp_y ~ x1 | indiv_id + firm_id
+        exp_y ~ x1 | indiv_id + year
       )
     }),
     "pyfixest.fepois", 3L, list(\(df) {

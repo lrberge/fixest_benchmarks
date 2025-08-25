@@ -373,7 +373,8 @@ summ_poisson <- bench_poisson |>
       n_fe_labels[match(n_fe, names(n_fe_labels))],
       n_fe_labels
     )
-  ]
+  ] |>
+  sort_by(~ dgp_name + n_fe_label + n_obs + est_name)
 
 (plot_poisson <- summ_poisson |>
   ggplot() +

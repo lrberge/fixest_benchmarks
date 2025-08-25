@@ -22,19 +22,19 @@ bench_logit_small <- run_benchmark(
       julia_call(
         "jl_logit_timer",
         df,
-        "binary_y ~ x1 + fe(indiv_id) + fe(firm_id)"
+        "binary_y ~ x1 + fe(indiv_id) + fe(year)"
       )
     }),
     "alpaca logit", 2L, list(\(df) {
       alpaca_feglm_logit_timer(
         df,
-        binary_y ~ x1 | indiv_id + firm_id
+        binary_y ~ x1 | indiv_id + year
       )
     }),
     "fixest logit", 2L, list(\(df) {
       feglm_logit_timer(
         df,
-        binary_y ~ x1 | indiv_id + firm_id
+        binary_y ~ x1 | indiv_id + year
       )
     }),
     "GLFixedEffectModels logit", 3L, list(\(df) {
@@ -74,13 +74,13 @@ bench_logit_large <- run_benchmark(
       julia_call(
         "jl_logit_timer",
         df,
-        "binary_y ~ x1 + fe(indiv_id) + fe(firm_id)"
+        "binary_y ~ x1 + fe(indiv_id) + fe(year)"
       )
     }),
     "fixest logit", 2L, list(\(df) {
       feglm_logit_timer(
         df,
-        binary_y ~ x1 | indiv_id + firm_id
+        binary_y ~ x1 | indiv_id + year
       )
     }),
     "GLFixedEffectModels logit", 3L, list(\(df) {
