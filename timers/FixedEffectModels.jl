@@ -4,15 +4,15 @@ using FixedEffectModels
 using GLFixedEffectModels
 using Vcov
 
-function jl_feols_timer(data::DataFrame, fml::String; vcov::String="")
+function jl_feols_timer(data::DataFrame, fml::String; vcov::String="", nthreads::Int=2)
   start_time = time()
 
   # Convert string to formula if needed
   formula = eval(Meta.parse("@formula(" * fml * ")"))
   if vcov === ""
-    _ = reg(data, formula)
+    _ = reg(data, formula, nthreads=nthreads)
   else
-    _ = reg(data, formula, Vcov.cluster(Base.Symbol(vcov)))
+    _ = reg(data, formula, Vcov.cluster(Base.Symbol(vcov)), nthreads=nthreads)
   end
 
   elapsed_time = time() - start_time

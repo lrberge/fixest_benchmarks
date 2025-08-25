@@ -105,20 +105,17 @@ base_dgp <- function(
 ### Real Data
 
 <!-- Real Data -->
-| Dataset | Num. obs. | Estimator | Mean Estimation Time |
-|----|----|----|----|
-| tradepolicy (OLS) | 28566 | pyfixest.feols | 0.262 |
-| tradepolicy (OLS) | 28566 | FixedEffectModels.reg | 0.058 |
-| tradepolicy (OLS) | 28566 | fixest::feols | 0.037 |
-| tradepolicy (Poisson) | 28566 | pyfixest.fepois | 1.894 |
-| tradepolicy (Poisson) | 28566 | GLFixedEffectModels Poisson | 4.689 |
-| tradepolicy (Poisson) | 28566 | fixest::fepois | 0.243 |
-| nycflights13 | 336776 | pyfixest.feols | 0.29 |
-| nycflights13 | 336776 | FixedEffectModels.reg | 0.183 |
-| nycflights13 | 336776 | fixest::feols | 0.095 |
-| Medicare Provider | 9714896 | FixedEffectModels.reg | 13.208 |
-| Medicare Provider | 9714896 | fixest::feols | 59.428 |
-| nyc taxi | 46099576 | pyfixest.feols | 57.76 |
-| nyc taxi | 46099576 | FixedEffectModels.reg | 24.5 |
-| nyc taxi | 46099576 | fixest::feols | 43.61 |
+| Dataset           | Num. obs. | Estimator             | Mean Estimation Time |
+|-------------------|-----------|-----------------------|----------------------|
+| tradepolicy (OLS) | 28566     | pyfixest.feols        | 0.233                |
+| tradepolicy (OLS) | 28566     | FixedEffectModels.reg | 0.125                |
+| tradepolicy (OLS) | 28566     | fixest::feols         | 0.045                |
+| nycflights13      | 336776    | pyfixest.feols        | 0.25                 |
+| nycflights13      | 336776    | FixedEffectModels.reg | 0.121                |
+| nycflights13      | 336776    | fixest::feols         | 0.107                |
+| Medicare Provider | 9714896   | FixedEffectModels.reg | 12.124               |
+| Medicare Provider | 9714896   | fixest::feols         | 32.196               |
+| nyc taxi          | 46099576  | pyfixest.feols        | 59.238               |
+| nyc taxi          | 46099576  | FixedEffectModels.reg | 21.502               |
+| nyc taxi          | 46099576  | fixest::feols         | 47.661               |
 <!-- Real Data -->

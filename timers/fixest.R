@@ -1,8 +1,15 @@
 library(fixest)
 
-feols_timer <- function(data, fml, vcov = "iid") {
+feols_timer <- function(data, fml, vcov = "iid", nthreads = 2L) {
   start_time <- Sys.time()
-  result <- feols(fml, data = data, vcov = vcov, notes = FALSE, warn = FALSE)
+  result <- feols(
+    fml,
+    data = data,
+    vcov = vcov,
+    notes = FALSE,
+    warn = FALSE,
+    nthreads = nthreads
+  )
   elapsed_time <- as.numeric(Sys.time() - start_time, units = "secs")
   return(elapsed_time)
 }

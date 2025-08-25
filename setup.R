@@ -22,6 +22,7 @@ reticulate::source_python("timers/pyfixest.py")
 # setup julia
 # This chaos is due to: https://github.com/JuliaInterop/JuliaCall/issues/238
 Sys.setenv(JULIA_PROJECT = here())
+Sys.setenv(JULIA_NUM_THREADS = 8)
 julia_path <- Sys.which("julia")
 if (julia_path != "") {
   julia_bin_cmd <- system("julia -e 'println(Sys.BINDIR)'", intern = TRUE)
