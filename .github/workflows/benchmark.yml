@@ -216,22 +216,46 @@ jobs:
             return 1
           }
           
+          # Stash any unstaged changes before pulling
+          if ! git diff --quiet; then
+            echo "Stashing unstaged changes"
+            git stash push -m "Temporary stash for rebase" || {
+              echo "Failed to stash changes, adding and committing first"
+              git add .
+              git commit -m "Temporary commit before pull"
+              TEMP_COMMIT=true
+            }
+            STASHED=true
+          else
+            STASHED=false
+            TEMP_COMMIT=false
+          fi
+          
+          # Pull latest changes with retry
+          retry_git "git pull --rebase origin ${{ github.ref_name }}"
+          
+          # Restore stashed changes if any
+          if [ "$STASHED" = true ] && [ "$TEMP_COMMIT" = false ]; then
+            echo "Restoring stashed changes"
+            if ! git stash pop; then
+              echo "Stash pop failed, likely due to conflicts. Using stash drop and continuing."
+              git stash drop
+            fi
+          fi
+          
           # Check if there are any changes
           if git diff --quiet && git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
           fi
           
-          # Pull latest changes with retry
-          retry_git "git pull --rebase origin ${{ github.ref_name }}"
-          
           # Add changes
           git add results/
           git add README.md
           
-          # Check again if there are changes after pull
+          # Check again if there are changes after staging
           if git diff --cached --quiet; then
-            echo "No changes to commit after pull"
+            echo "No changes to commit after staging"
             exit 0
           fi
           
