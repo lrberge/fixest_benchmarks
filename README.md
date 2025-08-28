@@ -45,7 +45,9 @@ particular dataset may fall depends on the specific application.
 
 <details closed>
   <summary>DGP Code</summary>
+  
 ``` r
+
 base_dgp <- function(
   n = 1000,
   nb_year = 10,
