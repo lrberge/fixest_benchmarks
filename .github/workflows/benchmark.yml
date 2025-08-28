@@ -37,6 +37,12 @@ jobs:
       uses: r-lib/actions/setup-renv@v2
       with:
         cache-version: 2
+    
+    - name: Configure R compilation flags
+      run: |
+        mkdir -p ~/.R
+        echo "CFLAGS   = -g -O3 -mtune=native" > ~/.R/Makevars
+        echo "CXXFLAGS = -g -O3 -mtune=native" >> ~/.R/Makevars
 
     # Julia
     
@@ -120,10 +126,16 @@ jobs:
       - name: Install pandoc
         uses: r-lib/actions/setup-pandoc@v2
       
+      - name: Configure R compilation flags
+        run: |
+          mkdir -p ~/.R
+          echo "CFLAGS   = -g -O3 -mtune=native" > ~/.R/Makevars
+          echo "CXXFLAGS = -g -O3 -mtune=native" >> ~/.R/Makevars
+
       - name: Setup renv
         uses: r-lib/actions/setup-renv@v2
         with:
-          cache-version: 2
+          cache-version: 3
 
       # Python
       
@@ -167,82 +179,13 @@ jobs:
           path: results/
           retention-days: 1
 
-  commit:
-    needs: summarize
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
-
-      - name: Download summarized results
-        uses: actions/download-artifact@v4
-        with:
-          name: summarized-results
-          path: results/
-
       - name: Configure git
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
-      - name: Robust commit and push
+      - name: Commit and push results
         run: |
-          # Function to retry git operations
-          retry_git() {
-            local max_attempts=5
-            local attempt=1
-            local command="$*"
-            
-            while [ $attempt -le $max_attempts ]; do
-              echo "Attempt $attempt of $max_attempts: $command"
-              if eval "$command"; then
-                echo "Command succeeded on attempt $attempt"
-                return 0
-              else
-                echo "Command failed on attempt $attempt"
-                if [ $attempt -lt $max_attempts ]; then
-                  echo "Waiting 10 seconds before retry..."
-                  sleep 10
-                fi
-                attempt=$((attempt + 1))
-              fi
-            done
-            
-            echo "Command failed after $max_attempts attempts"
-            return 1
-          }
-          
-          # Stash any unstaged changes before pulling
-          if ! git diff --quiet; then
-            echo "Stashing unstaged changes"
-            git stash push -m "Temporary stash for rebase" || {
-              echo "Failed to stash changes, adding and committing first"
-              git add .
-              git commit -m "Temporary commit before pull"
-              TEMP_COMMIT=true
-            }
-            STASHED=true
-          else
-            STASHED=false
-            TEMP_COMMIT=false
-          fi
-          
-          # Pull latest changes with retry
-          retry_git "git pull --rebase origin ${{ github.ref_name }}"
-          
-          # Restore stashed changes if any
-          if [ "$STASHED" = true ] && [ "$TEMP_COMMIT" = false ]; then
-            echo "Restoring stashed changes"
-            if ! git stash pop; then
-              echo "Stash pop failed, likely due to conflicts. Using stash drop and continuing."
-              git stash drop
-            fi
-          fi
-          
           # Check if there are any changes
           if git diff --quiet && git diff --cached --quiet; then
             echo "No changes to commit"
@@ -266,7 +209,7 @@ jobs:
           - Commit SHA: ${{ github.sha }}
           - Workflow run: ${{ github.run_id }}"
           
-          # Push with retry
-          retry_git "git push origin ${{ github.ref_name }}"
+          # Push changes
+          git push origin ${{ github.ref_name }}
           
           echo "Successfully committed and pushed benchmark results"
